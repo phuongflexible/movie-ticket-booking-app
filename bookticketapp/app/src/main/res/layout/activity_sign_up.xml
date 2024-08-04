@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:scrollbars="none"
     android:background="@color/white"
-    tools:context=".LoginActivity">
+    tools:context=".SignUpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,15 +18,34 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log in"
+            android:text="@string/sign_up"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:fontFamily="@font/gvtime"
-            android:textSize="50sp"
+            android:textSize="50dp"
             android:layout_marginTop="24dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpEmail"
+            android:id="@+id/editSignUpFullNamegdfsdfs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/full_name"
+            android:layout_marginTop="32dp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaabold"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editSignUpEmailfdfsdfs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -45,11 +64,50 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpPassword"
+            android:id="@+id/editSignUpPhoneNumberfdfsds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Số điện thoại"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaabold"
+                android:textColor="@color/black"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editSignUpPasswordbgbdfd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Mật khẩu"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaabold"
+                android:textColor="@color/black"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editSignUpConfirmPasswordfdfsdfsd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Nhập lại mật khẩu"
             app:passwordToggleEnabled="true"
             android:layout_marginTop="16dp"
             android:textColorHint="@color/black"
@@ -69,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp">
             <ProgressBar
-                android:id="@+id/signUpProgressBar"
+                android:id="@+id/signUpProgressBarfgffsdf"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
@@ -84,7 +142,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp"
-                android:text="Đăng nhập"
+                android:text="@string/signup"
                 app:cornerRadius="10dp"/>
         </FrameLayout>
 
@@ -98,16 +156,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Không có tài khoản?"
+                android:text="Đã có tài khoản?"
                 android:textColor="@color/black"
                 android:fontFamily="@font/comfortaalight"
                 android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/txtSignUp"
+                android:id="@+id/txtSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đăng ký"
+                android:text="Đăng nhập"
                 android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaabold"
