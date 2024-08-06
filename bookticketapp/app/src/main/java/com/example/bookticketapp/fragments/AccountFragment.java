@@ -1,19 +1,19 @@
-package com.example.bookticketapp;
+package com.example.bookticketapp.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.bookticketapp.activities.LoginActivity;
+import com.example.bookticketapp.R;
+import com.example.bookticketapp.activities.SignUpActivity;
 
 /**
  * A simple {@link Fragment} subclass.

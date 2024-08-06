@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CinemaFragment">
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:context=".fragments.CinemaFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Spinner
+        android:id="@+id/spinnerLocation"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hiện danh sách các rạp chiếu phim theo tỉnh thành/toàn quốc"
-        android:textSize="26sp"
-        android:layout_gravity="center"/>
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_margin="5dp"
+        android:spinnerMode="dialog" />
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/lvCinema"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
