@@ -39,14 +39,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="20sp"
-            android:textAlignment="center"
-            android:text="8.5" />
+            android:text="8.5"
+            android:drawableLeft="@drawable/ic_star_rating"
+            android:drawablePadding="3dp"
+            android:paddingLeft="20dp"/>
 
         <TextView
             android:id="@+id/tvDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"            android:textSize="20sp"
+            android:layout_weight="1"
+            android:textSize="20sp"
             android:textAlignment="center"
             android:text="94 phút" />
 

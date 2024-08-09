@@ -48,15 +48,15 @@ public class CinemaFragment extends Fragment {
         lvCinema = view.findViewById(R.id.lvCinema);
 
         cinemaArray = new ArrayList<>();
-        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
-        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
-        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
-        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
-        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
-        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
-        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
-        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
-        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
+//        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
+//        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
+//        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
+//        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
+//        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
+//        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
+//        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
+//        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
+//        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
 
         cinemaAdapter = new CinemaAdapter(getContext(), R.layout.item_cinema, cinemaArray);
         lvCinema.setAdapter(cinemaAdapter);

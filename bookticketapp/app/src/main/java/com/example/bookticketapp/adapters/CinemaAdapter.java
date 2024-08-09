@@ -65,7 +65,7 @@ public class CinemaAdapter extends BaseAdapter {
 
         Cinema cinema = cinemaList.get(i);
 
-        holder.imgCinema.setImageResource(cinema.getCinemaImage());
+        holder.imgCinema.setImageResource(R.drawable.cinema1);
         holder.tvCinemaName.setText(cinema.getName());
         holder.tvAddress.setText(cinema.getAddress());
 

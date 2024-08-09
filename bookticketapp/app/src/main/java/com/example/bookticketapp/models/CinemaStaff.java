@@ -2,15 +2,15 @@ package com.example.bookticketapp.models;
 
 import java.util.List;
 
-public class Room {
+public class CinemaStaff {
     private int id;
-    private String name;
+    private int userId;
     private int cinemaId;
-    private List<Seat> seats;
+    private List<Receipt> receipts;
 
-    public Room(int id, String name, int cinemaId) {
+    public CinemaStaff(int id, int userId, int cinemaId) {
         this.id = id;
-        this.name = name;
+        this.userId = userId;
         this.cinemaId = cinemaId;
     }
 
@@ -22,12 +22,12 @@ public class Room {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getCinemaId() {
@@ -38,11 +38,11 @@ public class Room {
         this.cinemaId = cinemaId;
     }
 
-    public List<Seat> getSeats() {
-        return seats;
+    public List<Receipt> getReceipts() {
+        return receipts;
     }
 
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
+    public void setReceipts(List<Receipt> receipts) {
+        this.receipts = receipts;
     }
 }

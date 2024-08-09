@@ -13,7 +13,8 @@
         android:layout_height="50dp"
         android:layout_gravity="end"
         android:layout_margin="5dp"
-        android:spinnerMode="dialog" />
+        android:dropDownWidth="match_parent"
+        android:spinnerMode="dropdown" />
 
     <ListView
         android:id="@+id/lvCinema"

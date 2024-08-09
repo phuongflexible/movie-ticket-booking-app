@@ -1,14 +1,19 @@
 package com.example.bookticketapp.models;
 
+import java.util.List;
+
 public class Seat {
     private int id;
-    private String name;
-    private boolean isVailable;
+    private String seatNumber;
+    private int roomId;
+    private boolean isAvailable;
+    private List<Ticket> tickets;
 
-    public Seat(int id, String name, boolean isVailable) {
+    public Seat(int id, String seatNumber, int roomId, boolean isAvailable) {
         this.id = id;
-        this.name = name;
-        this.isVailable = isVailable;
+        this.seatNumber = seatNumber;
+        this.roomId = roomId;
+        this.isAvailable = isAvailable;
     }
 
     public int getId() {
@@ -19,19 +24,35 @@ public class Seat {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSeatNumber() {
+        return seatNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSeatNumber(String seatNumber) {
+        this.seatNumber = seatNumber;
     }
 
-    public boolean isVailable() {
-        return isVailable;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setVailable(boolean vailable) {
-        isVailable = vailable;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }
