@@ -2,12 +2,12 @@ package com.example.bookticketapp.models;
 
 import java.util.List;
 
-public class Category {
+public class Role {
     private int id;
     private String name;
-    private List<Movie> movies;
+    private List<User> users;
 
-    public Category(int id, String name) {
+    public Role(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -28,11 +28,11 @@ public class Category {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
-        return movies;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
