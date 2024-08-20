@@ -13,26 +13,47 @@ import com.example.bookticketapp.R;
 import com.example.bookticketapp.adapters.CinemaAdapter;
 import com.example.bookticketapp.models.Cinema;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CinemaFragment extends Fragment {
     // Location
-    Spinner spinnerLocation;
-    ArrayAdapter arrayAdapter;
-    ArrayList<String> locationArray;
+    private Spinner spinnerLocation;
+    private ArrayAdapter arrayAdapter;
+    private List<String> locationArray;
     // Cinema
-    ListView lvCinema;
-    CinemaAdapter cinemaAdapter;
-    ArrayList<Cinema> cinemaArray;
+    private ListView lvCinema;
+    private CinemaAdapter cinemaAdapter;
+    private List<Cinema> cinemaArray;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cinema, container, false);
 
-        // Location
-        spinnerLocation = view.findViewById(R.id.spinnerLocation);
+        FindViewByIds(view);
 
         locationArray = new ArrayList<String>();
+        cinemaArray = new ArrayList<Cinema>();
+        InitLocation();
+        InitCinema();
+
+        // Location
+        arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, locationArray);
+        spinnerLocation.setAdapter(arrayAdapter);
+
+        // Cinema
+        cinemaAdapter = new CinemaAdapter(getContext(), R.layout.item_cinema, cinemaArray);
+        lvCinema.setAdapter(cinemaAdapter);
+
+        return view;
+    }
+
+    private void FindViewByIds(View view) {
+        spinnerLocation = view.findViewById(R.id.spinnerLocation);
+        lvCinema = view.findViewById(R.id.lvCinema);
+    }
+
+    public void InitLocation() {
         locationArray.add("Toàn quốc");
         locationArray.add("Tp HCM");
         locationArray.add("Hà Nội");
@@ -40,27 +61,17 @@ public class CinemaFragment extends Fragment {
         locationArray.add("Cần Thơ");
         locationArray.add("Đồng Nai");
         locationArray.add("Long An");
+    }
 
-        arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, locationArray);
-        spinnerLocation.setAdapter(arrayAdapter);
-
-        // Cinema
-        lvCinema = view.findViewById(R.id.lvCinema);
-
-        cinemaArray = new ArrayList<>();
-//        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
-//        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
-//        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
-//        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
-//        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
-//        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
-//        cinemaArray.add(new Cinema(1, "Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
-//        cinemaArray.add(new Cinema(2, "CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
-//        cinemaArray.add(new Cinema(3, "CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
-
-        cinemaAdapter = new CinemaAdapter(getContext(), R.layout.item_cinema, cinemaArray);
-        lvCinema.setAdapter(cinemaAdapter);
-
-        return view;
+    public void InitCinema() {
+        cinemaArray.add(new Cinema("Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
+        cinemaArray.add(new Cinema("CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
+        cinemaArray.add(new Cinema("CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
+        cinemaArray.add(new Cinema("Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
+        cinemaArray.add(new Cinema("CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
+        cinemaArray.add(new Cinema("CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
+        cinemaArray.add(new Cinema("Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
+        cinemaArray.add(new Cinema("CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
+        cinemaArray.add(new Cinema("CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
     }
 }
