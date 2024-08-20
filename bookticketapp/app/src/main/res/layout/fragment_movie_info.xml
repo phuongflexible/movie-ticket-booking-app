@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtMovieInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:text="Deadpool 3 sẽ mang đến rất nhiều biến thể khác nhau của Wade Wilson, và không loại trừ khả năng một trong số họ đến từ dòng thời gian chính của MCU. Có không ít tin đồn liên quan đến việc Lady Deadpool cũng sẽ xuất hiện trong bom tấn này và do bà xã của Ryan Reynolds, Blake Lively thủ vai." />
+</LinearLayout>

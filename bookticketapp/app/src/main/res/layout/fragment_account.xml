@@ -6,7 +6,6 @@
     android:gravity="center"
     tools:context=".fragments.AccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"

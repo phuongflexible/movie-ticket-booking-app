@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookticketapp"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.MovieDetails"
-            android:exported="false" />
+         <activity
+         android:name=".activities.MovieDetailsActivity"
+         android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false" />

@@ -11,6 +11,28 @@ public class Cinema {
     private List<Room> rooms;
     private List<Showtime> showtimes;
 
+    // fake data -------------------------------
+    private int fakeImage;
+    public Cinema(String name, List<Showtime> showtimes) {
+        this.name = name;
+        this.showtimes = showtimes;
+    }
+
+    public Cinema(String name, String address, int fakeImage) {
+        this.name = name;
+        this.address = address;
+        this.fakeImage = fakeImage;
+    }
+
+    public int getFakeImage() {
+        return fakeImage;
+    }
+
+    public void setFakeImage(int fakeImage) {
+        this.fakeImage = fakeImage;
+    }
+    //-------------------------------------------
+
     public Cinema(int id, String name, String address, byte[] image, int locationId) {
         this.id = id;
         this.name = name;
