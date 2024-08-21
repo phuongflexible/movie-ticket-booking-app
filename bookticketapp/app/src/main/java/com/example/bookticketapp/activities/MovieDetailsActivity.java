@@ -1,13 +1,17 @@
 package com.example.bookticketapp.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.adapters.PagerMovieAdapter;
@@ -18,14 +22,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private TabLayout tabLayoutMovie;
     private ViewPager2 viewPagerMovie;
     private PagerMovieAdapter pagerMovieAdapter;
-    private ImageButton ibtnVote;
+    private ImageButton ibtnVote, ibtnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
-        FindViewByIds();
+        findViewByIds();
 
         pagerMovieAdapter = new PagerMovieAdapter(this);
         viewPagerMovie.setAdapter(pagerMovieAdapter);
@@ -45,11 +49,29 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+
+        ibtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MovieDetailsActivity.this, "back", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 
-    private void FindViewByIds() {
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void findViewByIds() {
         tabLayoutMovie = findViewById(R.id.tabLayoutMovie);
         viewPagerMovie = findViewById(R.id.viewPagerMovie);
         ibtnVote = findViewById(R.id.ibtnVote);
+        ibtnBack = findViewById(R.id.ibtnBack);
     }
 }

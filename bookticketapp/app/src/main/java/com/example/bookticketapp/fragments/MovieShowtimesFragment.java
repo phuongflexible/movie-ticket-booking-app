@@ -36,7 +36,7 @@ public class MovieShowtimesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_showtimes, container, false);
 
-        FindViewByIds(view);
+        findViewByIds(view);
 
         // ExpandableListView lịch chiếu phim
         cinemaList = getFakeData();
@@ -45,7 +45,7 @@ public class MovieShowtimesFragment extends Fragment {
 
         // Spinner khu vực
         locationArray = new ArrayList<String>();
-        InitLocation();
+        initLocation();
 
         arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, locationArray);
         spnLocation.setAdapter(arrayAdapter);
@@ -53,7 +53,7 @@ public class MovieShowtimesFragment extends Fragment {
         return view;
     }
 
-    private void FindViewByIds(View view) {
+    private void findViewByIds(View view) {
         expandList = view.findViewById(R.id.expandListShowtimes);
         spnLocation = view.findViewById(R.id.spnLocation);
     }
@@ -70,7 +70,7 @@ public class MovieShowtimesFragment extends Fragment {
         return newCinemas;
     }
 
-    public void InitLocation() {
+    private void initLocation() {
         locationArray.add("Toàn quốc");
         locationArray.add("Tp HCM");
         locationArray.add("Hà Nội");
