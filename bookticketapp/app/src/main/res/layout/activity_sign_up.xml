@@ -25,126 +25,72 @@
             android:textSize="50dp"
             android:layout_marginTop="24dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpFullNamegdfsdfs"
+        <EditText
+            android:id="@+id/editSignUpFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="@string/full_name"
-            android:layout_marginTop="32dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="32sp"
+            android:hint="Họ và tên"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaabold"
-                android:textColor="@color/black"
-                android:inputType="text"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpEmailfdfsdfs"
+        <EditText
+            android:id="@+id/editSignUpGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Email"
-            android:layout_marginTop="16dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:hint="Giới tính"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaabold"
-                android:textColor="@color/black"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpPhoneNumberfdfsds"
+        <EditText
+            android:id="@+id/editSignUpEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Số điện thoại"
-            android:layout_marginTop="16dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:hint="Email"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaabold"
-                android:textColor="@color/black"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpPasswordbgbdfd"
+        <EditText
+            android:id="@+id/editSignUpPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Mật khẩu"
-            app:passwordToggleEnabled="true"
-            android:layout_marginTop="16dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:hint="Số điện thoại"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaabold"
-                android:textColor="@color/black"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpConfirmPasswordfdfsdfsd"
+        <EditText
+            android:id="@+id/editSignUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Nhập lại mật khẩu"
-            app:passwordToggleEnabled="true"
-            android:layout_marginTop="16dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:hint="Mật khẩu"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaabold"
-                android:textColor="@color/black"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <FrameLayout
+        <EditText
+            android:id="@+id/editSignUpConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
-            <ProgressBar
-                android:id="@+id/signUpProgressBarfgffsdf"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:visibility="invisible"/>
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:hint="Xác nhận mật khẩu"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:fontFamily="@font/comfortaabold"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="20dp"
-                android:text="@string/signup"
-                app:cornerRadius="10dp"/>
-        </FrameLayout>
+        <Button
+            android:id="@+id/btnConfirmSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/comfortaabold"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginTop="16sp"
+            android:text="Đăng ký"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -170,8 +116,6 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaabold"
                 android:textSize="14sp"/>
-
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

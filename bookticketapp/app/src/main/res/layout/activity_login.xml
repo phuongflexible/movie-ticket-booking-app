@@ -25,68 +25,72 @@
             android:textSize="50sp"
             android:layout_marginTop="24dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpEmail"
+        <EditText
+            android:id="@+id/editSignInEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Email"
-            android:layout_marginTop="16dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="32sp"
+            android:hint="Email"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaabold"
-                android:textColor="@color/black"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editSignUpPassword"
+        <EditText
+            android:id="@+id/editSignInPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Mật khẩu"
-            app:passwordToggleEnabled="true"
-            android:layout_marginTop="16dp"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black">
+            android:fontFamily="@font/comfortaabold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:hint="Mật khẩu"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaabold"
-                android:textColor="@color/black"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <FrameLayout
+        <!--<RadioGroup
+            android:id="@+id/userRoleGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
-            <ProgressBar
-                android:id="@+id/signUpProgressBar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:visibility="invisible"/>
-
-            <com.google.android.material.button.MaterialButton
+            android:orientation="vertical"
+            android:layout_marginTop="16sp">
+            <RadioButton
+                android:id="@+id/isAdmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:fontFamily="@font/comfortaabold"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="20dp"
-                android:text="Đăng nhập"
-                app:cornerRadius="10dp"/>
-        </FrameLayout>
+                android:fontFamily="@font/comfortaalight"
+                android:textSize="20sp"
+                android:text="Admin"/>
+            <RadioButton
+                android:id="@+id/isManager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaalight"
+                android:textSize="20sp"
+                android:text="Quản lý"/>
+            <RadioButton
+                android:id="@+id/isStaff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaalight"
+                android:textSize="20sp"
+                android:text="Nhân viên"/>
+            <RadioButton
+                android:id="@+id/isMember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaalight"
+                android:textSize="20sp"
+                android:text="Thành viên"/>
+        </RadioGroup>-->
+
+        <Button
+            android:id="@+id/btnConfirmSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/comfortaabold"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginTop="16sp"
+            android:text="Đăng nhập"/>
 
         <LinearLayout
             android:layout_width="match_parent"

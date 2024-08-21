@@ -17,7 +17,7 @@ public class User {
     private List<Rating> ratings;
     private List<Receipt> receipts;
 
-    public User(int id, String username, String password, int roleId, String name, String gender, LocalDate birthday, String phoneNumber, String email) {
+    /*public User(int id, String username, String password, int roleId, String name, String gender, String phoneNumber, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -25,6 +25,15 @@ public class User {
         this.name = name;
         this.gender = gender;
         this.birthday = birthday;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }*/
+
+    public User(String name, String gender, String email, String phoneNumber,  String password, int roleId) {
+        this.password = password;
+        this.roleId = roleId;
+        this.name = name;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }

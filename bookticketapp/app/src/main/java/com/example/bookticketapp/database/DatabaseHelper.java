@@ -3,6 +3,9 @@ package com.example.bookticketapp.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.content.ContentValues;
+import com.example.bookticketapp.models.User;
+import android.database.Cursor;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -79,12 +82,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Bảng User
     private static final String TABLE_USER = "User";
     private static final String COLUMN_USER_ID = "id";
-    private static final String COLUMN_USER_USERNAME = "username";
+    //private static final String COLUMN_USER_USERNAME = "username";
     private static final String COLUMN_USER_PASSWORD = "password";
     private static final String COLUMN_USER_ROLE_ID = "role_id";
     private static final String COLUMN_USER_NAME = "name";
     private static final String COLUMN_USER_GENDER = "gender";
-    private static final String COLUMN_USER_BIRTHDAY = "birthday";
     private static final String COLUMN_USER_PHONE_NUMBER = "phone_number";
     private static final String COLUMN_USER_EMAIL = "email";
 
@@ -219,12 +221,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Tạo bảng User với liên kết đến Role
         String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " ("
                 + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_USER_USERNAME + " TEXT, "
                 + COLUMN_USER_PASSWORD + " TEXT, "
                 + COLUMN_USER_ROLE_ID + " INTEGER, "
                 + COLUMN_USER_NAME + " TEXT, "
                 + COLUMN_USER_GENDER + " TEXT, "
-                + COLUMN_USER_BIRTHDAY + " TEXT, "
                 + COLUMN_USER_PHONE_NUMBER + " TEXT, "
                 + COLUMN_USER_EMAIL + " TEXT, "
                 + "FOREIGN KEY(" + COLUMN_USER_ROLE_ID + ") REFERENCES "
@@ -270,6 +270,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + COLUMN_CINEMA_STAFF_CINEMA_ID + ") REFERENCES "
                 + TABLE_CINEMA + "(" + COLUMN_CINEMA_ID + "))";
         db.execSQL(CREATE_TABLE_CINEMA_STAFF);
+
+
+
     }
 
     @Override
@@ -291,4 +294,55 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CINEMA_STAFF);
         onCreate(db);
     }
+
+    //Table user
+    //============================Add data===================
+    public Boolean insertUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_USER_NAME, user.getName());
+        cv.put(COLUMN_USER_GENDER, user.getGender());
+        cv.put(COLUMN_USER_EMAIL, user.getEmail());
+        cv.put(COLUMN_USER_PHONE_NUMBER, user.getPhoneNumber());
+        cv.put(COLUMN_USER_PASSWORD, user.getPassword());
+        cv.put(COLUMN_USER_ROLE_ID, user.getRoleId());
+        long result = db.insert(TABLE_USER, null, cv);
+
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //=========================Check email when sign up=======================
+    public Boolean checkEmail(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from user where email = ?", new String[]{email});
+
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        } else {
+            cursor.close();
+            return false;
+        }
+    }
+
+    //=========================Check email and password when log in=======================
+    public Boolean checkEmailPassword(String email, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from user where email = ? and password = ?", new String[]{email, password});
+
+        if (cursor.getCount() > 0 ) {
+            cursor.close();
+            return true;
+        } else {
+            cursor.close();
+            return false;
+        }
+    }
 }
+
+
+
