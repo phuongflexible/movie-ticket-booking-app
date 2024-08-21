@@ -89,7 +89,7 @@
     <ExpandableListView
         android:id="@+id/expandListShowtimes"
         android:layout_width="match_parent"
-        android:layout_height="1000dp"
+        android:layout_height="500dp"
         android:paddingHorizontal="3dp">
 
     </ExpandableListView>

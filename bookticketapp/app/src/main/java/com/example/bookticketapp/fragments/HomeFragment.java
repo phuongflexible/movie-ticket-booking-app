@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        FindViewByIds(view);
+        findViewByIds(view);
 
         // chuyển qua chi tiết phim
         btnMovieDetails.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void FindViewByIds(View view) {
+    private void findViewByIds(View view) {
         btnMovieDetails = view.findViewById(R.id.btnMovieDetails);
     }
 }

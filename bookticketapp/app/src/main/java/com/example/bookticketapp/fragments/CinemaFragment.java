@@ -30,12 +30,12 @@ public class CinemaFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cinema, container, false);
 
-        FindViewByIds(view);
+        findViewByIds(view);
 
         locationArray = new ArrayList<String>();
         cinemaArray = new ArrayList<Cinema>();
-        InitLocation();
-        InitCinema();
+        initLocation();
+        initCinema();
 
         // Location
         arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, locationArray);
@@ -48,12 +48,12 @@ public class CinemaFragment extends Fragment {
         return view;
     }
 
-    private void FindViewByIds(View view) {
+    private void findViewByIds(View view) {
         spinnerLocation = view.findViewById(R.id.spinnerLocation);
         lvCinema = view.findViewById(R.id.lvCinema);
     }
 
-    public void InitLocation() {
+    private void initLocation() {
         locationArray.add("Toàn quốc");
         locationArray.add("Tp HCM");
         locationArray.add("Hà Nội");
@@ -63,7 +63,7 @@ public class CinemaFragment extends Fragment {
         locationArray.add("Long An");
     }
 
-    public void InitCinema() {
+    private void initCinema() {
         cinemaArray.add(new Cinema("Galaxy Nguyễn Du", "đây là địa chỉ", R.drawable.cinema1));
         cinemaArray.add(new Cinema("CineStar Hai Bà Trưng", "dsajdhas Quận 1, Tp.HCM", R.drawable.cinema2));
         cinemaArray.add(new Cinema("CGV Đồng Khởi", "ndashdai Quận 1, Tp.HCM", R.drawable.cinema3));
