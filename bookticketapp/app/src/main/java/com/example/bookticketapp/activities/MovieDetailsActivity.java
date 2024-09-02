@@ -1,27 +1,28 @@
 package com.example.bookticketapp.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.bookticketapp.R;
-import com.example.bookticketapp.adapters.PagerMovieAdapter;
+import com.example.bookticketapp.adapters.MoviePagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MovieDetailsActivity extends AppCompatActivity {
     private TabLayout tabLayoutMovie;
     private ViewPager2 viewPagerMovie;
-    private PagerMovieAdapter pagerMovieAdapter;
+    private MoviePagerAdapter moviePagerAdapter;
     private ImageButton ibtnVote, ibtnBack;
 
     @Override
@@ -31,13 +32,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         findViewByIds();
 
-        pagerMovieAdapter = new PagerMovieAdapter(this);
-        viewPagerMovie.setAdapter(pagerMovieAdapter);
+        moviePagerAdapter = new MoviePagerAdapter(this);
+        viewPagerMovie.setAdapter(moviePagerAdapter);
 
         new TabLayoutMediator(tabLayoutMovie, viewPagerMovie, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(pagerMovieAdapter.getTabTitle(position));
+                tab.setText(moviePagerAdapter.getTabTitle(position));
             }
         }).attach();
 
