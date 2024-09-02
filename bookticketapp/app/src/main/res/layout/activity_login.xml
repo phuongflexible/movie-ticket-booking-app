@@ -38,6 +38,7 @@
             android:id="@+id/editSignInPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:fontFamily="@font/comfortaabold"
             android:textColor="@color/black"
             android:layout_marginTop="16sp"

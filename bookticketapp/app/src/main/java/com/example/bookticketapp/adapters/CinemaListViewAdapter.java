@@ -9,17 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bookticketapp.R;
-import com.example.bookticketapp.fragments.CinemaFragment;
 import com.example.bookticketapp.models.Cinema;
 
 import java.util.List;
 
-public class CinemaAdapter extends BaseAdapter {
+public class CinemaListViewAdapter extends BaseAdapter {
     private Context context;
     private int layoutItem;
     private List<Cinema> cinemaList;
 
-    public CinemaAdapter(Context context, int layoutItem, List<Cinema> cinemaList) {
+    public CinemaListViewAdapter(Context context, int layoutItem, List<Cinema> cinemaList) {
         this.context = context;
         this.layoutItem = layoutItem;
         this.cinemaList = cinemaList;

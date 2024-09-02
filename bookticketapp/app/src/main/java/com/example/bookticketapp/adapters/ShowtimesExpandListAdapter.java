@@ -1,6 +1,7 @@
 package com.example.bookticketapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.activities.BookingActivity;
+import com.example.bookticketapp.activities.MovieDetailsActivity;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Showtime;
 
 import java.util.List;
 
-public class ExpandListShowtimesAdapter extends BaseExpandableListAdapter {
+public class ShowtimesExpandListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<Cinema> cinemaList;
 
-    public ExpandListShowtimesAdapter(Context context, List<Cinema> cinemaList) {
+    public ShowtimesExpandListAdapter(Context context, List<Cinema> cinemaList) {
         this.context = context;
         this.cinemaList = cinemaList;
     }
@@ -78,6 +81,15 @@ public class ExpandListShowtimesAdapter extends BaseExpandableListAdapter {
         Button btnShowtime = view.findViewById(R.id.btnChildShowtime);
         Showtime showtime = cinemaList.get(i).getShowtimes().get(i1);
         btnShowtime.setText(showtime.getTime());
+
+        btnShowtime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Move to booking", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, BookingActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
         return view;
     }

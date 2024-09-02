@@ -3,8 +3,6 @@ package com.example.bookticketapp.adapters;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.bookticketapp.fragments.MovieInfoFragment;
@@ -13,11 +11,11 @@ import com.example.bookticketapp.fragments.MovieShowtimesFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PagerMovieAdapter extends FragmentStateAdapter {
+public class MoviePagerAdapter extends FragmentStateAdapter {
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> tabTitleList = new ArrayList<>();
 
-    public PagerMovieAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public MoviePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
 
         addFragment(new MovieShowtimesFragment(), "Lịch chiếu");
