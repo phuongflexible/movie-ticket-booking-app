@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.dao.UserQuery;
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.databinding.ActivitySignUpBinding;
 import android.widget.Toast;
@@ -17,13 +18,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     TextView txtSignIn;
     private ActivitySignUpBinding binding;
-    private DatabaseHelper databaseHelper;
+    private UserQuery userQuery;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        databaseHelper = new DatabaseHelper(this);
+        userQuery = new UserQuery(this);
 
         binding.btnConfirmSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,9 +40,9 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Thông tin bắt buộc", Toast.LENGTH_SHORT).show();
                 } else {
                     if (password.equals(confirmPassword)) {
-                        Boolean checkUserEmail = databaseHelper.checkEmail(email);
+                        Boolean checkUserEmail = userQuery.checkEmail(email);
                         if (checkUserEmail == false) {
-                            Boolean insert = databaseHelper.insertUser(new User(name, gender, email, phoneNumber, password, 4));
+                            Boolean insert = userQuery.insertUser(new User(name, gender, email, phoneNumber, password, 2));
                             if (insert == true) {
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                             } else {
@@ -55,7 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(SignUpActivity.this, "Mật khẩu sai", Toast.LENGTH_SHORT).show();
                     }
                 }
-                //validateData();
             }
         });
 

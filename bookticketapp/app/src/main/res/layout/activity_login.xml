@@ -12,38 +12,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="22dp">
+        android:layout_marginStart="22sp"
+        android:layout_marginEnd="22sp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log in"
+            android:text="@string/log_in"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:fontFamily="@font/gvtime"
             android:textSize="50sp"
             android:layout_marginTop="24dp"/>
 
-        <EditText
-            android:id="@+id/editSignInEmail"
+        <!--========================Email===============================-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaabold"
-            android:textColor="@color/black"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginTop="32sp"
-            android:hint="Email"/>
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
 
-        <EditText
-            android:id="@+id/editSignInPassword"
+            <EditText
+                android:id="@+id/editSignInEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaabold"
+                android:hint="@string/email"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--========================Password===============================-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaabold"
-            android:textColor="@color/black"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:passwordToggleEnabled="true"
             android:layout_marginTop="16sp"
-            android:hint="Mật khẩu"/>
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
 
-        <!--<RadioGroup
+            <EditText
+                android:id="@+id/editSignInPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaabold"
+                android:hint="@string/password"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
             android:id="@+id/userRoleGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,29 +78,16 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/comfortaalight"
                 android:textSize="20sp"
-                android:text="Admin"/>
-            <RadioButton
-                android:id="@+id/isManager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaalight"
-                android:textSize="20sp"
-                android:text="Quản lý"/>
-            <RadioButton
-                android:id="@+id/isStaff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaalight"
-                android:textSize="20sp"
-                android:text="Nhân viên"/>
+                android:text="@string/isAdmin"/>
+
             <RadioButton
                 android:id="@+id/isMember"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/comfortaalight"
                 android:textSize="20sp"
-                android:text="Thành viên"/>
-        </RadioGroup>-->
+                android:text="@string/isUser"/>
+        </RadioGroup>
 
         <Button
             android:id="@+id/btnConfirmSignIn"
@@ -90,7 +100,7 @@
             android:paddingEnd="20dp"
             android:paddingBottom="20dp"
             android:layout_marginTop="16sp"
-            android:text="Đăng nhập"/>
+            android:text="@string/login"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,7 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Không có tài khoản?"
+                android:text="@string/noAccount"
                 android:textColor="@color/black"
                 android:fontFamily="@font/comfortaalight"
                 android:textSize="14sp"/>
@@ -111,7 +121,7 @@
                 android:id="@+id/txtSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đăng ký"
+                android:text="@string/signup"
                 android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/comfortaabold"

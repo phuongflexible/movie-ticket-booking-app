@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AdminFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/gvtime"
+            android:textSize="50sp"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/accountFullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Họ tên"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaalight"
+            android:textSize="20sp"
+            android:layout_marginTop="24sp"/>
+
+        <TextView
+            android:id="@+id/accountGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giới tính"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaalight"
+            android:textSize="20sp"
+            android:layout_marginTop="16sp"/>
+
+        <TextView
+            android:id="@+id/accountEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaalight"
+            android:textSize="20sp"
+            android:layout_marginTop="16sp"/>
+
+        <TextView
+            android:id="@+id/accountPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaalight"
+            android:textSize="20sp"
+            android:layout_marginTop="16sp"/>
+
+        <TextView
+            android:id="@+id/accountRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vai trò"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaalight"
+            android:textSize="20sp"
+            android:layout_marginTop="16sp"/>
+
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/comfortaabold"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginTop="24sp"
+            android:text="Đăng xuất"/>
+
+    </LinearLayout>
+
+</ScrollView>
