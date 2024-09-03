@@ -1,11 +1,11 @@
 package com.example.bookticketapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -15,7 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.bookticketapp.R;
-import com.example.bookticketapp.adapters.ExpandListShowtimesAdapter;
+import com.example.bookticketapp.activities.BookingActivity;
+import com.example.bookticketapp.adapters.ShowtimesExpandListAdapter;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Showtime;
 
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class MovieShowtimesFragment extends Fragment {
     private ExpandableListView expandList;
-    private ExpandListShowtimesAdapter showtimesAdapter;
+    private ShowtimesExpandListAdapter showtimesAdapter;
     private List<Cinema> cinemaList;
     private Spinner spnLocation;
     private ArrayAdapter arrayAdapter;
@@ -38,17 +39,28 @@ public class MovieShowtimesFragment extends Fragment {
 
         findViewByIds(view);
 
-        // ExpandableListView lịch chiếu phim
-        cinemaList = getFakeData();
-        showtimesAdapter = new ExpandListShowtimesAdapter(getContext(), cinemaList);
-        expandList.setAdapter(showtimesAdapter);
-
         // Spinner khu vực
         locationArray = new ArrayList<String>();
         initLocation();
 
         arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, locationArray);
         spnLocation.setAdapter(arrayAdapter);
+
+        // ExpandableListView lịch chiếu phim
+        cinemaList = getFakeData();
+        showtimesAdapter = new ShowtimesExpandListAdapter(getContext(), cinemaList);
+        expandList.setAdapter(showtimesAdapter);
+
+        expandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), BookingActivity.class);
+                startActivity(intent);
+
+                return true;
+            }
+        });
 
         return view;
     }

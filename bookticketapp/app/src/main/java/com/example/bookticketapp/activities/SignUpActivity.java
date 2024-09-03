@@ -45,6 +45,9 @@ public class SignUpActivity extends AppCompatActivity {
                             Boolean insert = userQuery.insertUser(new User(name, gender, email, phoneNumber, password, 2));
                             if (insert == true) {
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                startActivity(intent);
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                             }

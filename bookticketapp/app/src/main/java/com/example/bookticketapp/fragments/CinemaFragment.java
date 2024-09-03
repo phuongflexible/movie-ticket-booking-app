@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.bookticketapp.R;
-import com.example.bookticketapp.adapters.CinemaAdapter;
+import com.example.bookticketapp.adapters.CinemaListViewAdapter;
 import com.example.bookticketapp.models.Cinema;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class CinemaFragment extends Fragment {
     private List<String> locationArray;
     // Cinema
     private ListView lvCinema;
-    private CinemaAdapter cinemaAdapter;
+    private CinemaListViewAdapter cinemaListViewAdapter;
     private List<Cinema> cinemaArray;
 
     @Override
@@ -42,8 +42,8 @@ public class CinemaFragment extends Fragment {
         spinnerLocation.setAdapter(arrayAdapter);
 
         // Cinema
-        cinemaAdapter = new CinemaAdapter(getContext(), R.layout.item_cinema, cinemaArray);
-        lvCinema.setAdapter(cinemaAdapter);
+        cinemaListViewAdapter = new CinemaListViewAdapter(getContext(), R.layout.item_cinema, cinemaArray);
+        lvCinema.setAdapter(cinemaListViewAdapter);
 
         return view;
     }

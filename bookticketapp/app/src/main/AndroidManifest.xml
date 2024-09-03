@@ -24,6 +24,9 @@
             android:exported="false" />
         <activity
             android:name=".activities.AdminActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activities.BookingActivity"
             android:exported="false" />
         <activity
             android:name=".activities.ProfileActivity"
