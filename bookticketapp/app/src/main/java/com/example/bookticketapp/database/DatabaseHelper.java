@@ -39,9 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_SEAT_IS_AVAILABLE = "is_available";
 
     // Bảng Category
-    private static final String TABLE_CATEGORY = "Category";
-    private static final String COLUMN_CATEGORY_ID = "id";
-    private static final String COLUMN_CATEGORY_NAME = "name";
+    public static final String TABLE_CATEGORY = "Category";
+    public static final String COLUMN_CATEGORY_ID = "id";
+    public static final String COLUMN_CATEGORY_NAME = "name";
 
     // Bảng Movie
     private static final String TABLE_MOVIE = "Movie";
@@ -79,16 +79,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_RECEIPT_USER_ID = "user_id";
     private static final String COLUMN_RECEIPT_CINEMA_STAFF_ID = "cinema_staff_id";
 
-    // Bảng User
-    private static final String TABLE_USER = "User";
-    private static final String COLUMN_USER_ID = "id";
-    //private static final String COLUMN_USER_USERNAME = "username";
-    private static final String COLUMN_USER_PASSWORD = "password";
-    private static final String COLUMN_USER_ROLE_ID = "role_id";
-    private static final String COLUMN_USER_NAME = "name";
-    private static final String COLUMN_USER_GENDER = "gender";
-    private static final String COLUMN_USER_PHONE_NUMBER = "phone_number";
-    private static final String COLUMN_USER_EMAIL = "email";
+    // Bảng UserQuery
+    public static final String TABLE_USER = "User";
+    public static final String COLUMN_USER_ID = "id";
+    public static final String COLUMN_USER_PASSWORD = "password";
+    public static final String COLUMN_USER_ROLE_ID = "role_id";
+    public static final String COLUMN_USER_NAME = "name";
+    public static final String COLUMN_USER_GENDER = "gender";
+    public static final String COLUMN_USER_PHONE_NUMBER = "phone_number";
+    public static final String COLUMN_USER_EMAIL = "email";
 
     // Bảng Rating
     private static final String TABLE_RATING = "Rating";
@@ -117,6 +116,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+    String [] userColumns = {COLUMN_USER_ID, COLUMN_USER_NAME, COLUMN_USER_GENDER, COLUMN_USER_EMAIL, COLUMN_USER_PHONE_NUMBER, COLUMN_USER_PASSWORD, COLUMN_USER_ROLE_ID};
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -204,7 +205,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TABLE_RECEIPT + "(" + COLUMN_RECEIPT_ID + "))";
         db.execSQL(CREATE_TABLE_TICKET);
 
-        // Tạo bảng Receipt với liên kết đến User và CinemaStaff
+        // Tạo bảng Receipt với liên kết đến UserQuery và CinemaStaff
         String CREATE_TABLE_RECEIPT = "CREATE TABLE " + TABLE_RECEIPT + " ("
                 + COLUMN_RECEIPT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_RECEIPT_TOTAL + " REAL, "
@@ -218,7 +219,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TABLE_CINEMA_STAFF + "(" + COLUMN_CINEMA_STAFF_ID + "))";
         db.execSQL(CREATE_TABLE_RECEIPT);
 
-        // Tạo bảng User với liên kết đến Role
+        // Tạo bảng UserQuery với liên kết đến Role
         String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " ("
                 + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_USER_PASSWORD + " TEXT, "
@@ -231,7 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TABLE_ROLE + "(" + COLUMN_ROLE_ID + "))";
         db.execSQL(CREATE_TABLE_USER);
 
-        // Tạo bảng Rating với liên kết đến Movie và User
+        // Tạo bảng Rating với liên kết đến Movie và UserQuery
         String CREATE_TABLE_RATING = "CREATE TABLE " + TABLE_RATING + " ("
                 + COLUMN_RATING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_RATING_RATING + " REAL, "
@@ -249,7 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_ROLE_NAME + " TEXT)";
         db.execSQL(CREATE_TABLE_ROLE);
 
-        // Tạo bảng CinemaManager với liên kết đến User và Cinema
+        // Tạo bảng CinemaManager với liên kết đến UserQuery và Cinema
         String CREATE_TABLE_CINEMA_MANAGER = "CREATE TABLE " + TABLE_CINEMA_MANAGER + " ("
                 + COLUMN_CINEMA_MANAGER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_CINEMA_MANAGER_USER_ID + " INTEGER, "
@@ -260,7 +261,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TABLE_CINEMA + "(" + COLUMN_CINEMA_ID + "))";
         db.execSQL(CREATE_TABLE_CINEMA_MANAGER);
 
-        // Tạo bảng CinemaStaff với liên kết đến User và Cinema
+        // Tạo bảng CinemaStaff với liên kết đến UserQuery và Cinema
         String CREATE_TABLE_CINEMA_STAFF = "CREATE TABLE " + TABLE_CINEMA_STAFF + " ("
                 + COLUMN_CINEMA_STAFF_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_CINEMA_STAFF_USER_ID + " INTEGER, "
@@ -293,54 +294,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CINEMA_MANAGER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CINEMA_STAFF);
         onCreate(db);
-    }
-
-    //Table user
-    //============================Add data===================
-    public Boolean insertUser(User user) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_USER_NAME, user.getName());
-        cv.put(COLUMN_USER_GENDER, user.getGender());
-        cv.put(COLUMN_USER_EMAIL, user.getEmail());
-        cv.put(COLUMN_USER_PHONE_NUMBER, user.getPhoneNumber());
-        cv.put(COLUMN_USER_PASSWORD, user.getPassword());
-        cv.put(COLUMN_USER_ROLE_ID, user.getRoleId());
-        long result = db.insert(TABLE_USER, null, cv);
-
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    //=========================Check email when sign up=======================
-    public Boolean checkEmail(String email) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from user where email = ?", new String[]{email});
-
-        if (cursor.getCount() > 0) {
-            cursor.close();
-            return true;
-        } else {
-            cursor.close();
-            return false;
-        }
-    }
-
-    //=========================Check email and password when log in=======================
-    public Boolean checkEmailPassword(String email, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from user where email = ? and password = ?", new String[]{email, password});
-
-        if (cursor.getCount() > 0 ) {
-            cursor.close();
-            return true;
-        } else {
-            cursor.close();
-            return false;
-        }
     }
 }
 

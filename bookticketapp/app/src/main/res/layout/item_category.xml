@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5sp"
+    android:elevation="8sp"
+    app:cardCornerRadius="4sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/txtCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Category Name"
+            android:textColor="@color/black"/>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_weight="1">
+            <Button
+                android:id="@+id/btnUpdateCategory"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                app:icon="@drawable/ic_baseline_update_24" />
+
+            <Button
+                android:id="@+id/btnDeleteCategory"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                app:icon="@drawable/ic_baseline_delete_forever_24" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
