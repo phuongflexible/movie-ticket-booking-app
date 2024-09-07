@@ -1,24 +1,22 @@
 package com.example.bookticketapp.models;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 public class Receipt {
     private int id;
     private float total;
-    private LocalDateTime createdTime;
-    private LocalDateTime paymentTime;
+    private Calendar createdTime;
+    private Calendar paymentTime;
     private int userId;
-    private int cinemaStaffId;
     private List<Ticket> tickets;
 
-    public Receipt(int id, float total, LocalDateTime createdTime, LocalDateTime paymentTime, int userId, int cinemaStaffId) {
+    public Receipt(int id, float total, Calendar createdTime, Calendar paymentTime, int userId) {
         this.id = id;
         this.total = total;
         this.createdTime = createdTime;
         this.paymentTime = paymentTime;
         this.userId = userId;
-        this.cinemaStaffId = cinemaStaffId;
     }
 
     public int getId() {
@@ -37,19 +35,19 @@ public class Receipt {
         this.total = total;
     }
 
-    public LocalDateTime getCreatedTime() {
+    public Calendar getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(LocalDateTime createdTime) {
+    public void setCreatedTime(Calendar createdTime) {
         this.createdTime = createdTime;
     }
 
-    public LocalDateTime getPaymentTime() {
+    public Calendar getPaymentTime() {
         return paymentTime;
     }
 
-    public void setPaymentTime(LocalDateTime paymentTime) {
+    public void setPaymentTime(Calendar paymentTime) {
         this.paymentTime = paymentTime;
     }
 
@@ -59,14 +57,6 @@ public class Receipt {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getCinemaStaffId() {
-        return cinemaStaffId;
-    }
-
-    public void setCinemaStaffId(int cinemaStaffId) {
-        this.cinemaStaffId = cinemaStaffId;
     }
 
     public List<Ticket> getTickets() {

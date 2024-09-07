@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="3dp">
+    android:orientation="horizontal"
+    android:layout_marginHorizontal="5dp"
+    android:paddingVertical="6dp"
+    android:background="@color/black_background">
 
     <ImageView
         android:id="@+id/imgCinema"
@@ -16,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
-        android:padding="5dp"
+        android:paddingLeft="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -24,13 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Galaxy Nguyễn Du"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="116 Nguyễn Du, Quận 1, Tp.HCM" />
+            android:text="116 Nguyễn Du, Quận 1, Tp.HCM"
+            android:textSize="14sp"/>
     </LinearLayout>
 </LinearLayout>
