@@ -76,7 +76,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_RECEIPT_TOTAL = "total";
     private static final String COLUMN_RECEIPT_CREATED_TIME = "created_time";
     private static final String COLUMN_RECEIPT_PAYMENT_TIME = "payment_time";
+    private static final String COLUMN_RECEIPT_PAYMENT_METHOD_ID = "payment_method_id";
     private static final String COLUMN_RECEIPT_USER_ID = "user_id";
+
+    // Bảng PaymentMethod
+    private static final String TABLE_PAYMENT_METHOD = "PaymentMethod";
+    private static final String COLUMN_PAYMENT_METHOD_ID = "id";
+    private static final String COLUMN_PAYMENT_METHOD_NAME = "name";
 
     // Bảng User
     public static final String TABLE_USER = "User";
@@ -192,16 +198,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + TABLE_RECEIPT + "(" + COLUMN_RECEIPT_ID + "))";
         db.execSQL(CREATE_TABLE_TICKET);
 
-        // Tạo bảng Receipt với liên kết đến User
+        // Tạo bảng Receipt với liên kết đến PaymentMethod và User
         String CREATE_TABLE_RECEIPT = "CREATE TABLE " + TABLE_RECEIPT + " ("
                 + COLUMN_RECEIPT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_RECEIPT_TOTAL + " REAL, "
                 + COLUMN_RECEIPT_CREATED_TIME + " TEXT, "
                 + COLUMN_RECEIPT_PAYMENT_TIME + " TEXT, "
+                + COLUMN_RECEIPT_PAYMENT_METHOD_ID + " INTEGER, "
                 + COLUMN_RECEIPT_USER_ID + " INTEGER, "
+                + "FOREIGN KEY(" + COLUMN_RECEIPT_PAYMENT_METHOD_ID + ") REFERENCES "
+                + TABLE_PAYMENT_METHOD + "(" + COLUMN_PAYMENT_METHOD_ID + "), "
                 + "FOREIGN KEY(" + COLUMN_RECEIPT_USER_ID + ") REFERENCES "
                 + TABLE_USER + "(" + COLUMN_USER_ID + "))";
         db.execSQL(CREATE_TABLE_RECEIPT);
+
+        // Tạo bảng PaymentMethod
+        String CREATE_TABLE_PAYMENT_METHOD = "CREATE TABLE " + TABLE_PAYMENT_METHOD + " ("
+                + COLUMN_PAYMENT_METHOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_PAYMENT_METHOD_NAME + " TEXT)";
+        db.execSQL(CREATE_TABLE_PAYMENT_METHOD);
 
         // Tạo bảng User với liên kết đến Role
         String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " ("
@@ -247,6 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOWTIME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TICKET);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECEIPT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT_METHOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATING);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROLE);
