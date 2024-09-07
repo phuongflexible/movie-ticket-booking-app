@@ -1,7 +1,6 @@
 package com.example.bookticketapp.models;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class Movie {
@@ -10,13 +9,13 @@ public class Movie {
     private String desciption;
     private int categoryId;
     private int duration;
-    private LocalDate openingDay;
+    private Calendar openingDay;
     private float rating;
     private byte[] image;
     private List<Showtime> showtimes;
     private List<Rating> ratings;
 
-    public Movie(int id, String title, String desciption, int categoryId, int duration, LocalDate openingDay, float rating, byte[] image) {
+    public Movie(int id, String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
         this.id = id;
         this.title = title;
         this.desciption = desciption;
@@ -67,11 +66,11 @@ public class Movie {
         this.duration = duration;
     }
 
-    public LocalDate getOpeningDay() {
+    public Calendar getOpeningDay() {
         return openingDay;
     }
 
-    public void setOpeningDay(LocalDate openingDay) {
+    public void setOpeningDay(Calendar openingDay) {
         this.openingDay = openingDay;
     }
 

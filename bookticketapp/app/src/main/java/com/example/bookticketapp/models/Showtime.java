@@ -1,19 +1,17 @@
 package com.example.bookticketapp.models;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class Showtime {
     private int id;
     private int movieId;
     private int cinemaId;
-    private LocalDate showDate;
-    private LocalTime showtime;
+    private Calendar showDate;
+    private Calendar showtime;
     private List<Ticket> tickets;
 
-    public Showtime(int id, int movieId, int cinemaId, LocalDate showDate, LocalTime showtime) {
+    public Showtime(int id, int movieId, int cinemaId, Calendar showDate, Calendar showtime) {
         this.id = id;
         this.movieId = movieId;
         this.cinemaId = cinemaId;
@@ -60,19 +58,19 @@ public class Showtime {
         this.cinemaId = cinemaId;
     }
 
-    public LocalDate getShowDate() {
+    public Calendar getShowDate() {
         return showDate;
     }
 
-    public void setShowDate(LocalDate showDate) {
+    public void setShowDate(Calendar showDate) {
         this.showDate = showDate;
     }
 
-    public LocalTime getShowtime() {
+    public Calendar getShowtime() {
         return showtime;
     }
 
-    public void setShowtime(LocalTime showtime) {
+    public void setShowtime(Calendar showtime) {
         this.showtime = showtime;
     }
 
