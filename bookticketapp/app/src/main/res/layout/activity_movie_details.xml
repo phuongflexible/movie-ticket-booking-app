@@ -149,7 +149,7 @@
             app:tabTextColor="@color/gray"
             app:tabTextAppearance="@style/CustomTabText"
             app:tabSelectedTextColor="@color/white"
-            app:tabIndicatorColor="@color/blue"/>
+            app:tabIndicatorColor="@color/orange"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

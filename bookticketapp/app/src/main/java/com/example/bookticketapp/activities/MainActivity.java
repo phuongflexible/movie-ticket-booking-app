@@ -1,16 +1,14 @@
 package com.example.bookticketapp.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.databinding.ActivityMainBinding;
 import com.example.bookticketapp.fragments.AccountFragment;
 import com.example.bookticketapp.fragments.CinemaFragment;
@@ -24,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Copy database từ assets vào máy ảo
+//        DatabaseHelper.copyDatabase(this);
+
         replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -49,5 +50,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayout,fragment);
         fragmentTransaction.commit();
     }
-
 }
