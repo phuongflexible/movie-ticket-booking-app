@@ -9,7 +9,7 @@
         android:id="@+id/appbar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:background="@drawable/background"
+        android:background="@android:color/transparent"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -144,7 +144,12 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:layout_collapseMode="pin"
             app:tabMode="fixed"
-            app:tabGravity="fill" />
+            app:tabGravity="fill"
+            app:tabBackground="@color/black"
+            app:tabTextColor="@color/gray"
+            app:tabTextAppearance="@style/CustomTabText"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/orange"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

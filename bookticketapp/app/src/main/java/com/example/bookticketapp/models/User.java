@@ -1,7 +1,5 @@
 package com.example.bookticketapp.models;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -10,7 +8,6 @@ public class User {
     private int roleId;
     private String name;
     private String gender;
-    private LocalDate birthday;
     private String phoneNumber;
     private String email;
     private List<Rating> ratings;
@@ -22,7 +19,6 @@ public class User {
         this.roleId = roleId;
         this.name = name;
         this.gender = gender;
-        this.birthday = birthday;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
@@ -34,6 +30,12 @@ public class User {
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public User(String email, String password, int roleId) {
+        this.email = email;
+        this.password = password;
+        this.roleId = roleId;
     }
 
     public User(){
@@ -78,14 +80,6 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
     }
 
     public String getPhoneNumber() {

@@ -8,9 +8,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginVertical="3dp"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="8dp"
         android:text="Galaxy Nguyễn Du"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:drawableRight="@drawable/ic_arrow_down"/>
+        android:drawableRight="@drawable/ic_arrow_down"
+        android:background="@color/black_background"/>
 </LinearLayout>
