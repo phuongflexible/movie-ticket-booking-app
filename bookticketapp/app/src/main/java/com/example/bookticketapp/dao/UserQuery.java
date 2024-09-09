@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.User;
@@ -11,6 +12,7 @@ import com.example.bookticketapp.models.User;
 public class UserQuery {
     SQLiteDatabase database;
     DatabaseHelper dbHelper;
+    Context context;
 
     public UserQuery(Context context) {
         this.dbHelper = new DatabaseHelper(context);
@@ -83,9 +85,13 @@ public class UserQuery {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+            Toast.makeText(context, "Lỗi: " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+        } finally {
+            if (cursor != null)
+                cursor.close();
+            database.close();
         }
-        cursor.close();
-        database.close();
+
         return null;
     }
 

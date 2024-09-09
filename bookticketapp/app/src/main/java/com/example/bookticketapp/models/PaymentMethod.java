@@ -1,5 +1,7 @@
 package com.example.bookticketapp.models;
 
+import androidx.annotation.NonNull;
+
 public class PaymentMethod {
     private int id;
     private String name;
@@ -7,6 +9,12 @@ public class PaymentMethod {
     public PaymentMethod(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.name;
     }
 
     public int getId() {
