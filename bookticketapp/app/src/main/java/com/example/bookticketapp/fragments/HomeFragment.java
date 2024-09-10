@@ -18,7 +18,7 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-    private Button btnMovieDetails;
+    private Button btnDetail1, btnDetail2;
 
     public HomeFragment() {
 
@@ -32,10 +32,20 @@ public class HomeFragment extends Fragment {
         findViewByIds(view);
 
         // chuyển qua chi tiết phim
-        btnMovieDetails.setOnClickListener(new View.OnClickListener() {
+        btnDetail1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+                intent.putExtra("movieId", 1);
+                startActivity(intent);
+            }
+        });
+
+        btnDetail2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+                intent.putExtra("movieId", 2);
                 startActivity(intent);
             }
         });
@@ -62,6 +72,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void findViewByIds(View view) {
-        btnMovieDetails = view.findViewById(R.id.btnMovieDetails);
+        btnDetail1 = view.findViewById(R.id.btnMovieDetails1);
+        btnDetail2 = view.findViewById(R.id.btnMovieDetails2);
     }
 }

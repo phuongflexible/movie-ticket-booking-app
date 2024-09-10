@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Copy database từ assets vào máy ảo
-//        DatabaseHelper.copyDatabase(this);
+        DatabaseHelper.copyDatabase(this);
 
         replaceFragment(new HomeFragment());
 

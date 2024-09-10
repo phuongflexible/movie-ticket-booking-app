@@ -1,6 +1,8 @@
 package com.example.bookticketapp.models;
 
-public class Rating {
+import java.io.Serializable;
+
+public class Rating implements Serializable {
     private int id;
     private float rating;
     private int movieId;

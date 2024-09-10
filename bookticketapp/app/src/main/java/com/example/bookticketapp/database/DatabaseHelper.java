@@ -16,30 +16,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Bảng Location
-    private static final String TABLE_LOCATION = "Location";
-    private static final String COLUMN_LOCATION_ID = "id";
-    private static final String COLUMN_LOCATION_NAME = "name";
+    public static final String TABLE_LOCATION = "Location";
+    public static final String COLUMN_LOCATION_ID = "id";
+    public static final String COLUMN_LOCATION_NAME = "name";
 
     // Bảng Cinema
-    private static final String TABLE_CINEMA = "Cinema";
-    private static final String COLUMN_CINEMA_ID = "id";
-    private static final String COLUMN_CINEMA_NAME = "name";
-    private static final String COLUMN_CINEMA_ADDRESS = "address";
-    private static final String COLUMN_CINEMA_IMAGE = "image";
-    private static final String COLUMN_CINEMA_LOCATION_ID = "location_id";
+    public static final String TABLE_CINEMA = "Cinema";
+    public static final String COLUMN_CINEMA_ID = "id";
+    public static final String COLUMN_CINEMA_NAME = "name";
+    public static final String COLUMN_CINEMA_ADDRESS = "address";
+    public static final String COLUMN_CINEMA_IMAGE = "image";
+    public static final String COLUMN_CINEMA_LOCATION_ID = "location_id";
 
     // Bảng Room
-    private static final String TABLE_ROOM = "Room";
-    private static final String COLUMN_ROOM_ID = "id";
-    private static final String COLUMN_ROOM_NAME = "name";
-    private static final String COLUMN_ROOM_CINEMA_ID = "cinema_id";
+    public static final String TABLE_ROOM = "Room";
+    public static final String COLUMN_ROOM_ID = "id";
+    public static final String COLUMN_ROOM_NAME = "name";
+    public static final String COLUMN_ROOM_CINEMA_ID = "cinema_id";
 
     // Bảng Seat
-    private static final String TABLE_SEAT = "Seat";
-    private static final String COLUMN_SEAT_ID = "id";
-    private static final String COLUMN_SEAT_NUMBER = "seat_number";
-    private static final String COLUMN_SEAT_ROOM_ID = "room_id";
-    private static final String COLUMN_SEAT_IS_AVAILABLE = "is_available";
+    public static final String TABLE_SEAT = "Seat";
+    public static final String COLUMN_SEAT_ID = "id";
+    public static final String COLUMN_SEAT_NUMBER = "seat_number";
+    public static final String COLUMN_SEAT_ROOM_ID = "room_id";
+    public static final String COLUMN_SEAT_IS_AVAILABLE = "is_available";
 
     // Bảng Category
     public static final String TABLE_CATEGORY = "Category";
@@ -47,45 +47,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CATEGORY_NAME = "name";
 
     // Bảng Movie
-    private static final String TABLE_MOVIE = "Movie";
-    private static final String COLUMN_MOVIE_ID = "id";
-    private static final String COLUMN_MOVIE_TITLE = "title";
-    private static final String COLUMN_MOVIE_DESCRIPTION = "description";
-    private static final String COLUMN_MOVIE_CATEGORY_ID = "category_id";
-    private static final String COLUMN_MOVIE_DURATION = "duration";
-    private static final String COLUMN_MOVIE_OPENING_DAY = "opening_day";
-    private static final String COLUMN_MOVIE_RATING = "rating";
-    private static final String COLUMN_MOVIE_IMAGE = "image";
+    public static final String TABLE_MOVIE = "Movie";
+    public static final String COLUMN_MOVIE_ID = "id";
+    public static final String COLUMN_MOVIE_TITLE = "title";
+    public static final String COLUMN_MOVIE_DESCRIPTION = "description";
+    public static final String COLUMN_MOVIE_CATEGORY_ID = "category_id";
+    public static final String COLUMN_MOVIE_DURATION = "duration";
+    public static final String COLUMN_MOVIE_OPENING_DAY = "opening_day";
+    public static final String COLUMN_MOVIE_RATING = "rating";
+    public static final String COLUMN_MOVIE_IMAGE = "image";
 
     // Bảng Showtime
-    private static final String TABLE_SHOWTIME = "Showtime";
-    private static final String COLUMN_SHOWTIME_ID = "id";
-    private static final String COLUMN_SHOWTIME_MOVIE_ID = "movie_id";
-    private static final String COLUMN_SHOWTIME_CINEMA_ID = "cinema_id";
-    private static final String COLUMN_SHOWTIME_SHOW_DATE = "show_date";
-    private static final String COLUMN_SHOWTIME_TIME = "showtime";
+    public static final String TABLE_SHOWTIME = "Showtime";
+    public static final String COLUMN_SHOWTIME_ID = "id";
+    public static final String COLUMN_SHOWTIME_MOVIE_ID = "movie_id";
+    public static final String COLUMN_SHOWTIME_CINEMA_ID = "cinema_id";
+    public static final String COLUMN_SHOWTIME_SHOW_DATE = "show_date";
+    public static final String COLUMN_SHOWTIME_TIME = "showtime";
 
     // Bảng Ticket
-    private static final String TABLE_TICKET = "Ticket";
-    private static final String COLUMN_TICKET_ID = "id";
-    private static final String COLUMN_TICKET_SHOWTIME_ID = "showtime_id";
-    private static final String COLUMN_TICKET_SEAT_ID = "seat_id";
-    private static final String COLUMN_TICKET_PRICE = "price";
-    private static final String COLUMN_TICKET_RECEIPT_ID = "receipt_id";
+    public static final String TABLE_TICKET = "Ticket";
+    public static final String COLUMN_TICKET_ID = "id";
+    public static final String COLUMN_TICKET_SHOWTIME_ID = "showtime_id";
+    public static final String COLUMN_TICKET_SEAT_ID = "seat_id";
+    public static final String COLUMN_TICKET_PRICE = "price";
+    public static final String COLUMN_TICKET_RECEIPT_ID = "receipt_id";
 
     // Bảng Receipt
-    private static final String TABLE_RECEIPT = "Receipt";
-    private static final String COLUMN_RECEIPT_ID = "id";
-    private static final String COLUMN_RECEIPT_TOTAL = "total";
-    private static final String COLUMN_RECEIPT_CREATED_TIME = "created_time";
-    private static final String COLUMN_RECEIPT_PAYMENT_TIME = "payment_time";
-    private static final String COLUMN_RECEIPT_PAYMENT_METHOD_ID = "payment_method_id";
-    private static final String COLUMN_RECEIPT_USER_ID = "user_id";
+    public static final String TABLE_RECEIPT = "Receipt";
+    public static final String COLUMN_RECEIPT_ID = "id";
+    public static final String COLUMN_RECEIPT_TOTAL = "total";
+    public static final String COLUMN_RECEIPT_CREATED_TIME = "created_time";
+    public static final String COLUMN_RECEIPT_PAYMENT_TIME = "payment_time";
+    public static final String COLUMN_RECEIPT_PAYMENT_METHOD_ID = "payment_method_id";
+    public static final String COLUMN_RECEIPT_USER_ID = "user_id";
 
     // Bảng PaymentMethod
-    private static final String TABLE_PAYMENT_METHOD = "PaymentMethod";
-    private static final String COLUMN_PAYMENT_METHOD_ID = "id";
-    private static final String COLUMN_PAYMENT_METHOD_NAME = "name";
+    public static final String TABLE_PAYMENT_METHOD = "PaymentMethod";
+    public static final String COLUMN_PAYMENT_METHOD_ID = "id";
+    public static final String COLUMN_PAYMENT_METHOD_NAME = "name";
 
     // Bảng User
     public static final String TABLE_USER = "User";
@@ -98,16 +98,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USER_PHONE_NUMBER = "phone_number";
 
     // Bảng Rating
-    private static final String TABLE_RATING = "Rating";
-    private static final String COLUMN_RATING_ID = "id";
-    private static final String COLUMN_RATING_RATING = "rating";
-    private static final String COLUMN_RATING_MOVIE_ID = "movie_id";
-    private static final String COLUMN_RATING_USER_ID = "user_id";
+    public static final String TABLE_RATING = "Rating";
+    public static final String COLUMN_RATING_ID = "id";
+    public static final String COLUMN_RATING_RATING = "rating";
+    public static final String COLUMN_RATING_MOVIE_ID = "movie_id";
+    public static final String COLUMN_RATING_USER_ID = "user_id";
 
     // Bảng Role
-    private static final String TABLE_ROLE = "Role";
-    private static final String COLUMN_ROLE_ID = "id";
-    private static final String COLUMN_ROLE_NAME = "name";
+    public static final String TABLE_ROLE = "Role";
+    public static final String COLUMN_ROLE_ID = "id";
+    public static final String COLUMN_ROLE_NAME = "name";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
