@@ -35,57 +35,10 @@
         android:layout_marginVertical="5dp">
 
         <LinearLayout
+            android:id="@+id/linearButtons"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="15/8" />
-            <Button
-                android:id="@+id/btn2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="16/8" />
-            <Button
-                android:id="@+id/btn3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="17/8" />
-            <Button
-                android:id="@+id/btn4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="18/8" />
-            <Button
-                android:id="@+id/btn5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="19/8" />
-            <Button
-                android:id="@+id/btn6"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="20/8" />
-            <Button
-                android:id="@+id/btn7"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="21/8" />
-            <Button
-                android:id="@+id/btn8"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:text="22/8" />
         </LinearLayout>
     </HorizontalScrollView>
 

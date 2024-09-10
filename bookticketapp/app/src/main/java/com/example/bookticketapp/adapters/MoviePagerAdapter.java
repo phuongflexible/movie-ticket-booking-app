@@ -7,19 +7,21 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.bookticketapp.fragments.MovieInfoFragment;
 import com.example.bookticketapp.fragments.MovieShowtimesFragment;
+import com.example.bookticketapp.models.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MoviePagerAdapter extends FragmentStateAdapter {
+    Movie movie;
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> tabTitleList = new ArrayList<>();
 
-    public MoviePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public MoviePagerAdapter(@NonNull FragmentActivity fragmentActivity, Movie movie) {
         super(fragmentActivity);
-
-        addFragment(new MovieShowtimesFragment(), "Lịch chiếu");
-        addFragment(new MovieInfoFragment(), "Thông tin");
+        this.movie = movie;
+        addFragment(MovieShowtimesFragment.newInstance(movie), "Lịch chiếu");
+        addFragment(MovieInfoFragment.newInstance(movie), "Thông tin");
     }
 
     @NonNull

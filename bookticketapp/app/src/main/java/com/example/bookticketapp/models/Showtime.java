@@ -1,9 +1,10 @@
 package com.example.bookticketapp.models;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
-public class Showtime {
+public class Showtime implements Serializable {
     private int id;
     private int movieId;
     private int cinemaId;
