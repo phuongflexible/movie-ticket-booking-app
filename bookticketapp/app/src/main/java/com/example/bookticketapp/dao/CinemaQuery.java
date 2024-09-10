@@ -29,6 +29,26 @@ public class CinemaQuery {
         return new Cinema(id, name, address, image, locationId);
     }
 
+    public List<Cinema> getAllCinemas() {
+        List<Cinema> cinemaList = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_CINEMA,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+        if (cursor.moveToFirst()) {
+            do {
+                cinemaList.add(cursorToCinema(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return cinemaList;
+    }
+
     public List<Cinema> getCinemasByLocationId(int locationId) {
         List<Cinema> cinemaList = new ArrayList<>();
         Cursor cursor = db.query(
