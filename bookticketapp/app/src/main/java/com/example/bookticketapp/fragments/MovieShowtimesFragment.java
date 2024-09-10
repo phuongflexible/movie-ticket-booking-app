@@ -74,7 +74,7 @@ public class MovieShowtimesFragment extends Fragment {
                 cinemaQuery = new CinemaQuery(getContext());
 
                 // ExpandableListView lịch chiếu phim
-                cinemaList = cinemaQuery.getCinemasByLocationId(i);
+                cinemaList = cinemaQuery.getCinemasByLocationId(i+1);
                 showtimesAdapter = new ShowtimesExpandListAdapter(getContext(), cinemaList);
                 expandList.setAdapter(showtimesAdapter);
 

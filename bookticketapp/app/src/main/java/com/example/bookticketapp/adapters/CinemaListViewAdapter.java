@@ -1,6 +1,7 @@
 package com.example.bookticketapp.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.models.Cinema;
+import com.example.bookticketapp.utils.ImageUtils;
 
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class CinemaListViewAdapter extends BaseAdapter {
 
     private class ViewHolder {
         ImageView imgCinema;
-        TextView tvCinemaName, tvAddress;
+        TextView txtCinemaName, txtAddress;
     }
 
     @Override
@@ -54,8 +56,8 @@ public class CinemaListViewAdapter extends BaseAdapter {
             view = inflater.inflate(layoutItem, null);
 
             holder.imgCinema = view.findViewById(R.id.imgCinema);
-            holder.tvCinemaName = view.findViewById(R.id.tvCinemaName);
-            holder.tvAddress = view.findViewById(R.id.tvAddress);
+            holder.txtCinemaName = view.findViewById(R.id.txtCinemaName);
+            holder.txtAddress = view.findViewById(R.id.txtAddress);
 
             view.setTag(holder);
         } else {
@@ -64,9 +66,10 @@ public class CinemaListViewAdapter extends BaseAdapter {
 
         Cinema cinema = cinemaList.get(i);
 
-        holder.imgCinema.setImageResource(cinema.getFakeImage());
-        holder.tvCinemaName.setText(cinema.getName());
-        holder.tvAddress.setText(cinema.getAddress());
+        Bitmap bitmap = ImageUtils.byteArrayToBitmap(cinema.getImage());
+        holder.imgCinema.setImageBitmap(bitmap);
+        holder.txtCinemaName.setText(cinema.getName());
+        holder.txtAddress.setText(cinema.getAddress());
 
         return view;
     }
