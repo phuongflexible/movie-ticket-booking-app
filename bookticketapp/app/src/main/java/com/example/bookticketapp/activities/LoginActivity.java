@@ -33,45 +33,49 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = binding.editSignInEmail.getText().toString();
                 String password = binding.editSignInPassword.getText().toString();
-                RadioGroup radioGroup = binding.userRoleGroup;
-                Integer selectedId = radioGroup.getCheckedRadioButtonId();
 
                 //Kiem tra dien day du thong tin chua
                 if (email.equals("") || password.equals("")) {
                     Toast.makeText(LoginActivity.this, "Thông tin bắt buộc", Toast.LENGTH_SHORT).show();
-                } else {
-                    RadioButton radioButton = radioGroup.findViewById(selectedId);
+                }
+                else
+                {
                     Boolean checkAccount = userQuery.checkEmailPassword(email, password);
                     //Kiem tra  co dung email va password ko
-                    if (checkAccount == true) {
-                        //Kiem tra da danh dau vai tro chua
-                        if (radioGroup.getCheckedRadioButtonId() == -1) {
-                            Toast.makeText(LoginActivity.this, "Chọn vai trò", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            String role = radioButton.getText().toString();
+                    if (checkAccount == true)
+                    {
+                        //Lay thong tin cua nguoi nay
+                        user = getPersonalInfo(email);
+                        //Neu tim thay thong tin
+                        if (user != null)
+                        {
                             //Kiem tra co dung vai tro ko
-                            user = getPersonalInfo(email);  //Lay thong tin cua nguoi nay
-                            if (role.equals("Quản lý")) {  //Neu nguoi nay danh vao o quan ly
-                                if (user.getRoleId() == 1) {  //Thong tin ve vai tro trong db la quan ly
-                                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
-                                    startActivity(intent);
-                                }
-                                else {
-                                    Toast.makeText(LoginActivity.this, "Không đăng nhập được do sai vai trò", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {    //Neu nguoi nay danh vao o người dùng
-                                if (user.getRoleId() == 2) { //Thong tin ve vai tro trong db la nguoi dung
+                            if (user.getRole().getId() == 1)
+                            {  //Neu la admin
+                                Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                if (user.getRole().getId() == 2)
+                                { //Neu la user
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                 }
-                                else {
+                                else
+                                {  //Neu sai vai tro
                                     Toast.makeText(LoginActivity.this, "Không đăng nhập được do sai vai trò", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                        else
+                        {
+                            Toast.makeText(LoginActivity.this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại " + email + " - " + password, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

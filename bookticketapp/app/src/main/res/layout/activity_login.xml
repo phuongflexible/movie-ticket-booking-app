@@ -67,29 +67,6 @@
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioGroup
-            android:id="@+id/userRoleGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="16sp">
-            <RadioButton
-                android:id="@+id/isAdmin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaalight"
-                android:textSize="20sp"
-                android:text="@string/isAdmin"/>
-
-            <RadioButton
-                android:id="@+id/isMember"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/comfortaalight"
-                android:textSize="20sp"
-                android:text="@string/isUser"/>
-        </RadioGroup>
-
         <Button
             android:id="@+id/btnConfirmSignIn"
             android:layout_width="match_parent"

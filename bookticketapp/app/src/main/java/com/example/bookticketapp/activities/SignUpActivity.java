@@ -13,6 +13,7 @@ import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.databinding.ActivitySignUpBinding;
 import android.widget.Toast;
 import com.example.bookticketapp.models.User;
+import com.example.bookticketapp.models.Role;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -42,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (password.equals(confirmPassword)) {
                         Boolean checkUserEmail = userQuery.checkEmail(email);
                         if (checkUserEmail == false) {
-                            Boolean insert = userQuery.insertUser(new User(name, gender, email, phoneNumber, password, 2));
+                            Boolean insert = userQuery.insertUser(new User(name, gender, email, phoneNumber, password, new Role(2, "User")));
                             if (insert == true) {
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
 

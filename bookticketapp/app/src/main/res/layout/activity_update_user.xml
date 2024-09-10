@@ -1,9 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:background="@color/white"
     tools:context=".activities.UpdateUserActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="22sp"
+        android:layout_marginEnd="22sp">
+
+        <TextView
+            android:id="@+id/txtUpdateUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:backgroundTint="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="50sp"
+            android:text="Chỉnh sửa thông tin người dùng" />
+
+        <!--Ten nguoi dung-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="32sp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <EditText
+                android:id="@+id/editUpdateUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên người dùng"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Gioi tinh-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="32sp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <EditText
+                android:id="@+id/editUpdateUserGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Giới tính"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--So dien thoai-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="32sp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <EditText
+                android:id="@+id/editUpdateUserPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số điện thoại"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Email-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="32sp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <EditText
+                android:id="@+id/editUpdateUserEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Vai tro-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="32sp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black">
+
+            <EditText
+                android:id="@+id/editUpdateUserRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vai trò"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnConfirmUpdateUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/comfortaabold"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginTop="16sp"
+            android:text="Chỉnh sửa"/>
+
+    </LinearLayout>
+
+</ScrollView>

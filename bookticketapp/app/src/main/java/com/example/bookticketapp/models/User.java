@@ -5,7 +5,7 @@ import java.util.List;
 public class User {
     private int id;
     private String password;
-    private int roleId;
+    private Role role;
     private String name;
     private String gender;
     private String phoneNumber;
@@ -13,29 +13,39 @@ public class User {
     private List<Rating> ratings;
     private List<Receipt> receipts;
 
-   public User(int id, String password, int roleId, String name, String gender, String phoneNumber, String email) {
+   public User(int id, String password, Role role, String name, String gender, String phoneNumber, String email) {
         this.id = id;
         this.password = password;
-        this.roleId = roleId;
+        this.role = role;
         this.name = name;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public User(String name, String gender, String email, String phoneNumber,  String password, int roleId) {
+    public User(String name, String gender, String email, String phoneNumber,  String password, Role role) {
         this.password = password;
-        this.roleId = roleId;
+        this.role = role;
         this.name = name;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public User(String email, String password, int roleId) {
+    /*public User(String email, String password, int roleId) {
         this.email = email;
         this.password = password;
         this.roleId = roleId;
+    }*/
+
+    public User(int id, Role role, String name, String gender, String phoneNumber, String email) {
+        this.id = id;
+        this.password = password;
+        this.role = role;
+        this.name = name;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public User(){
@@ -58,12 +68,12 @@ public class User {
         this.password = password;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getName() {
