@@ -9,6 +9,9 @@ public class Ticket implements Serializable {
     private float price;
     private int receiptId;
 
+    public Ticket() {
+    }
+
     public Ticket(int id, int showtimeId, int seatId, float price, int receiptId) {
         this.id = id;
         this.showtimeId = showtimeId;
