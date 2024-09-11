@@ -32,7 +32,8 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp">
 
         <LinearLayout
             android:id="@+id/linearButtons"
@@ -45,7 +46,7 @@
     <ExpandableListView
         android:id="@+id/expandListShowtimes"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="750dp"
         android:paddingHorizontal="3dp">
 
     </ExpandableListView>

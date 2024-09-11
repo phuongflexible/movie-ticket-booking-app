@@ -20,21 +20,6 @@ public class Showtime implements Serializable {
         this.showtime = showtime;
     }
 
-    // fake data -------------------------
-    private String time;
-    public Showtime(String time) {
-        this.time = time;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-    //---------------------------------------
-
     public int getId() {
         return id;
     }

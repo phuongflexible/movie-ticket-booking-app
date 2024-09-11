@@ -16,9 +16,6 @@ public class Movie implements Serializable {
     private List<Showtime> showtimes;
     private List<Rating> ratings;
 
-    public Movie() {
-    }
-
     public Movie(int id, String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
         this.id = id;
         this.title = title;
