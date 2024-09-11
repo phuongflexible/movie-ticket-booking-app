@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.Cinema;
+import com.example.bookticketapp.models.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,47 @@ public class CinemaQuery {
         int locationId = cursor.getInt(4);
 
         return new Cinema(id, name, address, image, locationId);
+    }
+
+    public List<Cinema> getAllCinemas() {
+        List<Cinema> cinemaList = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_CINEMA,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+        if (cursor.moveToFirst()) {
+            do {
+                cinemaList.add(cursorToCinema(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return cinemaList;
+    }
+
+    public Cinema getCinemaById(int id) {
+        Cursor cursor = db.query(
+                dbHelper.TABLE_CINEMA,
+                null,
+                dbHelper.COLUMN_CINEMA_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            Cinema cinema = cursorToCinema(cursor);
+            cursor.close();
+            return cinema;
+        }
+
+        cursor.close();
+        return null;
     }
 
     public List<Cinema> getCinemasByLocationId(int locationId) {

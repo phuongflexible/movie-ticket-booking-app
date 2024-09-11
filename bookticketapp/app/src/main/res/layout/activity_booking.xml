@@ -11,29 +11,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:padding="10dp"
         android:orientation="vertical"
         android:gravity="center"
         android:background="#FFFBF9">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/txtTitle_booking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Phim: Kẻ trộm mặt trăng 4"
+            android:text="Kẻ trộm mặt trăng 4"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txtCinema_booking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rạp: Cinema Quang Trung"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/txtRoom_booking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Phòng chiếu: R02"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/txtShowtime_booking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -45,36 +53,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtScreeen"
+            android:layout_width="300dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#EF4712"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="MÀN HÌNH"
+            android:textSize="10sp"
+            android:textAlignment="center"/>
+
+        <GridView
+            android:id="@+id/gvSeats"
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:numColumns="8"
+            android:verticalSpacing="0.5dp"
+            />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:padding="2dp"
-        android:text="MÀN HÌNH"
-        android:textSize="7sp"
-        android:textAlignment="center"
-        android:background="#EF4712"/>
-
-    <GridView
-        android:id="@+id/gvSeats"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:padding="10dp"
-        android:numColumns="8"
-        android:verticalSpacing="5dp"
-        android:horizontalSpacing="5dp"
-        android:layout_gravity="center"
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginVertical="10dp"
-        android:layout_gravity="bottom"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -89,6 +102,7 @@
                 android:id="@+id/btnAvailable"
                 android:layout_width="35dp"
                 android:layout_height="30dp"
+                android:clickable="false"
                 android:backgroundTint="@color/mint"/>
 
             <TextView
@@ -110,7 +124,8 @@
                 android:id="@+id/btnTaken"
                 android:layout_width="35dp"
                 android:layout_height="30dp"
-                android:backgroundTint="#7B8283"/>
+                android:clickable="false"
+                android:backgroundTint="@color/darkGray"/>
 
             <TextView
                 android:id="@+id/txtTaken"
@@ -131,6 +146,7 @@
                 android:id="@+id/btnSelected"
                 android:layout_width="35dp"
                 android:layout_height="30dp"
+                android:clickable="false"
                 android:backgroundTint="@color/green"/>
 
             <TextView
@@ -144,22 +160,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:paddingHorizontal="6dp"
-        android:paddingVertical="8dp"
+        android:layout_height="108dp"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="10dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_gravity="bottom"
         android:background="#FFFBF9">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtSeatsSelected"
+                android:id="@+id/txtSeats_booking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2 Ghế: A1, A2"
@@ -170,28 +186,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="Tổng cộng: 140.000đ"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#FA7C0E"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="5dp"
-                android:layout_marginTop="6dp"
-                android:gravity="center"
+                android:layout_height="32dp"
+                android:paddingLeft="5dp"
+                android:paddingVertical="3dp"
+                android:layout_marginVertical="6dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:background="@color/light_gray">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="6dp"
+                    android:layout_marginRight="10dp"
                     android:text="Thanh toán"
                     android:textColor="@color/black"/>
                 <Spinner
                     android:id="@+id/spinnerPaymentMethod"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:spinnerMode="dialog"
                     android:dropDownWidth="400dp"
                     android:backgroundTint="@color/black"/>

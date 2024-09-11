@@ -27,4 +27,19 @@ public class DatetimeUtils {
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         return sdf.format(calendar.getTime());
     }
+
+    public static final String dateToString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        return sdf.format(calendar.getTime());
+    }
+
+    public static final String timeToString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT);
+        return sdf.format(calendar.getTime());
+    }
+
+    public static final String dateTimeToString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT);
+        return sdf.format(calendar.getTime());
+    }
 }

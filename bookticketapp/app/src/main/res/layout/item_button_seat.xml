@@ -10,5 +10,6 @@
         android:padding="0dp"
         android:text="A1"
         android:textSize="10sp"
+        android:textColor="@color/black"
         android:backgroundTint="@color/mint"/>
 </LinearLayout>

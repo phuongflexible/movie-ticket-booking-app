@@ -16,12 +16,6 @@ public class Seat {
         this.isAvailable = isAvailable;
     }
 
-    // fake data ----------------------------
-    public Seat(String seatNumber, boolean isAvailable) {
-        this.seatNumber = seatNumber;
-        this.isAvailable = isAvailable;
-    }
-    //-------------------------------------
     public int getId() {
         return id;
     }

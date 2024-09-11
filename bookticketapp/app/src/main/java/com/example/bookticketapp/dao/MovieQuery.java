@@ -37,11 +37,11 @@ public class MovieQuery {
         String desciption = cursor.getString(2);
         int categoryId = cursor.getInt(3);
         //Tim ten the loai
-        String categoryName = categoryQuery.findCategoryName(categoryId);
+        /*String categoryName = categoryQuery.findCategoryName(categoryId);
         if (categoryName.equals(""))
         {
             return null;
-        }
+        }*/
         int duration = cursor.getInt(4);
         // Chuyển chuỗi ngày sang Calendar và gắn vào openingDay
         String openingDayString = cursor.getString(5);
@@ -52,7 +52,7 @@ public class MovieQuery {
         //Chuyen tu byte[] sang Bitmap
         Bitmap imageBitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
 
-        return new Movie(id, title, desciption, new Category(categoryId, categoryName), duration, openingDay, rating, imageBitmap);
+        return new Movie(id, title, desciption, categoryId, duration, openingDay, rating, image);
     }
 
     public Movie getMovieById(int id) {
@@ -106,7 +106,7 @@ public class MovieQuery {
         ContentValues cv = new ContentValues();
         cv.put(dbHelper.COLUMN_MOVIE_TITLE, movie.getTitle());
         cv.put(dbHelper.COLUMN_MOVIE_DESCRIPTION, movie.getDesciption());
-        cv.put(dbHelper.COLUMN_MOVIE_CATEGORY_ID, movie.getCategory().getId());
+        cv.put(dbHelper.COLUMN_MOVIE_CATEGORY_ID, movie.getCategoryId());
         cv.put(dbHelper.COLUMN_MOVIE_DURATION, movie.getDuration());
         cv.put(dbHelper.COLUMN_MOVIE_OPENING_DAY, DatetimeUtils.calendarToString(movie.getOpeningDay()));
         cv.put(dbHelper.COLUMN_MOVIE_RATING, movie.getRating());

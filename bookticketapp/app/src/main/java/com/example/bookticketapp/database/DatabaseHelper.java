@@ -3,6 +3,7 @@ package com.example.bookticketapp.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.bookticketapp.activities.MainActivity;

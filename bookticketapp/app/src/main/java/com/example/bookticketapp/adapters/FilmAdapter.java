@@ -13,16 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.dao.CategoryQuery;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.utils.DatetimeUtils;
+import com.example.bookticketapp.utils.ImageUtils;
 
 public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.ViewHolder> {
     private ArrayList<Movie> listMovies = new ArrayList<>();
     private Context context;
+    private CategoryQuery categoryQuery;
 
     public FilmAdapter(ArrayList<Movie> listMovies, Context context) {
         this.listMovies = listMovies;
         this.context = context;
+        this.categoryQuery = new CategoryQuery(context);
     }
 
     @NonNull
@@ -37,11 +41,11 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.ViewHolder> {
         Movie movie = listMovies.get(position);
         holder.txtFilmTitle.setText(movie.getTitle());
         holder.txtFilmDescription.setText(movie.getDesciption());
-        holder.txtFilmCategory.setText(movie.getCategory().getName());
+        holder.txtFilmCategory.setText(categoryQuery.findCategoryName(movie.getCategoryId()));
         holder.txtFilmDuration.setText(String.valueOf(movie.getDuration()) + " phút");
         holder.txtFilmOpeningDay.setText(DatetimeUtils.calendarToString(movie.getOpeningDay()));
         holder.txtFilmRating.setText(String.valueOf(movie.getRating()));
-        holder.imageFilm.setImageBitmap(movie.getImage());
+        holder.imageFilm.setImageBitmap(ImageUtils.byteArrayToBitmap(movie.getImage()));
     }
 
     @Override

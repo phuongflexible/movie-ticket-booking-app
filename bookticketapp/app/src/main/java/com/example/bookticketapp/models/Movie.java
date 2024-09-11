@@ -10,33 +10,36 @@ public class Movie implements Serializable {
     private int id;
     private String title;
     private String desciption;
-    private Category category;
+    private int categoryId;
     private int duration;
     private Calendar openingDay;
     private float rating;
-    private Bitmap image;
+
+    private byte[] image;
     private List<Showtime> showtimes;
     private List<Rating> ratings;
+
 
     public Movie() {
     }
 
-    public Movie(int id, String title, String desciption, Category category, int duration, Calendar openingDay, float rating, Bitmap image) {
+    public Movie(int id, String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
+
         this.id = id;
         this.title = title;
         this.desciption = desciption;
-        this.category = category;
+        this.categoryId = categoryId;
         this.duration = duration;
         this.openingDay = openingDay;
         this.rating = rating;
         this.image = image;
     }
 
-    public Movie(String title, String desciption, Category category, int duration, Calendar openingDay, float rating, Bitmap image) {
+    public Movie(String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
         this.id = id;
         this.title = title;
         this.desciption = desciption;
-        this.category = category;
+        this.categoryId = categoryId;
         this.duration = duration;
         this.openingDay = openingDay;
         this.rating = rating;
@@ -67,12 +70,12 @@ public class Movie implements Serializable {
         this.desciption = desciption;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getDuration() {
@@ -99,13 +102,14 @@ public class Movie implements Serializable {
         this.rating = rating;
     }
 
-    public Bitmap getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
+
 
     public List<Showtime> getShowtimes() {
         return showtimes;
