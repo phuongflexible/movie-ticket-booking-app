@@ -26,7 +26,7 @@ public class AdminActivity extends AppCompatActivity {
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        replaceFragment(new HomeFragment());
+        replaceFragment(new CategoryFragment());
 
         binding.bottomNavBarAdmin.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -39,10 +39,10 @@ public class AdminActivity extends AppCompatActivity {
                 case R.id.ticket:
                     replaceFragment(new TicketFragment());
                     break;
-                case R.id.user:
+                case R.id.manageuser:
                     replaceFragment(new UserFragment());
                     break;
-                case R.id.account:
+                case R.id.user:
                     replaceFragment(new AdminFragment());
                     break;
             }

@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.activities.AddUserActivity;
 import com.example.bookticketapp.activities.AdminActivity;
 import com.example.bookticketapp.activities.UpdateUserActivity;
 import com.example.bookticketapp.adapters.UserAdapter;
@@ -34,6 +36,7 @@ import java.util.ArrayList;
  */
 public class UserFragment extends Fragment implements UserSelectListener{
     Activity context;
+    Button btnAddUser;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -93,6 +96,16 @@ public class UserFragment extends Fragment implements UserSelectListener{
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         userRV.setLayoutManager(linearLayoutManager);
         userRV.setAdapter(userAdapter);
+
+        btnAddUser = view.findViewById(R.id.btnAddUser);
+
+        btnAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AddUserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

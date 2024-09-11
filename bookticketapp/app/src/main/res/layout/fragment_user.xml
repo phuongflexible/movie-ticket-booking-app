@@ -16,7 +16,7 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:layout_margin="10sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:text="Danh sách người dùng" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -24,6 +24,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titleUser"/>
+
+        <Button
+            android:id="@+id/btnAddUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewUsers"
+            android:layout_marginTop="16sp"
+            android:backgroundTint="@color/white"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:text="Thêm"
+            android:textColor="@color/black" />
 
     </RelativeLayout>
 

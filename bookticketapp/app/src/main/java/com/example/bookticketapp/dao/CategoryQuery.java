@@ -85,4 +85,36 @@ public class CategoryQuery {
             return false;
         }
     }
+
+    //Find category name
+    public String findCategoryName(int id) {
+        Cursor cursor = database.rawQuery("Select * from " + dbHelper.TABLE_CATEGORY + " where id = ?", new String[]{String.valueOf(id)});
+        if (cursor != null && cursor.moveToFirst()) {
+            String categoryName = cursor.getString(1);
+            if (!categoryName.equals(""))
+                return categoryName;
+            else
+                return "";
+        } else {
+            return "";
+        }
+    }
+
+    //Find category id
+    public int findCategoryId(String name)
+    {
+        Cursor cursor = database.rawQuery("Select * from " + dbHelper.TABLE_CATEGORY + " where name = ?", new String[]{name});
+        if (cursor != null && cursor.moveToFirst())
+        {
+            int categoryId = cursor.getInt(0);
+            if (categoryId >= 1)
+                return categoryId;
+            else
+                return -1;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.bookticketapp.models;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -12,11 +14,28 @@ public class Movie implements Serializable {
     private int duration;
     private Calendar openingDay;
     private float rating;
+
     private byte[] image;
     private List<Showtime> showtimes;
     private List<Rating> ratings;
 
+
+    public Movie() {
+    }
+
     public Movie(int id, String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
+
+        this.id = id;
+        this.title = title;
+        this.desciption = desciption;
+        this.categoryId = categoryId;
+        this.duration = duration;
+        this.openingDay = openingDay;
+        this.rating = rating;
+        this.image = image;
+    }
+
+    public Movie(String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
         this.id = id;
         this.title = title;
         this.desciption = desciption;
@@ -90,6 +109,7 @@ public class Movie implements Serializable {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
 
     public List<Showtime> getShowtimes() {
         return showtimes;
