@@ -7,11 +7,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.adapters.SeatGridViewAdapter;
+import com.example.bookticketapp.dao.CinemaQuery;
+import com.example.bookticketapp.dao.MovieQuery;
+import com.example.bookticketapp.dao.PaymentMethodQuery;
+import com.example.bookticketapp.dao.SeatQuery;
+import com.example.bookticketapp.models.Cinema;
+import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.models.PaymentMethod;
 import com.example.bookticketapp.models.Seat;
+import com.example.bookticketapp.models.Showtime;
+import com.example.bookticketapp.utils.DatetimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,66 +31,79 @@ public class BookingActivity extends AppCompatActivity {
     private SeatGridViewAdapter seatAdapter;
     private ArrayAdapter methodSpinnerAdapter;
     private List<Seat> seatList;
-    private List<PaymentMethod> paymentMethodList;
+    private List<PaymentMethod> methodList;
+    private TextView txtTitle, txtCinema, txtRoom, txtShowtime, txtSeats, txtTotal;
+    private Button btnPay;
+    private Showtime showtime;
+    private Movie movie;
+    private Cinema cinema;
+    private Seat seat;
+    private PaymentMethod method;
+    private MovieQuery movieQuery;
+    private CinemaQuery cinemaQuery;
+    private SeatQuery seatQuery;
+    private PaymentMethodQuery methodQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
 
+        findViewByIds();
+        initData();
         initSeats();
         initPaymentMethod();
-        findViewByIds();
-
-        seatAdapter = new SeatGridViewAdapter(this, R.layout.item_button_seat, seatList);
-        gvSeats.setAdapter(seatAdapter);
-
-        methodSpinnerAdapter = new ArrayAdapter(this, R.layout.item_method_spinner, paymentMethodList);
-        spnMethod.setAdapter(methodSpinnerAdapter);
-
     }
 
     private void findViewByIds() {
         gvSeats = findViewById(R.id.gvSeats);
         spnMethod = findViewById(R.id.spinnerPaymentMethod);
+        txtTitle = findViewById(R.id.txtTitle_booking);
+        txtCinema = findViewById(R.id.txtCinema_booking);
+        txtRoom = findViewById(R.id.txtRoom_booking);
+        txtShowtime = findViewById(R.id.txtShowtime_booking);
+        txtSeats = findViewById(R.id.txtSeats_booking);
+        txtTotal = findViewById(R.id.txtTotal);
+    }
+
+    private void initData() {
+        movieQuery = new MovieQuery(this);
+        cinemaQuery = new CinemaQuery(this);
+
+        showtime = (Showtime) getIntent().getSerializableExtra("showtime");
+        movie = movieQuery.getMovieById(showtime.getMovieId());
+        cinema = cinemaQuery.getCinemaById(showtime.getCinemaId());
+
+        String showtimeString = DatetimeUtils.timeToString(showtime.getShowtime());
+        String showDateString = DatetimeUtils.dateToString(showtime.getShowDate());
+
+        txtTitle.setText(movie.getTitle());
+        txtCinema.setText("Rạp: " + cinema.getName());
+        txtRoom.setText("Phòng chiếu: R01");
+        txtShowtime.setText("Suất chiếu: " + showtimeString + " - " + showDateString);
+        txtSeats.setText("0 Ghế");
+        txtTotal.setText("Tổng cộng: 0đ");
     }
 
     private void initSeats() {
-        seatList = new ArrayList<>();
-        seatList.add(new Seat("A1", true));
-        seatList.add(new Seat("A2", false));
-        seatList.add(new Seat("A3", false));
-        seatList.add(new Seat("A4", false));
-        seatList.add(new Seat("A5", true));
-        seatList.add(new Seat("A6", true));
-        seatList.add(new Seat("A7", false));
-        seatList.add(new Seat("A1", true));
-        seatList.add(new Seat("A2", false));
-        seatList.add(new Seat("A3", false));
-        seatList.add(new Seat("A4", false));
-        seatList.add(new Seat("A5", true));
-        seatList.add(new Seat("A6", true));
-        seatList.add(new Seat("A7", false));
-        seatList.add(new Seat("A1", true));
-        seatList.add(new Seat("A2", false));
-        seatList.add(new Seat("A3", false));
-        seatList.add(new Seat("A4", false));
-        seatList.add(new Seat("A5", true));
-        seatList.add(new Seat("A6", true));
-        seatList.add(new Seat("A7", false));
-        seatList.add(new Seat("A1", true));
-        seatList.add(new Seat("A2", false));
-        seatList.add(new Seat("A3", false));
-        seatList.add(new Seat("A4", false));
-        seatList.add(new Seat("A5", true));
-        seatList.add(new Seat("A6", true));
-        seatList.add(new Seat("A7", false));
+        seatQuery = new SeatQuery(this);
+        seatList = seatQuery.getSeatsByRoomId(1);
+
+        seatAdapter = new SeatGridViewAdapter(this, R.layout.item_button_seat, seatList);
+        gvSeats.setAdapter(seatAdapter);
     }
 
     private void initPaymentMethod() {
-        paymentMethodList = new ArrayList<>();
-        paymentMethodList.add(new PaymentMethod(1, "Tiền Mặt"));
-        paymentMethodList.add(new PaymentMethod(1, "Momo"));
-        paymentMethodList.add(new PaymentMethod(1, "Zalo Pay"));
+        methodQuery = new PaymentMethodQuery(this);
+        methodList = methodQuery.getAllMethods();
+
+        // chuyển trang string để gán cho spinner
+        List<String> methodsString = new ArrayList<>();
+        for (PaymentMethod method : methodList) {
+            methodsString.add(method.getName());
+        }
+
+        methodSpinnerAdapter = new ArrayAdapter(this, R.layout.item_method_spinner, methodsString);
+        spnMethod.setAdapter(methodSpinnerAdapter);
     }
 }

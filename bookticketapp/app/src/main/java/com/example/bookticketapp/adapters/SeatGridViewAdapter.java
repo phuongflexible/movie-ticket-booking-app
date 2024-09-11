@@ -51,26 +51,29 @@ public class SeatGridViewAdapter extends BaseAdapter {
         Button btnItemSeat = view.findViewById(R.id.btnItemSeat);
 
         btnItemSeat.setText(seat.getSeatNumber());
-//---------------------------
-        if (seat.isAvailable()) {
-            btnItemSeat.setBackgroundColor(Color.parseColor("#BDD8CF")); // Ghế trống
-        } else {
-            btnItemSeat.setBackgroundColor(Color.parseColor("#7B8283")); // Ghế đã bán
+
+        int color_mint = context.getResources().getColor(R.color.mint);          // màu ghế trống
+        int color_darkgray = context.getResources().getColor(R.color.darkGray);  // màu ghế đã bán
+        int color_green = context.getResources().getColor(R.color.green);        // màu ghế đang chọn
+
+        if (seat.isAvailable()) {       // Ghế trống
+            btnItemSeat.setBackgroundColor(color_mint);
+        } else {                        // Ghế đã bán
+            btnItemSeat.setBackgroundColor(color_darkgray);
         }
 
         btnItemSeat.setOnClickListener(v -> {
-            if (seat.isAvailable()) {
-                if (selectedArray[i] == false) {
-                    Toast.makeText(context, "Choose " + seat.getSeatNumber(), Toast.LENGTH_SHORT).show();
-                    selectedArray[i] = true;
-                    btnItemSeat.setBackgroundColor(Color.GREEN); // Ghế đang chọn
+            if (seat.isAvailable()) {     // nếu ghế còn trống
+                if (selectedArray[i] == false) {     // nếu chưa được chọn
+                    selectedArray[i] = true;         // chuyển thành ghế đang được chọn
+                    btnItemSeat.setBackgroundColor(color_green);
                 } else {
                     selectedArray[i] = false;
-                    btnItemSeat.setBackgroundColor(Color.parseColor("#BDD8CF"));
+                    btnItemSeat.setBackgroundColor(color_mint);
                 }
             }
         });
-//--------------------------
+
         return view;
     }
 }
