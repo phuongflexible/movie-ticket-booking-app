@@ -1,30 +1,36 @@
 package com.example.bookticketapp.adapters;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.Toast;
+        import android.content.Context;
+        import android.graphics.Color;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.BaseAdapter;
+        import android.widget.Button;
+        import android.widget.Toast;
 
-import com.example.bookticketapp.R;
-import com.example.bookticketapp.models.Seat;
+        import com.example.bookticketapp.R;
+        import com.example.bookticketapp.events.SeatsChangeListener;
+        import com.example.bookticketapp.models.Seat;
 
-import java.util.List;
+        import java.util.List;
 
 public class SeatGridViewAdapter extends BaseAdapter {
     private Context context;
     private int layoutItem;
     private List<Seat> seatList;
     private boolean[] selectedArray;
+    private SeatsChangeListener listener;
 
     public SeatGridViewAdapter(Context context, int layoutItem, List<Seat> seatList) {
         this.context = context;
         this.layoutItem = layoutItem;
         this.seatList = seatList;
         this.selectedArray = new boolean[seatList.size()];
+    }
+
+    public void setSeatsChangeListener(SeatsChangeListener listener) {
+        this.listener = listener;
     }
 
     @Override
@@ -70,6 +76,10 @@ public class SeatGridViewAdapter extends BaseAdapter {
                 } else {
                     selectedArray[i] = false;
                     btnItemSeat.setBackgroundColor(color_mint);
+                }
+
+                if (listener != null) {
+                    listener.onSeatSelectionChanged();
                 }
             }
         });
