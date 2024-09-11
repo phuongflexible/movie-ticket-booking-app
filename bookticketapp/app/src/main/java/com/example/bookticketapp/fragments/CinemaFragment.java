@@ -50,7 +50,7 @@ public class CinemaFragment extends Fragment {
                     cinemaList.addAll(cinemaQuery.getAllCinemas());
                 } else {                                        // chọn khu vực khác thì lấy danh sách rạp thuộc khu vực đó
                     cinemaList.clear();
-                    cinemaList.addAll(cinemaQuery.getCinemasByLocationId(i+1));
+                    cinemaList.addAll(cinemaQuery.getCinemasByLocationId(i));
                 }
 
                 cinemaAdapter.notifyDataSetChanged();

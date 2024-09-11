@@ -35,14 +35,36 @@ public class ShowtimeQuery {
         return new Showtime(id, movieId, cinemaId, showDate, showtime);
     }
 
-    public List<Showtime> getShowtimesByMovieIdAndCinemaId(int movieId, int cinemaId) {
+    public List<Showtime> getShowtimesByMovieId(int movieId) {
+        List<Showtime> showtimeList = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_SHOWTIME,
+                null,
+                dbHelper.COLUMN_SHOWTIME_MOVIE_ID + "=?",
+                new String[]{String.valueOf(movieId)},
+                null,
+                null,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            do {
+                showtimeList.add(cursorToShowtime(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return showtimeList;
+    }
+
+    public List<Showtime> getShowtimesByMovieAndCinemaAndDate(int movieId, int cinemaId, String date) {
         List<Showtime> showtimeList = new ArrayList<>();
         Cursor cursor = db.query(
                 dbHelper.TABLE_SHOWTIME,
                 null,
                 dbHelper.COLUMN_SHOWTIME_MOVIE_ID + "=? AND " +
-                        dbHelper.COLUMN_SHOWTIME_CINEMA_ID + "=?",
-                new String[]{String.valueOf(movieId), String.valueOf(cinemaId)},
+                        dbHelper.COLUMN_SHOWTIME_CINEMA_ID + "=? AND " +
+                        dbHelper.COLUMN_SHOWTIME_SHOW_DATE + "=?",
+                new String[]{String.valueOf(movieId), String.valueOf(cinemaId), date},
                 null,
                 null,
                 null

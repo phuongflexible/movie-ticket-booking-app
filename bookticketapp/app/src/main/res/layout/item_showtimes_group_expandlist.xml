@@ -13,6 +13,5 @@
         android:text="Galaxy Nguyễn Du"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:drawableRight="@drawable/ic_arrow_down"
         android:background="@color/black_background"/>
 </LinearLayout>
