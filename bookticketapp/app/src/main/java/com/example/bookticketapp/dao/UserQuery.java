@@ -47,7 +47,7 @@ public class UserQuery {
     public Boolean checkEmail(String email) {
         Cursor cursor = database.rawQuery("Select * from user where email = ?", new String[]{email});
 
-        if (cursor.getCount() > 0) {
+        if (cursor.getCount() > 0) {  //Tim thay
             cursor.close();
             return true;
         } else {
@@ -90,7 +90,7 @@ public class UserQuery {
                 String emailCol = cursor.getString(6);
                 User user = new User(idCol, passwordCol, new Role(roleId, roleName), nameCol, genderCol, phoneNumberCol, emailCol);
                 cursor.close();
-                database.close();
+                //database.close();
                 return user;
             }
         } catch (Exception ex) {
@@ -99,7 +99,7 @@ public class UserQuery {
         } finally {
             if (cursor != null)
                 cursor.close();
-            database.close();
+            //database.close();
         }
         return null;
     }

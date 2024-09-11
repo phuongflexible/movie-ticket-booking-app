@@ -53,7 +53,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         if (movieId != -1) {
             movie = movieQuery.getMovieById(movieId);
             if (movie != null) {
-                displayMovieDetails(movie);
+                //displayMovieDetails(movie);
             } else {
                 Toast.makeText(this, "Không tìm thấy phim", Toast.LENGTH_SHORT).show();
                 finish();
@@ -110,7 +110,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         imgMovie = findViewById(R.id.imgMovie);
     }
 
-    private void displayMovieDetails(Movie movie) {
+    /*private void displayMovieDetails(Movie movie) {
         // 'movie.getImage()' trả về byte[], cần chuyển sang bitmap để gán vào imgMovie
         Bitmap bitmap = ImageUtils.byteArrayToBitmap(movie.getImage());
         // 'movie.getOpeningDay()' trả về calendar, cần chuyển sang string để gán vào txtOpeningDay
@@ -121,5 +121,5 @@ public class MovieDetailsActivity extends AppCompatActivity {
         txtDuration.setText(movie.getDuration() + " phút");
         txtOpeningDay.setText(openingDayString);
         txtRating.setText(movie.getRating() + "");
-    }
+    }*/
 }

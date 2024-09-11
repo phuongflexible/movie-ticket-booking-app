@@ -24,7 +24,6 @@ public class AddCategoryActivity extends AppCompatActivity {
         editCategoryName = findViewById(R.id.editCategoryName);
         btnAddCategory = findViewById(R.id.btnConfirmAddCategory);
         cateQuery = new CategoryQuery(this);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override

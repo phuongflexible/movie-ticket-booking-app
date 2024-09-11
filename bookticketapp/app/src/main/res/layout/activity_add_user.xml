@@ -6,28 +6,27 @@
     android:layout_height="match_parent"
     android:scrollbars="none"
     android:background="@color/white"
-    tools:context=".activities.UpdateUserActivity">
+    tools:context=".activities.AddUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="22sp"
-        android:layout_marginEnd="22sp">
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp">
 
         <TextView
-            android:id="@+id/txtUpdateUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Thêm người dùng"
             android:textAlignment="center"
-            android:textSize="30sp"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginTop="50sp"
-            android:text="Chỉnh sửa thông tin người dùng" />
+            android:textSize="30sp"
+            android:layout_marginTop="24dp"/>
 
-        <!--Ten nguoi dung-->
+        <!--==================Full name========================-->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtAddName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -36,93 +35,98 @@
             app:boxStrokeColor="@color/black">
 
             <EditText
-                android:id="@+id/editUpdateUserName"
+                android:id="@+id/editAddUserFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tên người dùng"
+                android:fontFamily="@font/comfortaabold"
+                android:hint="@string/full_name"
                 android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--Gioi tinh-->
+        <!--==================Gender========================-->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/genderTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="32sp"
+            android:layout_marginTop="16sp"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black">
 
             <EditText
-                android:id="@+id/editUpdateUserGender"
+                android:id="@+id/editAddUserGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Giới tính"
+                android:fontFamily="@font/comfortaabold"
+                android:hint="@string/gender"
                 android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--So dien thoai-->
+        <!--==================Email========================-->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="32sp"
+            android:layout_marginTop="16sp"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black">
 
             <EditText
-                android:id="@+id/editUpdateUserPhoneNumber"
+                android:id="@+id/editAddUserEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Số điện thoại"
+                android:fontFamily="@font/comfortaabold"
+                android:hint="@string/email"
                 android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--Email-->
+        <!--==================Phone number========================-->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneNumberTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="32sp"
+            android:layout_marginTop="16sp"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black">
 
             <EditText
-                android:id="@+id/editUpdateUserEmail"
+                android:id="@+id/editAddUserPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:fontFamily="@font/comfortaabold"
+                android:hint="@string/phone_number"
                 android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--Vai tro-->
+        <!--==================Password========================-->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginTop="32sp"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="16sp"
             android:textColorHint="@color/black"
             app:boxStrokeColor="@color/black">
 
             <EditText
-                android:id="@+id/editUpdateUserRole"
+                android:id="@+id/editAddUserPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Vai trò"
+                android:fontFamily="@font/comfortaabold"
+                android:hint="@string/password"
                 android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnConfirmUpdateUser"
+            android:id="@+id/btnConfirmAddUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
@@ -132,8 +136,7 @@
             android:paddingEnd="20dp"
             android:paddingBottom="20dp"
             android:layout_marginTop="16sp"
-            android:text="Chỉnh sửa"/>
+            android:text="Thêm"/>
 
     </LinearLayout>
-
 </ScrollView>
