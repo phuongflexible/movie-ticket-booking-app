@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.Cinema;
-import com.example.bookticketapp.models.Movie;
+import com.example.bookticketapp.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +84,36 @@ public class CinemaQuery {
         if (cursor.moveToFirst()) {
             do {
                 cinemaList.add(cursorToCinema(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return cinemaList;
+    }
+
+    public List<Cinema> searchCinemasByName(String query) {
+        // bỏ dấu của query và chuyển thành chữ in thường
+        String queryNoAccent = StringUtils.removeAccent(query).toLowerCase();
+
+        List<Cinema> cinemaList = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_CINEMA,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            do {
+                // bỏ dấu của name và chuyển thành chữ in thường
+                String name = cursor.getString(1).toLowerCase();
+                String nameNoAccent = StringUtils.removeAccent(name);
+
+                if (nameNoAccent.contains(queryNoAccent)) {
+                    cinemaList.add(cursorToCinema(cursor));
+                }
             } while (cursor.moveToNext());
         }
         cursor.close();
