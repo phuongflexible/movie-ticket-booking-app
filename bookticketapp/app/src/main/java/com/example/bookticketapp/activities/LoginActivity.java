@@ -13,6 +13,7 @@ import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.databinding.ActivityLoginBinding;
 import android.widget.Toast;
 
+import com.example.bookticketapp.fragments.HomeFragment;
 import com.example.bookticketapp.models.User;
 
 public class LoginActivity extends AppCompatActivity {
@@ -61,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
                                 if (user.getRole().getId() == 2)
                                 { //Neu la user
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, HomeFragment.class);
+                                    startActivity(intent);
                                 }
                                 else
                                 {  //Neu sai vai tro

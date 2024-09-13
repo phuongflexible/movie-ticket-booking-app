@@ -9,16 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.activities.MovieDetailsActivity;
+import com.example.bookticketapp.adapters.MovieGridviewAdapter;
+import com.example.bookticketapp.dao.MovieQuery;
+import com.example.bookticketapp.models.Movie;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-    private Button btnDetail1, btnDetail2;
+    private GridView gvMovies;
+    private MovieGridviewAdapter movieAdapter;
+    private List<Movie> movieList;
+    private MovieQuery movieQuery;
 
     public HomeFragment() {
 
@@ -31,24 +41,10 @@ public class HomeFragment extends Fragment {
 
         findViewByIds(view);
 
-        // chuyển qua chi tiết phim
-        btnDetail1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
-                intent.putExtra("movieId", 1);
-                startActivity(intent);
-            }
-        });
-
-        btnDetail2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
-                intent.putExtra("movieId", 2);
-                startActivity(intent);
-            }
-        });
+        movieQuery = new MovieQuery(getContext());
+        movieList = movieQuery.getAllMovies();
+        movieAdapter = new MovieGridviewAdapter(getContext(), movieList);
+        gvMovies.setAdapter(movieAdapter);
 
         return view;
     }
@@ -72,7 +68,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void findViewByIds(View view) {
-        btnDetail1 = view.findViewById(R.id.btnMovieDetails1);
-        btnDetail2 = view.findViewById(R.id.btnMovieDetails2);
+        gvMovies = view.findViewById(R.id.gvMovies);
     }
 }

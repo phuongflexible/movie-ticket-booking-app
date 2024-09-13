@@ -12,11 +12,13 @@ import android.widget.Toast;
 
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.Category;
+import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.utils.DatetimeUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class MovieQuery {
     private DatabaseHelper dbHelper;
@@ -36,12 +38,6 @@ public class MovieQuery {
         String title = cursor.getString(1);
         String desciption = cursor.getString(2);
         int categoryId = cursor.getInt(3);
-        //Tim ten the loai
-        /*String categoryName = categoryQuery.findCategoryName(categoryId);
-        if (categoryName.equals(""))
-        {
-            return null;
-        }*/
         int duration = cursor.getInt(4);
         // Chuyển chuỗi ngày sang Calendar và gắn vào openingDay
         String openingDayString = cursor.getString(5);
@@ -49,10 +45,28 @@ public class MovieQuery {
 
         float rating = cursor.getFloat(6);
         byte[] image = cursor.getBlob(7);
-        //Chuyen tu byte[] sang Bitmap
-        Bitmap imageBitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
 
         return new Movie(id, title, desciption, categoryId, duration, openingDay, rating, image);
+    }
+
+    public List<Movie> getAllMovies() {
+        List<Movie> movieList = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_MOVIE,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+        if (cursor.moveToFirst()) {
+            do {
+                movieList.add(cursorToMovie(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return movieList;
     }
 
     public Movie getMovieById(int id) {
