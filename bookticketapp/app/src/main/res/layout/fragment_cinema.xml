@@ -6,16 +6,55 @@
     android:orientation="vertical"
     tools:context=".fragments.CinemaFragment" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnSearchCinema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_search"
+            android:contentDescription="Button search cinema"/>
+
+        <EditText
+            android:id="@+id/edtSearchCinema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="5dp"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:hint="Tìm rạp..."
+            android:textColorHint="@color/gray"
+            android:backgroundTint="@color/orange"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Đã tìm thấy 0 kết quả"
+        android:visibility="gone"/>
+
     <Spinner
         android:id="@+id/spinnerLocation"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="end"
-        android:layout_margin="5dp"
         android:spinnerMode="dropdown"
         android:dropDownWidth="130dp"
         android:popupBackground="@color/darkGray"
-        android:backgroundTint="@color/gray"/>
+        android:backgroundTint="@color/gray"
+        android:visibility="visible"/>
 
     <ListView
         android:id="@+id/lvCinema"

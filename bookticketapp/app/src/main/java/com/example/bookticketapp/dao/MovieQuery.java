@@ -15,10 +15,12 @@ import com.example.bookticketapp.models.Category;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.utils.DatetimeUtils;
+import com.example.bookticketapp.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class MovieQuery {
     private DatabaseHelper dbHelper;
@@ -86,6 +88,36 @@ public class MovieQuery {
         }
         cursor.close();
         return null;
+    }
+
+    public List<Movie> searchMoviesByTitle(String query) {
+        // bỏ dấu của query và chuyển thành chữ in thường
+        String queryNoAccent = StringUtils.removeAccent(query).toLowerCase();
+
+        List<Movie> movieList = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_MOVIE,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            do {
+                // bỏ dấu của title và chuyển thành chữ in thường
+                String title = cursor.getString(1).toLowerCase();
+                String titleNoAccent = StringUtils.removeAccent(title);
+
+                if (titleNoAccent.contains(queryNoAccent)) {
+                    movieList.add(cursorToMovie(cursor));
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return movieList;
     }
 
     //read movies

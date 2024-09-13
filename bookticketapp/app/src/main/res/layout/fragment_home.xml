@@ -6,6 +6,45 @@
     android:orientation="vertical"
     tools:context=".fragments.HomeFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnSearchMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_search"
+            android:contentDescription="Button search movie"/>
+
+        <EditText
+            android:id="@+id/edtSearchMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="5dp"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:hint="Tìm phim..."
+            android:textColorHint="@color/gray"
+            android:backgroundTint="@color/orange"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Đã tìm thấy 0 kết quả"
+        android:visibility="gone"/>
+
     <GridView
         android:id="@+id/gvMovies"
         android:layout_width="match_parent"
