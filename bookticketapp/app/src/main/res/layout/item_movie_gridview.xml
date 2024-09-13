@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMovie"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgMovie_list"
+            android:layout_width="170dp"
+            android:layout_height="255dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/poster_deadpool" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/imgMovie_list"
+            android:layout_alignEnd="@+id/imgMovie_list"
+            android:layout_alignParentStart="true"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtMovieTitle_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="3dp"
+                android:text="Deadpool and Wolverine"
+                android:textSize="16sp"
+                android:textColor="@color/orange"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtRating_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/imgMovie_list"
+            android:layout_alignBottom="@+id/imgMovie_list"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@drawable/custom_rating_movie_list"
+            android:text="8.5"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_star_rating"
+            android:drawablePadding="3dp"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
