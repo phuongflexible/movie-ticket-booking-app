@@ -1,5 +1,7 @@
 package com.example.bookticketapp.fragments;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -89,6 +92,10 @@ public class CinemaFragment extends Fragment {
                         // khi ấn xuống phím enter trên phím vật lí
                         keyEvent.getKeyCode() == KeyEvent.ACTION_DOWN &&
                                 keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    // ẩn bàn phím ảo
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+
                     searchCinemas();
 
                     return true;
@@ -129,7 +136,7 @@ public class CinemaFragment extends Fragment {
         cinemaList.addAll(result);
         cinemaAdapter.notifyDataSetChanged();
 
-        if (!query.isEmpty() && result.size() > 0) {
+        if (!query.isEmpty()) {
             spnLocation.setVisibility(View.GONE);
             txtResult.setVisibility(View.VISIBLE);
             txtResult.setText("Đã tìm thấy " + result.size() + " kết quả");

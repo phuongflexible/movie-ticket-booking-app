@@ -9,7 +9,10 @@
     <color name="black_50">#80000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="lightOrange">#FF9666</color>
     <color name="orange">#FB7933</color>
+    <color name="darkOrange">#D8530B</color>
+    <color name="lightBlue">#387AED</color>
     <color name="blue">#0000FF</color>
     <color name="gray">#A1A1A1</color>
     <color name="darkGray">#5E5959</color>

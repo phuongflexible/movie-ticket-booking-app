@@ -1,5 +1,9 @@
 package com.example.bookticketapp.fragments;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -68,13 +73,16 @@ public class HomeFragment extends Fragment {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                         // khi ấn phím search hoặc done hoặc next trên phím ảo
                 if (i == EditorInfo.IME_ACTION_SEARCH ||
-                    i == EditorInfo.IME_ACTION_DONE ||
-                    i == EditorInfo.IME_ACTION_NEXT ||
-                    // khi ấn xuống phím enter trên phím vật lí
-                    keyEvent.getKeyCode() == KeyEvent.ACTION_DOWN &&
+                        i == EditorInfo.IME_ACTION_DONE ||
+                        i == EditorInfo.IME_ACTION_NEXT ||
+                        // khi ấn xuống phím enter trên phím vật lí
+                        keyEvent.getKeyCode() == KeyEvent.ACTION_DOWN &&
                         keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                    searchMovies();
+                    // ẩn bàn phím ảo
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
 
+                    searchMovies();
                     return true;
                 }
                 return false;
@@ -99,7 +107,7 @@ public class HomeFragment extends Fragment {
         movieList.addAll(result);
         movieAdapter.notifyDataSetChanged();
 
-        if (!query.isEmpty() && result.size() > 0) {
+        if (!query.isEmpty()) {
             txtResult.setVisibility(View.VISIBLE);
             txtResult.setText("Đã tìm thấy " + result.size() + " kết quả");
         } else {

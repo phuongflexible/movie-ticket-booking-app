@@ -8,14 +8,16 @@ public class Receipt {
     private float total;
     private Calendar createdTime;
     private Calendar paymentTime;
+    private int paymentMethodId;
     private int userId;
     private List<Ticket> tickets;
 
-    public Receipt(int id, float total, Calendar createdTime, Calendar paymentTime, int userId) {
+    public Receipt(int id, float total, Calendar createdTime, Calendar paymentTime, int paymentMethodId, int userId) {
         this.id = id;
         this.total = total;
         this.createdTime = createdTime;
         this.paymentTime = paymentTime;
+        this.paymentMethodId = paymentMethodId;
         this.userId = userId;
     }
 
