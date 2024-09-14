@@ -7,9 +7,15 @@
 
     <TextView
         android:id="@+id/txtMovieInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:padding="15dp"
         android:text="Miêu tả phim." />
+
+    <TextView
+        android:id="@+id/txtCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Thể loại" />
 </LinearLayout>

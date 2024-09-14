@@ -1,16 +1,13 @@
 package com.example.bookticketapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.adapters.SeatGridViewAdapter;
@@ -19,6 +16,7 @@ import com.example.bookticketapp.dao.MovieQuery;
 import com.example.bookticketapp.dao.PaymentMethodQuery;
 import com.example.bookticketapp.dao.SeatQuery;
 import com.example.bookticketapp.dao.TicketQuery;
+import com.example.bookticketapp.events.SeatsChangeListener;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.models.PaymentMethod;
@@ -30,7 +28,7 @@ import com.example.bookticketapp.utils.DatetimeUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookingActivity extends AppCompatActivity {
+public class BookingActivity extends AppCompatActivity implements SeatsChangeListener {
     private GridView gvSeats;
     private Spinner spnMethod;
     private SeatGridViewAdapter seatAdapter;
@@ -42,9 +40,7 @@ public class BookingActivity extends AppCompatActivity {
     private Showtime showtime;
     private Movie movie;
     private Cinema cinema;
-    private Seat seat;
-    private List<Seat> selectedSeats;
-    private PaymentMethod method;
+    private List<Integer> selectedSeatIds;
     private MovieQuery movieQuery;
     private CinemaQuery cinemaQuery;
     private SeatQuery seatQuery;
@@ -95,43 +91,37 @@ public class BookingActivity extends AppCompatActivity {
     private void initSeats() {
         seatQuery = new SeatQuery(this);
         seatList = seatQuery.getSeatsByRoomId(1);
+        selectedSeatIds = new ArrayList<>();
 
         seatAdapter = new SeatGridViewAdapter(this, R.layout.item_button_seat, seatList);
+        seatAdapter.setSeatsChangeListener(this);
         gvSeats.setAdapter(seatAdapter);
+    }
 
-        gvSeats.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(BookingActivity.this, "click", Toast.LENGTH_SHORT).show();
-                Seat seat = seatList.get(i);
-                if (seat.isAvailable()) {   // nếu ghế còn trống
-                    if (selectedSeats.contains(seat)) {     // nếu nằm trong list đã chọn rồi thì xóa
-                        selectedSeats.remove(seat);
-                    } else {
-                        selectedSeats.add(seat);            // ngược lại thì thêm
-                    }
-
-                    // cập nhật textview ghế đã chọn
-                    StringBuilder builder = new StringBuilder();
-                    builder.append(seat.getSeatNumber()).append(" ");
-
-                    txtSeats.setText("Ghế: " + builder);
-
-                    updateSeatsAndTotal();
-                }
+    @Override
+    public void onSeatSelectionChanged(int seatId) {
+        Seat seat = seatQuery.getSeatById(seatId);
+        if (seat.isAvailable()) {   // nếu ghế còn trống
+            if (selectedSeatIds.contains(seatId)) {     // nếu nằm trong list đã chọn rồi thì xóa
+                selectedSeatIds.remove(Integer.valueOf(seatId));
+            } else {
+                selectedSeatIds.add(seatId);            // ngược lại thì thêm
             }
-        });
+
+            updateSeatsAndTotal();
+        }
     }
 
     private void updateSeatsAndTotal() {
         StringBuilder builder = new StringBuilder();
 
-        for (Seat seat : selectedSeats) {
-            builder.append(seat.getSeatNumber()).append(" ");
+        for (Integer seatId : selectedSeatIds) {
+            Seat seat = seatQuery.getSeatById(seatId);
+            builder.append(seat.getSeatNumber()).append(" ");   // mã số ghế + " "
         }
         String seatsText = builder.toString();
 
-        txtSeats.setText(selectedSeats.size() + " Ghế: " + seatsText);
+        txtSeats.setText(selectedSeatIds.size() + " Ghế: " + seatsText);
         txtTotal.setText("Tổng cộng: " + calculateTotalPrice() + "đ");
     }
 
@@ -139,10 +129,10 @@ public class BookingActivity extends AppCompatActivity {
         ticketQuery = new TicketQuery(this);
         float total = 0;
 
-        for (Seat seat : selectedSeats) {
+        for (Integer seadId : selectedSeatIds) {
             Ticket ticket = new Ticket();
             ticket.setShowtimeId(showtime.getId());
-            ticket.setSeatId(seat.getId());
+            ticket.setSeatId(seadId);
 
             // Lấy giá vé từ bảng Ticket
             Ticket ticketFromDb = ticketQuery.getTicketBySeatId(ticket.getSeatId());

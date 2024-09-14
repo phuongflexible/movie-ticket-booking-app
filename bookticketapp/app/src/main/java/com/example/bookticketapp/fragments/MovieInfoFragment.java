@@ -11,13 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.dao.CategoryQuery;
 import com.example.bookticketapp.models.Movie;
 
 import java.io.Serializable;
 
 public class MovieInfoFragment extends Fragment {
     private Movie movie;
-    private TextView txtInfo;
+    private TextView txtInfo, txtCategory;
+    private CategoryQuery cateQuery;
 
     public static MovieInfoFragment newInstance(Movie movie) {
         MovieInfoFragment fragment = new MovieInfoFragment();
@@ -37,8 +39,14 @@ public class MovieInfoFragment extends Fragment {
         if (getArguments() != null) {
             movie = (Movie) getArguments().getSerializable("movie");
 
+            cateQuery = new CategoryQuery(getContext());
+            String cateName = cateQuery.findCategoryName(movie.getCategoryId());
+
             txtInfo = view.findViewById(R.id.txtMovieInfo);
+            txtCategory = view.findViewById(R.id.txtCategory);
+
             txtInfo.setText(movie.getDesciption());
+            txtCategory.setText("Thể loại: " + cateName);
         }
 
         return view;

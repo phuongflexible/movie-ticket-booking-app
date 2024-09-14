@@ -152,7 +152,7 @@ public class MovieShowtimesFragment extends Fragment {
                         selectedButton.setBackgroundColor(Color.GRAY);
                     }
 
-                    b.setBackgroundColor(Color.BLUE);
+                    b.setBackgroundColor(getResources().getColor(R.color.purple_700));
 
                     // Cập nhật ngày được chọn
                     selectedDate = buttonDate;

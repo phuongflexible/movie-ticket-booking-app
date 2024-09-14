@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bookticketapp.database.DatabaseHelper;
-import com.example.bookticketapp.models.PaymentMethod;
 import com.example.bookticketapp.models.Seat;
 
 import java.util.ArrayList;
@@ -29,6 +28,24 @@ public class SeatQuery {
         boolean isAvailableBoolean = isAvailable != 0;  // nếu isAvailable != 0, trả về true
 
         return new Seat(id, seatNumber, roomId, isAvailableBoolean);
+    }
+
+    public Seat getSeatById(int id) {
+        Cursor cursor = db.query(dbHelper.TABLE_SEAT,
+                null,
+                dbHelper.COLUMN_SEAT_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            Seat seat = cursorToSeat(cursor);
+            cursor.close();
+            return seat;
+        }
+        cursor.close();
+        return null;
     }
 
     public List<Seat> getSeatsByRoomId(int roomId) {

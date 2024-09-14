@@ -3,16 +3,10 @@ package com.example.bookticketapp.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.bookticketapp.database.DatabaseHelper;
-import com.example.bookticketapp.models.Category;
-import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.utils.DatetimeUtils;
 import com.example.bookticketapp.utils.StringUtils;
@@ -20,7 +14,6 @@ import com.example.bookticketapp.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class MovieQuery {
     private DatabaseHelper dbHelper;
