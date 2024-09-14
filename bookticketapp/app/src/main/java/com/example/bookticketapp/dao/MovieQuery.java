@@ -34,12 +34,12 @@ public class MovieQuery {
         String desciption = cursor.getString(2);
         int categoryId = cursor.getInt(3);
         int duration = cursor.getInt(4);
-        // Chuyển chuỗi ngày sang Calendar và gắn vào openingDay
         String openingDayString = cursor.getString(5);
-        Calendar openingDay = DatetimeUtils.stringToCalendar(openingDayString, DatetimeUtils.DATE_FORMAT);
-
         float rating = cursor.getFloat(6);
         byte[] image = cursor.getBlob(7);
+
+        // Chuyển chuỗi ngày sang Calendar và gắn vào openingDay
+        Calendar openingDay = DatetimeUtils.stringToCalendar(openingDayString, DatetimeUtils.DATE_FORMAT);
 
         return new Movie(id, title, desciption, categoryId, duration, openingDay, rating, image);
     }

@@ -1,5 +1,6 @@
 package com.example.bookticketapp.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -65,5 +66,30 @@ public class SeatQuery {
         cursor.close();
 
         return seatList;
+    }
+
+    public boolean updateSeatsAvailability(List<Integer> seatIds, boolean isAvailable) {
+        db.beginTransaction();
+        try {
+            for (int seatId : seatIds) {
+                ContentValues values = new ContentValues();
+                values.put(dbHelper.COLUMN_SEAT_IS_AVAILABLE, isAvailable ? 1 : 0); // 1 là có sẵn, 0 là đã đặt
+
+                int result = db.update(
+                        dbHelper.TABLE_SEAT,
+                        values,
+                        "id = ?",
+                        new String[]{String.valueOf(seatId)}
+                );
+                if (result == 0) {
+                    db.endTransaction();
+                    return false; // Lỗi khi cập nhật trạng thái ghế
+                }
+            }
+            db.setTransactionSuccessful();
+            return true;
+        } finally {
+            db.endTransaction();
+        }
     }
 }
