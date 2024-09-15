@@ -5,22 +5,26 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.adapters.MoviePagerAdapter;
 import com.example.bookticketapp.dao.MovieQuery;
+import com.example.bookticketapp.dao.RatingQuery;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.utils.DatetimeUtils;
 import com.example.bookticketapp.utils.ImageUtils;
@@ -35,6 +39,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private ImageView imgMovie;
     private ImageButton ibtnVote, ibtnBack;
     private MovieQuery movieQuery;
+    private RatingQuery ratingQuery;
     private Movie movie;
 
     @Override
@@ -44,9 +49,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         findViewByIds();
 
-        // Lấy ra id phim đã chọn trong danh sách phim và hiển thị
         movieQuery = new MovieQuery(this);
+        ratingQuery = new RatingQuery(this);
 
+        // Lấy ra id phim đã chọn trong danh sách phim và hiển thị
         Intent intent = getIntent();
         int movieId = intent.getIntExtra("movieId", -1);
 
@@ -74,9 +80,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ibtnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MovieDetailsActivity.this);
-                builder.setMessage("Đánh giá phim này");
-                builder.show();
+                showDialogRating();
             }
         });
 
@@ -121,5 +125,40 @@ public class MovieDetailsActivity extends AppCompatActivity {
         txtDuration.setText(movie.getDuration() + " phút");
         txtOpeningDay.setText(openingDayString);
         txtRating.setText(movie.getRating() + "");
+    }
+
+    private void showDialogRating() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_rating);
+
+        RatingBar ratingBar = dialog.findViewById(R.id.ratingBar);
+        Button btnCancel = dialog.findViewById(R.id.btnCancel_rating);
+        Button btnOK = dialog.findViewById(R.id.btnOK_rating);
+
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float rating = ratingBar.getRating() * 2;    // rating trên thang 5 chuyển thành thang 10
+
+                if (ratingQuery.addRating(rating, movie.getId(), 2)) {
+                    Toast.makeText(MovieDetailsActivity.this,
+                            "Bạn đã đánh giá phim này " + rating + " điểm",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MovieDetailsActivity.this, "Đã xảy ra lỗi!", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

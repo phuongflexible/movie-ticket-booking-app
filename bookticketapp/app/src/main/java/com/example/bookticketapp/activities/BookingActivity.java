@@ -158,23 +158,6 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         txtTotal.setText("Tổng cộng: " + totalPrice + "đ");
     }
 
-//    private float calculateTotalPrice() {
-//        float total = 0;
-//
-//        for (Integer seadId : selectedSeatIds) {
-//            Ticket ticket = new Ticket();
-//            ticket.setShowtimeId(showtime.getId());
-//            ticket.setSeatId(seadId);
-//
-//            // Lấy giá vé từ bảng Ticket
-//            Ticket ticketFromDb = ticketQuery.getTicketByShowtimeAndSeat(showtime.getId(), ticket.getSeatId());
-//            if (ticketFromDb != null) {
-//                total += ticketFromDb.getPrice();
-//            }
-//        }
-//        return total;
-//    }
-
     private void initPaymentMethod() {
         methodList = methodQuery.getAllMethods();
 

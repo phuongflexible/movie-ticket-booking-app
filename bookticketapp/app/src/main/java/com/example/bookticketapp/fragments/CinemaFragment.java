@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -33,13 +34,15 @@ import java.util.List;
 
 public class CinemaFragment extends Fragment {
     private ImageButton btnSearch;
-    private EditText edtSearch;
+    private AutoCompleteTextView autoTxtSearch;
     private TextView txtResult;
     private Spinner spnLocation;
     private ListView lvCinema;
     private LocationSpinnerAdapter locationAdapter;
     private CinemaListViewAdapter cinemaAdapter;
+    private ArrayAdapter<String> cinemaNameAdapter;
     private List<Cinema> cinemaList;
+    private List<String> cinemaNames;
     private CinemaQuery cinemaQuery;
 
     @Override
@@ -47,14 +50,16 @@ public class CinemaFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cinema, container, false);
 
+        cinemaQuery = new CinemaQuery(getContext());
+
         findViewByIds(view);
         initLocation();
         initCinemas();
+        initAutoSearch();
 
         spnLocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                cinemaQuery = new CinemaQuery(getContext());
                 Location selectedLocation = (Location) adapterView.getItemAtPosition(i);
 
                 String locationName = selectedLocation.getName();
@@ -82,7 +87,7 @@ public class CinemaFragment extends Fragment {
             }
         });
 
-        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        autoTxtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 // khi ấn phím search hoặc done hoặc next trên phím ảo
@@ -104,7 +109,6 @@ public class CinemaFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -112,7 +116,7 @@ public class CinemaFragment extends Fragment {
         spnLocation = view.findViewById(R.id.spinnerLocation);
         lvCinema = view.findViewById(R.id.lvCinema);
         btnSearch = view.findViewById(R.id.btnSearchCinema);
-        edtSearch = view.findViewById(R.id.edtSearchCinema);
+        autoTxtSearch = view.findViewById(R.id.autoTxtSearchCinema);
         txtResult = view.findViewById(R.id.txtResult);
     }
 
@@ -128,14 +132,22 @@ public class CinemaFragment extends Fragment {
         lvCinema.setAdapter(cinemaAdapter);
     }
 
+    private void initAutoSearch() {
+        cinemaNames = cinemaQuery.getCinemaNames();
+        cinemaNameAdapter = new ArrayAdapter<>(getContext(), R.layout.item_dropdown_auto, R.id.text1, cinemaNames);
+        autoTxtSearch.setAdapter(cinemaNameAdapter);
+        autoTxtSearch.setThreshold(1);
+    }
+
     public void searchCinemas() {
-        String query = edtSearch.getText().toString();
+        String query = autoTxtSearch.getText().toString();
         List<Cinema> result = cinemaQuery.searchCinemasByName(query);
 
         cinemaList.clear();
         cinemaList.addAll(result);
         cinemaAdapter.notifyDataSetChanged();
 
+        // nếu có nhập ít nhất 1 ký tự, ẩn spnLocation, hiện txtResult
         if (!query.isEmpty()) {
             spnLocation.setVisibility(View.GONE);
             txtResult.setVisibility(View.VISIBLE);

@@ -83,6 +83,27 @@ public class MovieQuery {
         return null;
     }
 
+    public List<String> getMovieNames() {
+        List<String> movieNames = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_MOVIE,
+                new String[]{dbHelper.COLUMN_MOVIE_TITLE},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                movieNames.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return movieNames;
+    }
+
     public List<Movie> searchMoviesByTitle(String query) {
         // bỏ dấu của query và chuyển thành chữ in thường
         String queryNoAccent = StringUtils.removeAccent(query).toLowerCase();
