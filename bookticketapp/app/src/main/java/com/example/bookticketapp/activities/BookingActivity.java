@@ -107,7 +107,7 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         txtRoom.setText("R01");
         txtShowtime.setText(showtimeString + " - " + showDateString);
         txtSeats.setText("0 Ghế");
-        txtTotal.setText("Tổng cộng: 0đ");
+        txtTotal.setText("Tổng: 0đ");
     }
 
     private void initSeats() {
@@ -155,25 +155,9 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         seatsString = builder.toString();
 
         txtSeats.setText(selectedSeatIds.size() + " Ghế: " + seatsString);
-        txtTotal.setText("Tổng cộng: " + totalPrice + "đ");
+        String formatString = String.format("%,.0f", totalPrice);
+        txtTotal.setText("Tổng: " + formatString + "đ");
     }
-
-//    private float calculateTotalPrice() {
-//        float total = 0;
-//
-//        for (Integer seadId : selectedSeatIds) {
-//            Ticket ticket = new Ticket();
-//            ticket.setShowtimeId(showtime.getId());
-//            ticket.setSeatId(seadId);
-//
-//            // Lấy giá vé từ bảng Ticket
-//            Ticket ticketFromDb = ticketQuery.getTicketByShowtimeAndSeat(showtime.getId(), ticket.getSeatId());
-//            if (ticketFromDb != null) {
-//                total += ticketFromDb.getPrice();
-//            }
-//        }
-//        return total;
-//    }
 
     private void initPaymentMethod() {
         methodList = methodQuery.getAllMethods();
@@ -205,7 +189,7 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         txtShowtimeConfirm.setText(txtShowtime.getText());
         txtCinemaConfirm.setText(txtCinema.getText());
         txtRoomSeatConfirm.setText(txtRoom.getText() + " - Ghế: " + seatsString);
-        txtTotalConfirm.setText("Tổng: " + totalPrice + "đ");
+        txtTotalConfirm.setText(txtTotal.getText());
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override

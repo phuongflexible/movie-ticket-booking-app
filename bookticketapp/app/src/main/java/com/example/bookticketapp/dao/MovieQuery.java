@@ -83,6 +83,27 @@ public class MovieQuery {
         return null;
     }
 
+    public List<String> getMovieNames() {
+        List<String> movieNames = new ArrayList<>();
+        Cursor cursor = db.query(
+                dbHelper.TABLE_MOVIE,
+                new String[]{dbHelper.COLUMN_MOVIE_TITLE},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                movieNames.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return movieNames;
+    }
+
     public List<Movie> searchMoviesByTitle(String query) {
         // bỏ dấu của query và chuyển thành chữ in thường
         String queryNoAccent = StringUtils.removeAccent(query).toLowerCase();
@@ -112,6 +133,44 @@ public class MovieQuery {
 
         return movieList;
     }
+
+    public boolean updateMovieRating(int movieId) {
+
+        // Lấy tổng số lượt đánh giá giá và tổng điểm đánh giá trong bảng rating
+        String[] columns = { "COUNT(" + dbHelper.COLUMN_RATING_ID + ")", "SUM(" + dbHelper.COLUMN_RATING_RATING + ")" };
+        String selection = dbHelper.COLUMN_RATING_MOVIE_ID + "=?";
+        String[] selectionArgs = { String.valueOf(movieId) };
+
+        Cursor cursor = db.query(dbHelper.TABLE_RATING, columns, selection, selectionArgs, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int countRatings = cursor.getInt(0);    // Tổng số lượt đánh giá
+            float sumRatings = cursor.getFloat(1);  // Tổng điểm đánh giá
+
+            if (countRatings > 0) {
+                // Tính rating trung bình
+                float averageRating = sumRatings / countRatings;
+
+                // Cập nhật cột rating của phim trong bảng movie
+                ContentValues values = new ContentValues();
+                values.put(dbHelper.COLUMN_MOVIE_RATING, averageRating);
+
+                // Cập nhật giá trị rating trong bảng movie
+                long result = db.update(
+                        dbHelper.TABLE_MOVIE,
+                        values,
+                        dbHelper.COLUMN_MOVIE_ID + "=?",
+                        new String[]{String.valueOf(movieId)});
+
+                cursor.close();
+                return result > 0;
+            }
+        }
+
+        cursor.close();
+        return false;
+    }
+
 
     //read movies
     public ArrayList<Movie> readMovies() {

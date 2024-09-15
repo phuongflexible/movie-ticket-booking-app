@@ -21,8 +21,8 @@
             android:src="@drawable/ic_search"
             android:contentDescription="Button search cinema"/>
 
-        <EditText
-            android:id="@+id/edtSearchCinema"
+        <AutoCompleteTextView
+            android:id="@+id/autoTxtSearchCinema"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"

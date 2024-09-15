@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -36,11 +38,13 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private ImageButton btnSearch;
-    private EditText edtSearch;
+    private AutoCompleteTextView autoTxtSearch;
     private TextView txtResult;
     private GridView gvMovies;
     private MovieGridviewAdapter movieAdapter;
+    private ArrayAdapter<String> movieTitleAdapter;
     private List<Movie> movieList;
+    private List<String> movieTitles;
     private MovieQuery movieQuery;
 
     public HomeFragment() {
@@ -52,9 +56,10 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        findViewByIds(view);
-
         movieQuery = new MovieQuery(getContext());
+        
+        findViewByIds(view);
+        initAutoSearch();
 
         // hiển thị danh sách phim
         movieList = movieQuery.getAllMovies();
@@ -68,7 +73,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        autoTxtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                         // khi ấn phím search hoặc done hoặc next trên phím ảo
@@ -95,12 +100,19 @@ public class HomeFragment extends Fragment {
     private void findViewByIds(View view) {
         gvMovies = view.findViewById(R.id.gvMovies);
         btnSearch = view.findViewById(R.id.btnSearchMovie);
-        edtSearch = view.findViewById(R.id.edtSearchMovie);
+        autoTxtSearch = view.findViewById(R.id.autoTxtSearchMovie);
         txtResult = view.findViewById(R.id.txtResult);
     }
 
+    private void initAutoSearch() {
+        movieTitles = movieQuery.getMovieNames();
+        movieTitleAdapter = new ArrayAdapter<>(getContext(), R.layout.item_dropdown_auto, R.id.text1, movieTitles);
+        autoTxtSearch.setAdapter(movieTitleAdapter);
+        autoTxtSearch.setThreshold(1);
+    }
+
     public void searchMovies() {
-        String query = edtSearch.getText().toString();
+        String query = autoTxtSearch.getText().toString();
         List<Movie> result = movieQuery.searchMoviesByTitle(query);
 
         movieList.clear();
