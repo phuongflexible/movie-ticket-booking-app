@@ -247,7 +247,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + COLUMN_RATING_MOVIE_ID + ") REFERENCES "
                 + TABLE_MOVIE + "(" + COLUMN_MOVIE_ID + "), "
                 + "FOREIGN KEY(" + COLUMN_RATING_USER_ID + ") REFERENCES "
-                + TABLE_USER + "(" + COLUMN_USER_ID + "))";
+                + TABLE_USER + "(" + COLUMN_USER_ID + "), "
+                + "UNIQUE(" + COLUMN_RATING_MOVIE_ID + ", " + COLUMN_RATING_USER_ID + ") ON CONFLICT REPLACE)";
         db.execSQL(CREATE_TABLE_RATING);
 
         // Tạo bảng Role

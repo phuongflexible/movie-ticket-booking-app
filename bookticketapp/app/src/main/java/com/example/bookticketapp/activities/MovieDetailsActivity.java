@@ -119,12 +119,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Bitmap bitmap = ImageUtils.byteArrayToBitmap(movie.getImage());
         // 'movie.getOpeningDay()' trả về calendar, cần chuyển sang string để gán vào txtOpeningDay
         String openingDayString = DatetimeUtils.calendarToString(movie.getOpeningDay());
+        String formatString = String.format("%.1f", movie.getRating());
 
         imgMovie.setImageBitmap(bitmap);
         txtTitle.setText(movie.getTitle());
         txtDuration.setText(movie.getDuration() + " phút");
         txtOpeningDay.setText(openingDayString);
-        txtRating.setText(movie.getRating() + "");
+        txtRating.setText(formatString);
     }
 
     private void showDialogRating() {
@@ -136,15 +137,25 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Button btnCancel = dialog.findViewById(R.id.btnCancel_rating);
         Button btnOK = dialog.findViewById(R.id.btnOK_rating);
 
+        // Kiểm tra người dùng đã đánh giá phim này chưa, nếu có thì set cho ratingBar
+        Float existingRating = ratingQuery.getRatingByUserAndMovie(2, movie.getId());
+        if (existingRating != null) {
+            ratingBar.setRating(existingRating / 2);    // rating trong db là thang 10
+        }
+
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 float rating = ratingBar.getRating() * 2;    // rating trên thang 5 chuyển thành thang 10
+                String formatString = String.format("%.0f", movie.getRating());
 
-                if (ratingQuery.addRating(rating, movie.getId(), 2)) {
+                if (ratingQuery.addOrUpdateRating(rating, movie.getId(), 2)) {
                     Toast.makeText(MovieDetailsActivity.this,
-                            "Bạn đã đánh giá phim này " + rating + " điểm",
+                            "Bạn đã đánh giá phim này " + formatString + " điểm",
                             Toast.LENGTH_SHORT).show();
+
+                    movieQuery.updateMovieRating(movie.getId());
+                    reloadActivity();
                 } else {
                     Toast.makeText(MovieDetailsActivity.this, "Đã xảy ra lỗi!", Toast.LENGTH_SHORT).show();
                 }
@@ -160,5 +171,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    private void reloadActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }

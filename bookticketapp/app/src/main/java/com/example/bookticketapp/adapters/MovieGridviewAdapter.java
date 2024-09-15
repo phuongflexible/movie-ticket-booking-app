@@ -71,10 +71,12 @@ public class MovieGridviewAdapter extends BaseAdapter {
 
         Movie movie = movieList.get(i);
 
+        String formatString = String.format("%.1f", movie.getRating());
         Bitmap bitmap = ImageUtils.byteArrayToBitmap(movie.getImage());
+
         holder.imgMovie.setImageBitmap(bitmap);
         holder.txtTitle.setText(movie.getTitle());
-        holder.txtRating.setText(movie.getRating() + "");
+        holder.txtRating.setText(formatString);
 
         holder.cardMovie.setOnClickListener(new View.OnClickListener() {
             @Override
