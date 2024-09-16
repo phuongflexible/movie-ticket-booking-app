@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bookticketapp.database.DatabaseHelper;
+import com.example.bookticketapp.models.Location;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.models.Showtime;
 import com.example.bookticketapp.models.Ticket;
@@ -33,6 +34,25 @@ public class TicketQuery {
         int receiptId = cursor.getInt(4);
 
         return new Ticket(id, showtimeId, seatId, price, receiptId);
+    }
+
+    public List<Ticket> getAllTicket() {
+        List<Ticket> ticketList  = new ArrayList<>();
+        Cursor cursor = db.query(dbHelper.TABLE_TICKET,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+        if (cursor.moveToFirst()) {
+            do {
+                ticketList.add(cursorToTicket(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return ticketList;
     }
 
     public Ticket getTicketByShowtimeAndSeat(int showtimeId, int seatId) {

@@ -1,6 +1,7 @@
 package com.example.bookticketapp.activities;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -23,6 +24,7 @@ import com.example.bookticketapp.dao.ReceiptQuery;
 import com.example.bookticketapp.dao.SeatQuery;
 import com.example.bookticketapp.dao.TicketQuery;
 import com.example.bookticketapp.events.SeatsChangeListener;
+import com.example.bookticketapp.fragments.HistoryFragment;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.models.PaymentMethod;
@@ -201,23 +203,27 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int methodId = (int) spnMethod.getSelectedItemId();
+                int methodId = (int) spnMethod.getSelectedItemId() + 1;
+
                 // tạo hóa đơn mới
                 int receiptId = (int) receiptQuery.addReceipt(totalPrice, methodId,2);
 
                 if (receiptId != -1) {
                     // thêm các vé đã đặt vào 1 hóa đơn
                     for (Integer seatId : selectedSeatIds) {
-                        ticketQuery.addTicket(showtime.getId(), seatId, ticketPrice, receiptId);
+                        Boolean resultTicket = ticketQuery.addTicket(showtime.getId(), seatId, ticketPrice, receiptId);
                     }
                     // cập nhật trạng thái các ghế đã đặt
                     seatQuery.updateSeatsAvailability(selectedSeatIds, false);
                     Toast.makeText(BookingActivity.this, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
-                    seatAdapter.notifyDataSetChanged();
+
+                    Intent intent = new Intent(BookingActivity.this, HistoryFragment.class);
+                    startActivity(intent);
+
                 } else {
                     Toast.makeText(BookingActivity.this, "Đã xảy ra lỗi khi đặt vé!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 };
-                dialog.dismiss();
             }
         });
 
