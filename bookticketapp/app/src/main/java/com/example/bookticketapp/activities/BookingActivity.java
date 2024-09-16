@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.adapters.SeatGridViewAdapter;
@@ -217,8 +220,7 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
                     seatQuery.updateSeatsAvailability(selectedSeatIds, false);
                     Toast.makeText(BookingActivity.this, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(BookingActivity.this, HistoryFragment.class);
-                    startActivity(intent);
+                    moveToHistoryFragment();
 
                 } else {
                     Toast.makeText(BookingActivity.this, "Đã xảy ra lỗi khi đặt vé!", Toast.LENGTH_SHORT).show();
@@ -230,4 +232,9 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         dialog.show();
     }
 
+    private void moveToHistoryFragment() {
+        Intent intent = new Intent(BookingActivity.this, MainActivity.class);
+        intent.putExtra("showHistoryFragment", true);
+        startActivity(intent);
+    }
 }
