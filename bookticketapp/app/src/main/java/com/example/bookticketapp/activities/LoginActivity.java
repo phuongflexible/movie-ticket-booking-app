@@ -16,18 +16,26 @@ import android.widget.Toast;
 import com.example.bookticketapp.fragments.HomeFragment;
 import com.example.bookticketapp.models.User;
 import com.example.bookticketapp.utils.PasswordUtils;
+import com.example.bookticketapp.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     UserQuery userQuery;
     User user;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sessionManager = new SessionManager(this);
+        if (sessionManager.isLoggedIn()) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
 
         userQuery = new UserQuery(this);
         user = new User();
@@ -53,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
                         //Neu tim thay thong tin
                         if (user != null)
                         {
+                            // luu trang thai dang nhap
+                            sessionManager.saveLoginStatus(true, user.getId());
                             //Kiem tra co dung vai tro ko
                             if (user.getRole().getId() == 1)
                             {  //Neu la admin
@@ -65,8 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (user.getRole().getId() == 2)
                                 { //Neu la user
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
+                                    finish();
                                 }
                                 else
                                 {  //Neu sai vai tro

@@ -28,6 +28,7 @@ import com.example.bookticketapp.dao.RatingQuery;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.utils.DatetimeUtils;
 import com.example.bookticketapp.utils.ImageUtils;
+import com.example.bookticketapp.utils.SessionManager;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -41,6 +42,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private MovieQuery movieQuery;
     private RatingQuery ratingQuery;
     private Movie movie;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         findViewByIds();
 
+        sessionManager = new SessionManager(this);
         movieQuery = new MovieQuery(this);
         ratingQuery = new RatingQuery(this);
 
@@ -80,7 +83,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ibtnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogRating();
+                if (sessionManager.isLoggedIn()) {
+                    showDialogRating();
+                } else {
+                    showLoginDialog();
+                }
             }
         });
 
@@ -129,6 +136,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     private void showDialogRating() {
+        int userId = sessionManager.getUserId();
+
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_rating);
@@ -138,7 +147,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Button btnOK = dialog.findViewById(R.id.btnOK_rating);
 
         // Kiểm tra người dùng đã đánh giá phim này chưa, nếu có thì set cho ratingBar
-        Float existingRating = ratingQuery.getRatingByUserAndMovie(2, movie.getId());
+        Float existingRating = ratingQuery.getRatingByUserAndMovie(userId, movie.getId());
         if (existingRating != null) {
             ratingBar.setRating(existingRating / 2);    // rating trong db là thang 10
         }
@@ -149,7 +158,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 float rating = ratingBar.getRating() * 2;    // rating trên thang 5 chuyển thành thang 10
                 String formatString = String.format("%.0f", movie.getRating());
 
-                if (ratingQuery.addOrUpdateRating(rating, movie.getId(), 2)) {
+                if (ratingQuery.addOrUpdateRating(rating, movie.getId(), userId)) {
                     Toast.makeText(MovieDetailsActivity.this,
                             "Bạn đã đánh giá phim này " + formatString + " điểm",
                             Toast.LENGTH_SHORT).show();
@@ -159,6 +168,34 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MovieDetailsActivity.this, "Đã xảy ra lỗi!", Toast.LENGTH_SHORT).show();
                 }
+                dialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void showLoginDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_login);
+
+        TextView txtLogin = dialog.findViewById(R.id.txtLogin_booking);
+        Button btnCancel = dialog.findViewById(R.id.btn_Cancel_login);
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieDetailsActivity.this, LoginActivity.class);
+                startActivity(intent);
+
                 dialog.dismiss();
             }
         });

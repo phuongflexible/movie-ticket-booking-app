@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import com.example.bookticketapp.database.DatabaseHelper;
+import com.example.bookticketapp.models.Cinema;
+import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.models.User;
 import com.example.bookticketapp.models.Role;
 import com.example.bookticketapp.utils.PasswordUtils;
@@ -23,6 +25,19 @@ public class UserQuery {
         this.dbHelper = new DatabaseHelper(context);
         this.database = dbHelper.getWritableDatabase();
         this.roleQuery = new RoleQuery(context);
+    }
+
+    private User cursorToUser(Cursor cursor) {
+        int id = cursor.getInt(0);
+        String password = cursor.getString(1);
+        int roleId = cursor.getInt(2);
+        String roleName = roleQuery.findRoleName(roleId);
+        String name = cursor.getString(3);
+        String gender = cursor.getString(4);
+        String phoneNumber = cursor.getString(5);
+        String email = cursor.getString(6);
+
+        return new User(id, password, new Role(roleId, roleName), name, gender, phoneNumber, email);
     }
 
     //Table user
@@ -104,6 +119,25 @@ public class UserQuery {
                 cursor.close();
             //database.close();
         }
+        return null;
+    }
+
+    public User getUserById(int id) {
+        Cursor cursor = database.query(
+                dbHelper.TABLE_USER,
+                null,
+                dbHelper.COLUMN_USER_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            User user = cursorToUser(cursor);
+            cursor.close();
+            return user;
+        }
+        cursor.close();
         return null;
     }
 
