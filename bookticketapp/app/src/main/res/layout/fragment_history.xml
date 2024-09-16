@@ -16,6 +16,29 @@
         android:textAlignment="center"
         android:background="@color/orange"/>
 
+    <LinearLayout
+        android:id="@+id/linearLogin_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vui lòng "
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/txtLogin_histotry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="đăng nhập"
+            android:textColor="#8FCAFD"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/txtNoti_histotry"
         android:layout_width="match_parent"

@@ -14,17 +14,27 @@ import com.example.bookticketapp.databinding.ActivitySignUpBinding;
 import android.widget.Toast;
 import com.example.bookticketapp.models.User;
 import com.example.bookticketapp.models.Role;
+import com.example.bookticketapp.utils.SessionManager;
 
 public class SignUpActivity extends AppCompatActivity {
 
     TextView txtSignIn;
     private ActivitySignUpBinding binding;
     private UserQuery userQuery;
+    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sessionManager = new SessionManager(this);
+        if (sessionManager.isLoggedIn()) {
+            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
         userQuery = new UserQuery(this);
 
         binding.btnConfirmSignUp.setOnClickListener(new View.OnClickListener() {
@@ -46,9 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                             Boolean insert = userQuery.insertUser(new User(name, gender, email, phoneNumber, password, new Role(2, "User")));
                             if (insert == true) {
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-
-                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                                startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(SignUpActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                             }
