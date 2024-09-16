@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.utils.DatetimeUtils;
+import com.example.bookticketapp.utils.ImageUtils;
 import com.example.bookticketapp.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -177,7 +179,9 @@ public class MovieQuery {
         ArrayList<Movie> listMovies = new ArrayList<>();
         try
         {
-            Cursor cursor = db.rawQuery("Select * from " + dbHelper.TABLE_MOVIE, null);
+            Cursor cursor = db.rawQuery("SELECT * FROM " + dbHelper.TABLE_MOVIE
+                    + " ORDER BY " + dbHelper.COLUMN_MOVIE_ID + " DESC", null);
+
             if (cursor != null && cursor.moveToFirst()) {
                 do
                 {
@@ -208,6 +212,8 @@ public class MovieQuery {
         cv.put(dbHelper.COLUMN_MOVIE_DURATION, movie.getDuration());
         cv.put(dbHelper.COLUMN_MOVIE_OPENING_DAY, DatetimeUtils.calendarToString(movie.getOpeningDay()));
         cv.put(dbHelper.COLUMN_MOVIE_RATING, movie.getRating());
+        cv.put(dbHelper.COLUMN_MOVIE_IMAGE, movie.getImage());
+
         long result = db.insert(dbHelper.TABLE_MOVIE, null, cv);
 
         if (result == -1)

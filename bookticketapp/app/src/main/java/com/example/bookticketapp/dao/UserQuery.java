@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.User;
 import com.example.bookticketapp.models.Role;
+import com.example.bookticketapp.utils.PasswordUtils;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class UserQuery {
         cv.put(dbHelper.COLUMN_USER_GENDER, user.getGender());
         cv.put(dbHelper.COLUMN_USER_EMAIL, user.getEmail());
         cv.put(dbHelper.COLUMN_USER_PHONE_NUMBER, user.getPhoneNumber());
-        cv.put(dbHelper.COLUMN_USER_PASSWORD, user.getPassword());
+        cv.put(dbHelper.COLUMN_USER_PASSWORD, PasswordUtils.encodePassword(user.getPassword()));
         cv.put(dbHelper.COLUMN_USER_ROLE_ID, user.getRole().getId());
         long result = database.insert(dbHelper.TABLE_USER, null, cv);
 
@@ -58,7 +59,9 @@ public class UserQuery {
 
     //=========================Check email and password when log in=======================
     public Boolean checkEmailPassword(String email, String password) {
-        Cursor cursor = database.rawQuery("Select * from user where email = ? and password = ?", new String[]{email, password});
+        String encodedPassword = PasswordUtils.encodePassword(password);
+
+        Cursor cursor = database.rawQuery("Select * from user where email = ? and password = ?", new String[]{email, encodedPassword});
 
         if (cursor.getCount() > 0 ) {
             cursor.close();

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -24,13 +23,11 @@ import com.example.bookticketapp.dao.ReceiptQuery;
 import com.example.bookticketapp.dao.SeatQuery;
 import com.example.bookticketapp.dao.TicketQuery;
 import com.example.bookticketapp.events.SeatsChangeListener;
-import com.example.bookticketapp.fragments.HistoryFragment;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.models.PaymentMethod;
 import com.example.bookticketapp.models.Seat;
 import com.example.bookticketapp.models.Showtime;
-import com.example.bookticketapp.models.Ticket;
 import com.example.bookticketapp.utils.DatetimeUtils;
 
 import java.util.ArrayList;
@@ -164,13 +161,13 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
     private void initPaymentMethod() {
         methodList = methodQuery.getAllMethods();
 
-        // chuyển trang string để gán cho spinner
+        // chuyển sang string để gán cho spinner
         List<String> methodsString = new ArrayList<>();
         for (PaymentMethod method : methodList) {
             methodsString.add(method.getName());
         }
 
-        methodSpinnerAdapter = new ArrayAdapter(this, R.layout.item_method_spinner, methodsString);
+        methodSpinnerAdapter = new ArrayAdapter(this, R.layout.item_spinner, methodsString);
         spnMethod.setAdapter(methodSpinnerAdapter);
     }
 
@@ -217,8 +214,7 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
                     seatQuery.updateSeatsAvailability(selectedSeatIds, false);
                     Toast.makeText(BookingActivity.this, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(BookingActivity.this, HistoryFragment.class);
-                    startActivity(intent);
+                    moveToHistoryFragment();
 
                 } else {
                     Toast.makeText(BookingActivity.this, "Đã xảy ra lỗi khi đặt vé!", Toast.LENGTH_SHORT).show();
@@ -230,4 +226,9 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         dialog.show();
     }
 
+    private void moveToHistoryFragment() {
+        Intent intent = new Intent(BookingActivity.this, MainActivity.class);
+        intent.putExtra("showHistoryFragment", true);
+        startActivity(intent);
+    }
 }

@@ -40,11 +40,11 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movie movie = listMovies.get(position);
         holder.txtFilmTitle.setText(movie.getTitle());
-        holder.txtFilmDescription.setText(movie.getDesciption());
-        holder.txtFilmCategory.setText(categoryQuery.findCategoryName(movie.getCategoryId()));
-        holder.txtFilmDuration.setText(String.valueOf(movie.getDuration()) + " phút");
-        holder.txtFilmOpeningDay.setText(DatetimeUtils.calendarToString(movie.getOpeningDay()));
-        holder.txtFilmRating.setText(String.valueOf(movie.getRating()));
+        holder.txtFilmDescription.setText("Mô tả: " + movie.getDesciption());
+        holder.txtFilmCategory.setText("Thể loại: " + categoryQuery.findCategoryName(movie.getCategoryId()));
+        holder.txtFilmDuration.setText("Thời lượng: " + String.valueOf(movie.getDuration()) + " phút");
+        holder.txtFilmOpeningDay.setText("Khởi chiếu: " + DatetimeUtils.calendarToString(movie.getOpeningDay()));
+        holder.txtFilmRating.setText("Rating: " + String.valueOf(movie.getRating()));
         holder.imageFilm.setImageBitmap(ImageUtils.byteArrayToBitmap(movie.getImage()));
     }
 

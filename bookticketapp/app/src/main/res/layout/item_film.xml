@@ -9,9 +9,10 @@
 
     <ImageView
         android:id="@+id/imageFilm"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/poster_deadpool" />
 
     <LinearLayout
         android:id="@+id/filmInfo"
@@ -32,14 +33,6 @@
             android:textColor="@color/black"/>
 
         <!--Hien mo ta phim-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mô tả:"
-            android:padding="10sp"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtFilmDescription"
@@ -52,14 +45,6 @@
             android:textColor="@color/black"/>
 
         <!--Hien the loai phim-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Thể loại:"
-            android:padding="10sp"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtFilmCategory"
@@ -71,14 +56,6 @@
             android:textColor="@color/black"/>
 
         <!--Hien thoi luong phim-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Thời lượng:"
-            android:padding="10sp"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtFilmDuration"
@@ -90,14 +67,6 @@
             android:textColor="@color/black"/>
 
         <!--Hien ngay khoi chieu phim-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Khởi chiếu:"
-            android:padding="10sp"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtFilmOpeningDay"
@@ -109,14 +78,6 @@
             android:textColor="@color/black"/>
 
         <!--Hien rating phim-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rating:"
-            android:padding="10sp"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtFilmRating"

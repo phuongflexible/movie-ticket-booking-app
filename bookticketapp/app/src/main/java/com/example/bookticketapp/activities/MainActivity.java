@@ -1,5 +1,6 @@
 package com.example.bookticketapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -28,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
         // Copy database từ assets vào máy ảo
         DatabaseHelper.copyDatabase(this);
 
-        replaceFragment(new HomeFragment());
+        Intent intent = getIntent();
+        if (intent != null && intent.getBooleanExtra("showHistoryFragment", false)) {
+            replaceFragment(new HistoryFragment());
+        } else {
+            replaceFragment(new HomeFragment());
+        }
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
