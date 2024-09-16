@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:layout_margin="10sp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/white"
         android:text="Thể loại phim" />
 
@@ -20,18 +20,17 @@
         android:id="@+id/viewCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"/>
+        android:layout_below="@+id/btnAddCategory"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btnAddCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/viewCategories"
-        android:text="Thêm thể loại"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="20dp"
-        android:layout_margin="16sp"/>
+        android:layout_below="@+id/title"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="16dp"
+        android:padding="10dp"
+        android:text="Thêm phim" />
 
 </RelativeLayout>

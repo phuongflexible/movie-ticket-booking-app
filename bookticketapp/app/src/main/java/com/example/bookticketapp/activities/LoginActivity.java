@@ -15,25 +15,28 @@ import android.widget.Toast;
 
 import com.example.bookticketapp.fragments.HomeFragment;
 import com.example.bookticketapp.models.User;
+import com.example.bookticketapp.utils.PasswordUtils;
 
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     UserQuery userQuery;
     User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         userQuery = new UserQuery(this);
         user = new User();
 
         binding.btnConfirmSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = binding.editSignInEmail.getText().toString();
-                String password = binding.editSignInPassword.getText().toString();
+                String email = binding.editSignInEmail.getText().toString().trim();
+                String password = binding.editSignInPassword.getText().toString().trim();
 
                 //Kiem tra dien day du thong tin chua
                 if (email.equals("") || password.equals("")) {
@@ -54,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (user.getRole().getId() == 1)
                             {  //Neu la admin
                                 Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                                 startActivity(intent);
                             }
                             else
@@ -78,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại " + email + " - " + password, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Đăng nhập thất bại - " + PasswordUtils.encodePassword(password), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

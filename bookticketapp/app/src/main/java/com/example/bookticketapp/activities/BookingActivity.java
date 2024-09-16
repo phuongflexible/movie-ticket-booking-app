@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -14,9 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.adapters.SeatGridViewAdapter;
@@ -27,13 +23,11 @@ import com.example.bookticketapp.dao.ReceiptQuery;
 import com.example.bookticketapp.dao.SeatQuery;
 import com.example.bookticketapp.dao.TicketQuery;
 import com.example.bookticketapp.events.SeatsChangeListener;
-import com.example.bookticketapp.fragments.HistoryFragment;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
 import com.example.bookticketapp.models.PaymentMethod;
 import com.example.bookticketapp.models.Seat;
 import com.example.bookticketapp.models.Showtime;
-import com.example.bookticketapp.models.Ticket;
 import com.example.bookticketapp.utils.DatetimeUtils;
 
 import java.util.ArrayList;
@@ -167,13 +161,13 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
     private void initPaymentMethod() {
         methodList = methodQuery.getAllMethods();
 
-        // chuyển trang string để gán cho spinner
+        // chuyển sang string để gán cho spinner
         List<String> methodsString = new ArrayList<>();
         for (PaymentMethod method : methodList) {
             methodsString.add(method.getName());
         }
 
-        methodSpinnerAdapter = new ArrayAdapter(this, R.layout.item_method_spinner, methodsString);
+        methodSpinnerAdapter = new ArrayAdapter(this, R.layout.item_spinner, methodsString);
         spnMethod.setAdapter(methodSpinnerAdapter);
     }
 

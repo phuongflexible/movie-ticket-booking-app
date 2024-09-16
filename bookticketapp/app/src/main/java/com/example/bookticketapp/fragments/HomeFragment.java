@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,14 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.activities.MovieDetailsActivity;
 import com.example.bookticketapp.adapters.MovieGridviewAdapter;
 import com.example.bookticketapp.dao.MovieQuery;
 import com.example.bookticketapp.models.Movie;
+import com.example.bookticketapp.utils.PasswordUtils;
 
 import java.util.ArrayList;
 import java.util.List;
