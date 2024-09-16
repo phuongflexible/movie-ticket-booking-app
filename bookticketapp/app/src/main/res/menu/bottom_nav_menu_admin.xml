@@ -13,6 +13,9 @@
     <item android:title="Người dùng"
         android:icon="@drawable/ic_baseline_manage_accounts_24"
         android:id="@+id/manageuser"/>
+    <item android:title="Thống kê"
+        android:icon="@drawable/ic_statistic_vector"
+        android:id="@+id/statistic"/>
     <item android:title="Tài khoản"
         android:icon="@drawable/ic_baseline_person_24"
         android:id="@+id/user"/>
