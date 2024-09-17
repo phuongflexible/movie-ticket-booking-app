@@ -1,6 +1,8 @@
 package com.example.bookticketapp.activities;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,7 @@ import com.example.bookticketapp.models.PaymentMethod;
 import com.example.bookticketapp.models.Seat;
 import com.example.bookticketapp.models.Showtime;
 import com.example.bookticketapp.utils.DatetimeUtils;
+import com.example.bookticketapp.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,11 +58,14 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
     private float ticketPrice = 70000;
     private String seatsString;
     private Float totalPrice;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
+
+        sessionManager = new SessionManager(this);
 
         findViewByIds();
         initData();
@@ -69,7 +75,11 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         btnBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBookingDialog();
+                if (sessionManager.isLoggedIn()) {
+                    showBookingDialog();
+                } else {
+                    showLoginDialog();
+                }
             }
         });
     }
@@ -171,6 +181,34 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         spnMethod.setAdapter(methodSpinnerAdapter);
     }
 
+    private void showLoginDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_login);
+
+        TextView txtLogin = dialog.findViewById(R.id.txtLogin_booking);
+        Button btnCancel = dialog.findViewById(R.id.btn_Cancel_login);
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BookingActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+                dialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     private void showBookingDialog() {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -200,10 +238,11 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int userId = sessionManager.getUserId();   // lấy user id đang đăng nhập
                 int methodId = (int) spnMethod.getSelectedItemId() + 1;
 
                 // tạo hóa đơn mới
-                int receiptId = (int) receiptQuery.addReceipt(totalPrice, methodId,2);
+                int receiptId = (int) receiptQuery.addReceipt(totalPrice, methodId, userId);
 
                 if (receiptId != -1) {
                     // thêm các vé đã đặt vào 1 hóa đơn

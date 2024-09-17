@@ -3,22 +3,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".fragments.AccountFragment">
 
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:text="@string/signup"
-        android:layout_marginRight="15dp"/>
+        android:paddingVertical="12dp"
+        android:text="Thông tin tài khoản"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:background="@color/orange"/>
+
+    <LinearLayout
+        android:id="@+id/linearInfo_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtName_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Họ tên"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtGender_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Giới tính"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPhone_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Sdt"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtEmail_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Email"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnLogIn"
+        android:id="@+id/btnLogout_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:text="@string/login" />
+        android:layout_gravity="center_horizontal"
+        android:text="Đăng xuất"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/linearSignupLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible" >
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@string/signup"
+            android:layout_marginRight="15dp"/>
+
+        <Button
+            android:id="@+id/btnLogIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@string/login" />
+
+    </LinearLayout>
 
 </LinearLayout>
