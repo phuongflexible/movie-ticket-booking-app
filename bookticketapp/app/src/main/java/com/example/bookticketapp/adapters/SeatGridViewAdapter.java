@@ -79,7 +79,7 @@ public class SeatGridViewAdapter extends BaseAdapter {
                 }
 
                 if (listener != null) {
-                    listener.onSeatSelectionChanged();
+                    listener.onSeatSelectionChanged(seat.getId());
                 }
             }
         });

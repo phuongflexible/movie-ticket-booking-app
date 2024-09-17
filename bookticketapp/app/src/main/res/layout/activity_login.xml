@@ -71,12 +71,8 @@
             android:id="@+id/btnConfirmSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
             android:fontFamily="@font/comfortaabold"
-            android:paddingStart="20dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="20dp"
+            android:paddingVertical="15dp"
             android:layout_marginTop="16sp"
             android:text="@string/login"/>
 
@@ -99,9 +95,9 @@
                 android:id="@+id/txtSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/signup"
-                android:textColor="@color/black"
                 android:layout_marginStart="10dp"
+                android:text="@string/signup"
+                android:textColor="@color/blue"
                 android:fontFamily="@font/comfortaabold"
                 android:textSize="14sp"/>
 

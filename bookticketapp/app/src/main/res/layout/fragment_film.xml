@@ -20,25 +20,21 @@
             android:textColor="@color/white"
             android:text="Danh sách phim" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/viewFilms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/titleFilm"/>
-
         <Button
             android:id="@+id/btnAddFilm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewFilms"
-            android:text="Thêm phim"
-            android:paddingStart="20dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="20dp"
-            android:layout_margin="16sp"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"/>
+            android:layout_below="@+id/titleFilm"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:padding="10dp"
+            android:text="Thêm phim" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/viewFilms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnAddFilm" />
 
     </RelativeLayout>
 

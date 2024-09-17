@@ -1,24 +1,54 @@
 package com.example.bookticketapp.fragments;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.activities.MovieDetailsActivity;
+import com.example.bookticketapp.adapters.MovieGridviewAdapter;
+import com.example.bookticketapp.dao.MovieQuery;
+import com.example.bookticketapp.models.Movie;
+import com.example.bookticketapp.utils.PasswordUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
-    private Button btnDetail1, btnDetail2;
+    private ImageButton btnSearch;
+    private AutoCompleteTextView autoTxtSearch;
+    private TextView txtResult;
+    private GridView gvMovies;
+    private MovieGridviewAdapter movieAdapter;
+    private ArrayAdapter<String> movieTitleAdapter;
+    private List<Movie> movieList;
+    private List<String> movieTitles;
+    private MovieQuery movieQuery;
 
     public HomeFragment() {
 
@@ -29,28 +59,75 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        movieQuery = new MovieQuery(getContext());
+        
         findViewByIds(view);
+        initAutoSearch();
 
-        // chuyển qua chi tiết phim
-        btnDetail1.setOnClickListener(new View.OnClickListener() {
+        // hiển thị danh sách phim
+        movieList = movieQuery.getAllMovies();
+        movieAdapter = new MovieGridviewAdapter(getContext(), movieList);
+        gvMovies.setAdapter(movieAdapter);
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
-                intent.putExtra("movieId", 1);
-                startActivity(intent);
+                searchMovies();
             }
         });
 
-        btnDetail2.setOnClickListener(new View.OnClickListener() {
+        autoTxtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
-                intent.putExtra("movieId", 2);
-                startActivity(intent);
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                        // khi ấn phím search hoặc done hoặc next trên phím ảo
+                if (i == EditorInfo.IME_ACTION_SEARCH ||
+                        i == EditorInfo.IME_ACTION_DONE ||
+                        i == EditorInfo.IME_ACTION_NEXT ||
+                        // khi ấn xuống phím enter trên phím vật lí
+                        keyEvent.getKeyCode() == KeyEvent.ACTION_DOWN &&
+                        keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    // ẩn bàn phím ảo
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+
+                    searchMovies();
+                    return true;
+                }
+                return false;
             }
         });
 
         return view;
+    }
+
+    private void findViewByIds(View view) {
+        gvMovies = view.findViewById(R.id.gvMovies);
+        btnSearch = view.findViewById(R.id.btnSearchMovie);
+        autoTxtSearch = view.findViewById(R.id.autoTxtSearchMovie);
+        txtResult = view.findViewById(R.id.txtResult);
+    }
+
+    private void initAutoSearch() {
+        movieTitles = movieQuery.getMovieNames();
+        movieTitleAdapter = new ArrayAdapter<>(getContext(), R.layout.item_dropdown_auto, R.id.text1, movieTitles);
+        autoTxtSearch.setAdapter(movieTitleAdapter);
+        autoTxtSearch.setThreshold(1);
+    }
+
+    public void searchMovies() {
+        String query = autoTxtSearch.getText().toString();
+        List<Movie> result = movieQuery.searchMoviesByTitle(query);
+
+        movieList.clear();
+        movieList.addAll(result);
+        movieAdapter.notifyDataSetChanged();
+
+        if (!query.isEmpty()) {
+            txtResult.setVisibility(View.VISIBLE);
+            txtResult.setText("Đã tìm thấy " + result.size() + " kết quả");
+        } else {
+            txtResult.setVisibility(View.GONE);
+        }
     }
 
     public static HomeFragment newInstance(String param1, String param2) {
@@ -69,10 +146,5 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
-
-    private void findViewByIds(View view) {
-        btnDetail1 = view.findViewById(R.id.btnMovieDetails1);
-        btnDetail2 = view.findViewById(R.id.btnMovieDetails2);
     }
 }

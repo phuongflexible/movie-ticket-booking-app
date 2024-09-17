@@ -23,6 +23,8 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
+
+
     public Movie(int id, String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
 
         this.id = id;

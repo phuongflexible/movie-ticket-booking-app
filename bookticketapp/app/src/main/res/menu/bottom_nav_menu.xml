@@ -8,6 +8,9 @@
     <item android:title="Rạp phim"
         android:icon="@drawable/ic_baseline_movie_24"
         android:id="@+id/cinema"/>
+    <item android:title="Lịch sử"
+        android:icon="@drawable/ic_history_vector"
+        android:id="@+id/history"/>
     <item android:title="Tài khoản"
         android:icon="@drawable/ic_baseline_person_24"
         android:id="@+id/account"/>

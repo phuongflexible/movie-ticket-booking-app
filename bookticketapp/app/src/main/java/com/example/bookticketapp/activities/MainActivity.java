@@ -1,5 +1,6 @@
 package com.example.bookticketapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.databinding.ActivityMainBinding;
 import com.example.bookticketapp.fragments.AccountFragment;
 import com.example.bookticketapp.fragments.CinemaFragment;
+import com.example.bookticketapp.fragments.HistoryFragment;
 import com.example.bookticketapp.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
         // Copy database từ assets vào máy ảo
         DatabaseHelper.copyDatabase(this);
 
-        replaceFragment(new HomeFragment());
+        Intent intent = getIntent();
+        if (intent != null && intent.getBooleanExtra("showHistoryFragment", false)) {
+            replaceFragment(new HistoryFragment());
+        } else {
+            replaceFragment(new HomeFragment());
+        }
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -36,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.cinema:
                     replaceFragment(new CinemaFragment());
+                    break;
+                case R.id.history:
+                    replaceFragment(new HistoryFragment());
                     break;
                 case R.id.account:
                     replaceFragment(new AccountFragment());

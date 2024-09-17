@@ -87,6 +87,7 @@ public class FilmFragment extends Fragment {
         try
         {
             MovieQuery movieQuery = new MovieQuery(context);
+
             ArrayList<Movie> movieArrayList = movieQuery.readMovies();
             FilmAdapter filmAdapter = new FilmAdapter(movieArrayList, context);
             RecyclerView filmRV = view.findViewById(R.id.viewFilms);

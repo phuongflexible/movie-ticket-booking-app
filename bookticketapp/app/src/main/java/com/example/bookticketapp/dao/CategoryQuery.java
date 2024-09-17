@@ -10,6 +10,7 @@ import com.example.bookticketapp.models.Category;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class CategoryQuery {
@@ -58,6 +59,27 @@ public class CategoryQuery {
             listCategories.add(category);
         }
         return listCategories;
+    }
+
+    public List<String> getCateNames() {
+        List<String> cateNames = new ArrayList<>();
+        Cursor cursor = database.query(
+                dbHelper.TABLE_CATEGORY,
+                new String[]{dbHelper.COLUMN_CATEGORY_NAME},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                cateNames.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return cateNames;
     }
 
     //Update category
