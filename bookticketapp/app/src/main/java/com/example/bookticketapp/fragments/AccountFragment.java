@@ -69,7 +69,6 @@ public class AccountFragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), SignUpActivity.class);
                     startActivity(intent);
-                    getActivity().finish();
                 }
             });
 
@@ -77,6 +76,7 @@ public class AccountFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("LoginFromAccount", true);
                     startActivity(intent);
                 }
             });

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginStart="22sp"
-    android:layout_marginEnd="22sp"
+    android:paddingHorizontal="22dp"
+    android:background="@color/white"
     tools:context=".activities.UpdateCategoryActivity">
 
     <TextView
@@ -15,10 +15,10 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:backgroundTint="@color/black"
         android:textStyle="bold"
         android:layout_marginTop="50sp"
-        android:text="Chỉnh sửa danh mục" />
+        android:text="Chỉnh sửa danh mục"
+        android:textColor="@color/black"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"

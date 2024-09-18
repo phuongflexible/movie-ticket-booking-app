@@ -141,6 +141,25 @@ public class UserQuery {
         return null;
     }
 
+    public int getUserRoleById(int id) {
+        Cursor cursor = database.query(
+                dbHelper.TABLE_USER,
+                new String[]{dbHelper.COLUMN_USER_ROLE_ID},
+                dbHelper.COLUMN_USER_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            int roleId = cursor.getInt(0);
+            cursor.close();
+            return roleId;
+        }
+        cursor.close();
+        return -1;
+    }
+
     //Read user
     public ArrayList<User> readUsers() {
         ArrayList<User> listUsers = new ArrayList<>();
