@@ -4,40 +4,46 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.dao.UserQuery;
 import com.example.bookticketapp.databinding.ActivityProfileBinding;
+import com.example.bookticketapp.models.User;
+import com.example.bookticketapp.utils.SessionManager;
 
 public class ProfileActivity extends AppCompatActivity {
     ActivityProfileBinding binding;
+    SessionManager sessionManager;
+    UserQuery userQuery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Intent intent = getIntent();
-        String fullName = intent.getStringExtra("fullName");
-        String gender = intent.getStringExtra("gender");
-        String email = intent.getStringExtra("email");
-        String phoneNumber = intent.getStringExtra("phoneNumber");
-        Integer roleId = intent.getIntExtra("role", 1);
+        sessionManager = new SessionManager(this);
+        userQuery = new UserQuery(this);
 
-        binding.accountFullname.setText(fullName);
-        binding.accountGender.setText(gender);
-        binding.accountEmail.setText(email);
-        binding.accountPhoneNumber.setText(phoneNumber);
-        if (roleId == 1) {
-            binding.accountRole.setText("Admin");
-        } else if (roleId == 2) {
-            binding.accountRole.setText("Người dùng");
-        }
+        int userId = sessionManager.getUserId();
+        User user = userQuery.getUserById(userId);
+
+        binding.accountFullname.setText(user.getName());
+        binding.accountGender.setText(user.getGender());
+        binding.accountEmail.setText(user.getEmail());
+        binding.accountPhoneNumber.setText(user.getPhoneNumber());
+        binding.accountRole.setText(user.getRole().getName());
 
         binding.btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sessionManager.logout();
+                Toast.makeText(ProfileActivity.this, sessionManager.getUserId() + "", Toast.LENGTH_SHORT).show();
+                Log.d("logout - userId:", sessionManager.getUserId() + "");
                 Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
                 startActivity(intent);
             }

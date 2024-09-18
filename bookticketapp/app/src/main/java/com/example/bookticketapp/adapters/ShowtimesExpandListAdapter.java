@@ -99,7 +99,6 @@ public class ShowtimesExpandListAdapter extends BaseExpandableListAdapter {
         btnShowtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Move to booking", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, BookingActivity.class);
                 intent.putExtra("showtime", showtime);
                 context.startActivity(intent);

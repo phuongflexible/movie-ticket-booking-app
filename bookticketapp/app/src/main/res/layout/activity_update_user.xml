@@ -23,7 +23,7 @@
             android:textSize="30sp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:layout_marginTop="50sp"
+            android:layout_marginTop="50dp"
             android:text="Chỉnh sửa thông tin người dùng" />
 
         <!--Ten nguoi dung-->

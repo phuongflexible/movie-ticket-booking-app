@@ -10,15 +10,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.dao.UserQuery;
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.databinding.ActivityMainBinding;
 import com.example.bookticketapp.fragments.AccountFragment;
 import com.example.bookticketapp.fragments.CinemaFragment;
 import com.example.bookticketapp.fragments.HistoryFragment;
 import com.example.bookticketapp.fragments.HomeFragment;
+import com.example.bookticketapp.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    SessionManager sessionManager;
+    UserQuery userQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,22 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        sessionManager = new SessionManager(this);
+        userQuery = new UserQuery(this);
+
         // Copy database từ assets vào máy ảo
         DatabaseHelper.copyDatabase(this);
 
+        if (sessionManager.isLoggedIn()) {    // nếu đã đăng nhập
+            int userId = sessionManager.getUserId();
+
+            if (userQuery.getUserRoleById(userId) == 1) {    // nếu role là admin
+                Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        }
+
+        // ở BookingActivity, khi đặt vé thành công thì chuyển tới HistoryFragment
         Intent intent = getIntent();
         if (intent != null && intent.getBooleanExtra("showHistoryFragment", false)) {
             replaceFragment(new HistoryFragment());

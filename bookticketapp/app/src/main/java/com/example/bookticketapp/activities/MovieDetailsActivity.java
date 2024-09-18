@@ -94,7 +94,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ibtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MovieDetailsActivity.this, "back", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

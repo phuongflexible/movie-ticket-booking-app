@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -82,11 +84,17 @@ public class CategoryFragment extends Fragment implements SelectListener {
         Boolean result = cateQuery.deleteCategory(cate.getName());
         if (result == true) {
             Toast.makeText(context, "Xoá thể loại thành công", Toast.LENGTH_SHORT).show();
-            //Intent i =new Intent(context, AdminActivity.class);
-            //startActivity(i);
+            reloadCategoryFragment();
         }
         else {
             Toast.makeText(context, "Xoá thể loại thất bại", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void reloadCategoryFragment() {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new CategoryFragment());
+        fragmentTransaction.commit();
     }
 }

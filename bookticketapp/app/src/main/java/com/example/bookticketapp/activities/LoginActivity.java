@@ -75,7 +75,14 @@ public class LoginActivity extends AppCompatActivity {
                                 if (user.getRole().getId() == 2)
                                 { //Neu la user
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                    finish();
+
+                                    boolean isLoginFromAccount = getIntent().getBooleanExtra("LoginFromAccount", false);
+                                    if (isLoginFromAccount) {
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    } else {
+                                        finish();
+                                    }
                                 }
                                 else
                                 {  //Neu sai vai tro

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -133,11 +135,17 @@ public class UserFragment extends Fragment implements UserSelectListener{
         Boolean result = userQuery.deleteUser(user.getName());
         if (result == true) {
             Toast.makeText(context, "Xoá người dùng thành công", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, AdminActivity.class);
-            startActivity(intent);
+            reloadUserFragment();
         }
         else {
             Toast.makeText(context, "Xoá người dùng thất bại", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void reloadUserFragment() {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new UserFragment());
+        fragmentTransaction.commit();
     }
 }

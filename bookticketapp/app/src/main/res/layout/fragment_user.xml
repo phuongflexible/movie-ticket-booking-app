@@ -27,7 +27,7 @@
             android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="16dp"
             android:padding="10dp"
-            android:text="Thêm phim" />
+            android:text="Thêm người dùng" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/viewUsers"
