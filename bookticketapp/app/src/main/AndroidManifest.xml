@@ -33,7 +33,7 @@
             android:name=".activities.UpdateCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.AdminActivity"
             android:exported="false" />
         <activity
             android:name=".activities.BookingActivity"
@@ -51,7 +51,7 @@
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AdminActivity"
+            android:name=".activities.MainActivity"
 
             android:exported="true">
             <intent-filter>
