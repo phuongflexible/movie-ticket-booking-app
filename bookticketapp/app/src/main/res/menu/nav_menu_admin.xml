@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_user"
+        android:title="Người dùng"
+        android:icon="@drawable/ic_baseline_manage_accounts_24"/>
+
+    <item
+        android:id="@+id/nav_category"
+        android:title="Thể loại"
+        android:icon="@drawable/ic_baseline_theater_comedy_24"/>
+
+    <item
+        android:id="@+id/nav_movie"
+        android:title="Phim"
+        android:icon="@drawable/ic_baseline_movie_24"/>
+
+    <item
+        android:id="@+id/nav_cinema"
+        android:title="Rạp chiếu phim"
+        android:icon="@drawable/ic_baseline_cinema_24"/>
+
+    <item
+        android:id="@+id/nav_ticket"
+        android:title="Vé đặt"
+        android:icon="@drawable/ic_baseline_ticket_24" />
+
+</menu>
