@@ -25,15 +25,14 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginTop="32sp"
-        android:textColorHint="@color/black"
-        app:boxStrokeColor="@color/black">
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/white">
 
         <EditText
             android:id="@+id/editUpdateCategoryName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên danh mục"
-            android:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -42,7 +41,6 @@
         android:id="@+id/btnConfirmUpdateCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
         android:fontFamily="@font/comfortaabold"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
