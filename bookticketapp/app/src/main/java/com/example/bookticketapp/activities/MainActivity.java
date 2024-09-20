@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        sessionManager = new SessionManager(this);
-        userQuery = new UserQuery(this);
-
         // Copy database từ assets vào máy ảo
         DatabaseHelper.copyDatabase(this);
+
+        sessionManager = new SessionManager(this);
+        userQuery = new UserQuery(this);
 
         if (sessionManager.isLoggedIn()) {    // nếu đã đăng nhập
             int userId = sessionManager.getUserId();
