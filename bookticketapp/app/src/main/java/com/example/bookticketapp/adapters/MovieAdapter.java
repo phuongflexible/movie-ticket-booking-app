@@ -24,13 +24,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     private ArrayList<Movie> listMovies = new ArrayList<>();
     private Context context;
     private CategoryQuery categoryQuery;
-    //private MovieSelectListener listener;
+    private MovieSelectListener listener;
 
-    public MovieAdapter(ArrayList<Movie> listMovies, Context context/*, MovieSelectListener listener*/) {
+    public MovieAdapter(ArrayList<Movie> listMovies, Context context, MovieSelectListener listener) {
         this.listMovies = listMovies;
         this.context = context;
         this.categoryQuery = new CategoryQuery(context);
-        //this.listener = listener;
+        this.listener = listener;
     }
 
     @NonNull
@@ -50,7 +50,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.txtFilmOpeningDay.setText("Khởi chiếu: " + DatetimeUtils.calendarToString(movie.getOpeningDay()));
         holder.txtFilmRating.setText("Rating: " + String.valueOf(movie.getRating()));
         holder.imageFilm.setImageBitmap(ImageUtils.byteArrayToBitmap(movie.getImage()));
-        /*holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
+        holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.updateMovie(listMovies.get(holder.getAdapterPosition()));
@@ -61,7 +61,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             public void onClick(View view) {
                 listener.deleteMovie(listMovies.get(holder.getAdapterPosition()));
             }
-        });*/
+        });
     }
 
     @Override
@@ -77,8 +77,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         private TextView txtFilmOpeningDay;
         private TextView txtFilmRating;
         private ImageView imageFilm;
-        //private Button btnUpdate;
-        //private Button btnDelete;
+        private Button btnUpdate;
+        private Button btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,8 +89,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             txtFilmOpeningDay = itemView.findViewById(R.id.txtFilmOpeningDay);
             txtFilmRating = itemView.findViewById(R.id.txtFilmRating);
             imageFilm = itemView.findViewById(R.id.imageFilm);
-            //btnUpdate = itemView.findViewById(R.id.btnUpdateMovie);
-            //btnDelete = itemView.findViewById(R.id.btnDeleteMovie);
+            btnUpdate = itemView.findViewById(R.id.btnUpdateMovie);
+            btnDelete = itemView.findViewById(R.id.btnDeleteMovie);
         }
     }
 }

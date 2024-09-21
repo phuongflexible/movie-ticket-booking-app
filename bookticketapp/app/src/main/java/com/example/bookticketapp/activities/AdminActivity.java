@@ -33,6 +33,8 @@ public class AdminActivity extends AppCompatActivity {
 
         replaceFragment(new CategoryFragment());
 
+        String email = getIntent().getStringExtra("email");
+        String name = getIntent().getStringExtra("name");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -66,6 +68,8 @@ public class AdminActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
     @Override
