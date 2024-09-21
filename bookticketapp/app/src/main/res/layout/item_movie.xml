@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5sp"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imageFilm"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/poster_deadpool" />
+
+    <LinearLayout
+        android:id="@+id/filmInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/imageFilm">
+
+        <!--Hien ten phim-->
+        <TextView
+            android:id="@+id/txtFilmTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="25sp"
+            android:text="Film title"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <!--Hien mo ta phim-->
+
+        <TextView
+            android:id="@+id/txtFilmDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Film description"
+            android:justificationMode="inter_word"
+            android:textColor="@color/black"/>
+
+        <!--Hien the loai phim-->
+
+        <TextView
+            android:id="@+id/txtFilmCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Film category"
+            android:textColor="@color/black"/>
+
+        <!--Hien thoi luong phim-->
+
+        <TextView
+            android:id="@+id/txtFilmDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Film duration"
+            android:textColor="@color/black"/>
+
+        <!--Hien ngay khoi chieu phim-->
+
+        <TextView
+            android:id="@+id/txtFilmOpeningDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Film opening day"
+            android:textColor="@color/black"/>
+
+        <!--Hien rating phim-->
+
+        <TextView
+            android:id="@+id/txtFilmRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Film rating"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnUpdateMovie"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue"
+            app:icon="@drawable/ic_baseline_update_24"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/btnDeleteMovie"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            app:icon="@drawable/ic_baseline_delete_forever_24"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+</RelativeLayout>

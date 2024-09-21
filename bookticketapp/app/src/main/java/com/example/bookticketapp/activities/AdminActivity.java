@@ -1,7 +1,6 @@
 package com.example.bookticketapp.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -16,13 +15,9 @@ import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookticketapp.R;
-import com.example.bookticketapp.fragments.AccountFragment;
-import com.example.bookticketapp.fragments.AdminFragment;
 import com.example.bookticketapp.fragments.CategoryFragment;
 import com.example.bookticketapp.fragments.CinemaAdminFragment;
-import com.example.bookticketapp.fragments.CinemaFragment;
-import com.example.bookticketapp.fragments.FilmFragment;
-import com.example.bookticketapp.fragments.HomeFragment;
+import com.example.bookticketapp.fragments.MovieFragment;
 import com.example.bookticketapp.fragments.TicketFragment;
 import com.example.bookticketapp.fragments.UserFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -59,7 +54,7 @@ public class AdminActivity extends AppCompatActivity {
                         replaceFragment(new CategoryFragment());
                         break;
                     case R.id.nav_movie:
-                        replaceFragment(new FilmFragment());
+                        replaceFragment(new MovieFragment());
                         break;
                     case R.id.nav_cinema:
                         replaceFragment(new CinemaAdminFragment());
