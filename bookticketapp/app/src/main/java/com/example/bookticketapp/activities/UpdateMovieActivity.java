@@ -73,7 +73,6 @@ public class UpdateMovieActivity extends AppCompatActivity {
         int duration = getIntent().getIntExtra("duration", 0);
         String openingDay = getIntent().getStringExtra("openingDay");
         float rating = getIntent().getFloatExtra("rating", 0);
-        byte[] image = getIntent().getByteArrayExtra("image");
 
         editUpdateMovieTitle.setText(title);
         editUpdateMovieDescription.setText(description);
@@ -111,7 +110,7 @@ public class UpdateMovieActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(UpdateMovieActivity.this, "Không chỉnh sửa được do thiếu thông tin", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UpdateMovieActivity.this, "Chỉnh sửa thất bại", Toast.LENGTH_LONG).show();
                     }
                 }
             }
