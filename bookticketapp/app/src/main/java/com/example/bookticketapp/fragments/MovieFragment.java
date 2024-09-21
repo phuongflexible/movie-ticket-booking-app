@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +39,7 @@ import java.util.Calendar;
 public class MovieFragment extends Fragment implements MovieSelectListener {
     Activity context;
     Button btnAddFilm;
+    MovieQuery movieQuery;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -89,9 +92,9 @@ public class MovieFragment extends Fragment implements MovieSelectListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        movieQuery = new MovieQuery(context);
         try
         {
-            MovieQuery movieQuery = new MovieQuery(context);
             ArrayList<Movie> movieArrayList = movieQuery.readMovies();
             MovieAdapter movieAdapter = new MovieAdapter(movieArrayList, context, this);
             RecyclerView filmRV = view.findViewById(R.id.viewFilms);
@@ -133,12 +136,27 @@ public class MovieFragment extends Fragment implements MovieSelectListener {
         i.putExtra("duration", duration);
         i.putExtra("openingDay", DatetimeUtils.calendarToString(openingDay));
         i.putExtra("rating", rating);
-        //i.putExtra("image", image);
         startActivity(i);
     }
 
     @Override
     public void deleteMovie(Movie movie) {
+        Boolean result = movieQuery.deleteMovie(movie.getId());
+        if (result == true)
+        {
+            Toast.makeText(context, "Xóa phim thành công", Toast.LENGTH_SHORT).show();
+            reloadMovieFragment();
+        }
+        else
+        {
+            Toast.makeText(context, "Xóa phim thất bại", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private void reloadMovieFragment() {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new MovieFragment());
+        fragmentTransaction.commit();
     }
 }

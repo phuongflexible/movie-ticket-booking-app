@@ -248,4 +248,15 @@ public class MovieQuery {
             return true;
         }
     }
+
+    //delete movies
+    public Boolean deleteMovie(int id)
+    {
+        int result = db.delete(dbHelper.TABLE_MOVIE, "id = ?", new String[]{String.valueOf(id)});
+        if (result == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
