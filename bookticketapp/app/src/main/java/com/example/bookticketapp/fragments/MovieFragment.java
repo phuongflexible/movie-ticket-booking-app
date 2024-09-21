@@ -18,19 +18,23 @@ import android.widget.Toast;
 
 import com.example.bookticketapp.R;
 import com.example.bookticketapp.activities.AddMovieActivity;
+import com.example.bookticketapp.activities.UpdateMovieActivity;
 import com.example.bookticketapp.adapters.MovieAdapter;
 import com.example.bookticketapp.dao.MovieQuery;
 import com.example.bookticketapp.events.MovieSelectListener;
 import com.example.bookticketapp.models.Movie;
+import com.example.bookticketapp.utils.DatetimeUtils;
+import com.example.bookticketapp.utils.ImageUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MovieFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MovieFragment extends Fragment /*implements MovieSelectListener*/ {
+public class MovieFragment extends Fragment implements MovieSelectListener {
     Activity context;
     Button btnAddFilm;
 
@@ -88,14 +92,12 @@ public class MovieFragment extends Fragment /*implements MovieSelectListener*/ {
         try
         {
             MovieQuery movieQuery = new MovieQuery(context);
-
             ArrayList<Movie> movieArrayList = movieQuery.readMovies();
-            MovieAdapter movieAdapter = new MovieAdapter(movieArrayList, context);
+            MovieAdapter movieAdapter = new MovieAdapter(movieArrayList, context, this);
             RecyclerView filmRV = view.findViewById(R.id.viewFilms);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             filmRV.setLayoutManager(linearLayoutManager);
             filmRV.setAdapter(movieAdapter);
-            //Toast.makeText(context, "List:" + movieArrayList.get(0).getCategory().getName(), Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
@@ -113,13 +115,30 @@ public class MovieFragment extends Fragment /*implements MovieSelectListener*/ {
         });
     }
 
-    /*@Override
+    @Override
     public void updateMovie(Movie movie) {
-
+        Integer id = movie.getId();
+        String title = movie.getTitle();
+        String description = movie.getDesciption();
+        int categoryId = movie.getCategoryId();
+        int duration = movie.getDuration();
+        Calendar openingDay = movie.getOpeningDay();
+        float rating = movie.getRating();
+        byte[] image = movie.getImage();
+        Intent i = new Intent(context, UpdateMovieActivity.class);
+        i.putExtra("id", id);
+        i.putExtra("title", title);
+        i.putExtra("description", description);
+        i.putExtra("categoryId", categoryId);
+        i.putExtra("duration", duration);
+        i.putExtra("openingDay", DatetimeUtils.calendarToString(openingDay));
+        i.putExtra("rating", rating);
+        //i.putExtra("image", image);
+        startActivity(i);
     }
 
     @Override
     public void deleteMovie(Movie movie) {
 
-    }*/
+    }
 }
