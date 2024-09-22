@@ -1,5 +1,6 @@
 package com.example.bookticketapp.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
@@ -55,6 +56,32 @@ public class LocationQuery {
             return listCinemaName;
         }
         return null;
+    }
+
+    //add location
+    public Boolean addLocation(Location location)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_LOCATION_NAME, location.getName());
+        long result = db.insert(dbHelper.TABLE_LOCATION, null, cv);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //check name if exists
+    public Boolean checkName(String name)
+    {
+        Cursor cursor = db.rawQuery("Select * from " + dbHelper.TABLE_LOCATION + " where name = ?", new String[]{name});
+
+        if (cursor.getCount() > 0)
+        {
+            return false;
+        }
+        return true;
+
     }
 
 }

@@ -27,4 +27,9 @@
         android:title="Vé đặt"
         android:icon="@drawable/ic_baseline_ticket_24" />
 
+    <item
+        android:id="@+id/nav_location"
+        android:title="Địa điểm"
+        android:icon="@drawable/ic_baseline_location_24"/>
+
 </menu>
