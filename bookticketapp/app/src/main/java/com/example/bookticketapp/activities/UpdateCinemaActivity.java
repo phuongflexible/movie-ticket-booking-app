@@ -20,36 +20,44 @@ import com.example.bookticketapp.R;
 import com.example.bookticketapp.dao.CinemaQuery;
 import com.example.bookticketapp.dao.LocationQuery;
 import com.example.bookticketapp.models.Cinema;
-import com.example.bookticketapp.models.Location;
 import com.example.bookticketapp.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddCinemaActivity extends AppCompatActivity {
+public class UpdateCinemaActivity extends AppCompatActivity {
 
-    EditText editAddCinemaName, editAddAddress;
+    EditText editUpdateCinemaName, editUpdateAddress;
     ImageView newImageCinema;
     Spinner spnLocateCinema;
-    Button btnConfirmAddCinema;
-    List<String> listCategoriesString = new ArrayList<>();
+    Button btnConfirmUpdateCinema;
+
     LocationQuery locationQuery;
     ArrayAdapter arrayAdapter;
     CinemaQuery cinemaQuery;
+    List<String> listCategoriesString = new ArrayList<>();
 
     private Uri imageFilePath;
     private Bitmap imageToStore;
     private static final int PICK_IMAGE_REQUEST = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_cinema);
+        setContentView(R.layout.activity_update_cinema);
 
-        editAddAddress = findViewById(R.id.editAddAddress);
-        editAddCinemaName = findViewById(R.id.editAddCinemaName);
-        spnLocateCinema = findViewById(R.id.spnLocateCinema);
+        editUpdateCinemaName = findViewById(R.id.editUpdateCinemaName);
+        editUpdateAddress = findViewById(R.id.editUpdateAddress);
         newImageCinema = findViewById(R.id.newImageCinema);
-        btnConfirmAddCinema = findViewById(R.id.btnConfirmAddCinema);
+        spnLocateCinema = findViewById(R.id.spnLocateCinema);
+        btnConfirmUpdateCinema = findViewById(R.id.btnConfirmUpdateCinema);
+
+        int id = getIntent().getIntExtra("id", 0);
+        String name = getIntent().getStringExtra("name");
+        String address = getIntent().getStringExtra("address");
+
+        editUpdateCinemaName.setText(name);
+        editUpdateAddress.setText(address);
 
         locationQuery = new LocationQuery(this);
         listCategoriesString = locationQuery.getLocationNames();
@@ -64,34 +72,36 @@ public class AddCinemaActivity extends AppCompatActivity {
             }
         });
 
-        btnConfirmAddCinema.setOnClickListener(new View.OnClickListener() {
+        btnConfirmUpdateCinema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = editAddCinemaName.getText().toString().trim();
-                String address = editAddAddress.getText().toString().trim();
-                int locationId = (int) spnLocateCinema.getSelectedItemId() + 1;
-                byte[] imageCinema = ImageUtils.bitmapToByteArray(imageToStore);
+                String newName = editUpdateCinemaName.getText().toString().trim();
+                String newAddress = editUpdateAddress.getText().toString().trim();
+                int newLocationId = (int) spnLocateCinema.getSelectedItemId() + 1;
+                byte[] newImageCinema = ImageUtils.bitmapToByteArray(imageToStore);
 
-                if (name.equals("") || address.equals("") || locationId == -1 || imageCinema.equals(null))
+                if (newName.equals("") || newAddress.equals("") || newLocationId == -1 || newImageCinema.equals(null))
                 {
-                    Toast.makeText(AddCinemaActivity.this, "Không thêm được do thiếu thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateCinemaActivity.this, "Không chỉnh sửa được do thiếu thông tin", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Cinema cinema = new Cinema(name, address, imageCinema, locationId);
-                    Boolean insert = cinemaQuery.addCinema(cinema);
-                    if (insert == true)
+                    Cinema cinema = new Cinema(id, newName, newAddress, newImageCinema, newLocationId);
+                    Boolean update = cinemaQuery.updateCinema(cinema);
+
+                    if (update == true)
                     {
-                        Toast.makeText(AddCinemaActivity.this, "Thêm rạp phim thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(AddCinemaActivity.this, AdminActivity.class);
+                        Toast.makeText(UpdateCinemaActivity.this, "Chỉnh sửa rạp phim thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(UpdateCinemaActivity.this, AdminActivity.class);
                         startActivity(intent1);
                     }
                     else
                     {
-                        Toast.makeText(AddCinemaActivity.this, "Thêm rạp phim thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdateCinemaActivity.this, "Chỉnh sửa rạp phim thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
+
         });
 
     }
