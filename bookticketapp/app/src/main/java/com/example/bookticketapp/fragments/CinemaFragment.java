@@ -25,6 +25,7 @@ import com.example.bookticketapp.adapters.CinemaListViewAdapter;
 import com.example.bookticketapp.adapters.LocationSpinnerAdapter;
 import com.example.bookticketapp.dao.CinemaQuery;
 import com.example.bookticketapp.dao.LocationQuery;
+import com.example.bookticketapp.events.CinemaSelectListener;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Location;
 import com.example.bookticketapp.models.Movie;
@@ -32,7 +33,7 @@ import com.example.bookticketapp.models.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CinemaFragment extends Fragment {
+public class CinemaFragment extends Fragment implements CinemaSelectListener{
     private ImageButton btnSearch;
     private AutoCompleteTextView autoTxtSearch;
     private TextView txtResult;
@@ -128,7 +129,7 @@ public class CinemaFragment extends Fragment {
     private void initCinemas() {
         cinemaList = new ArrayList<>();
 
-        cinemaAdapter = new CinemaListViewAdapter(getContext(), R.layout.item_cinema, cinemaList);
+        cinemaAdapter = new CinemaListViewAdapter(getContext(), R.layout.item_cinema, cinemaList, this);
         lvCinema.setAdapter(cinemaAdapter);
     }
 
@@ -156,5 +157,15 @@ public class CinemaFragment extends Fragment {
             spnLocation.setVisibility(View.VISIBLE);
             txtResult.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void updateCinema(Cinema cinema) {
+
+    }
+
+    @Override
+    public void deleteCinema(Cinema cinema) {
+
     }
 }

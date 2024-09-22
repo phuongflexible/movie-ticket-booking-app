@@ -156,4 +156,32 @@ public class CinemaQuery {
             return false;
         return true;
     }
+
+    //update cinema
+    public Boolean updateCinema(Cinema cinema)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_CINEMA_ID, cinema.getId());
+        cv.put(dbHelper.COLUMN_CINEMA_NAME, cinema.getName());
+        cv.put(dbHelper.COLUMN_CINEMA_ADDRESS, cinema.getAddress());
+        cv.put(dbHelper.COLUMN_CINEMA_IMAGE, cinema.getImage());
+        cv.put(dbHelper.COLUMN_CINEMA_LOCATION_ID, cinema.getLocationId());
+        int result = db.update(dbHelper.TABLE_CINEMA, cv, "id = ?", new String[]{String.valueOf(cinema.getId())});
+        if (result <= 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    //delete cinema
+    public Boolean deleteCinema(int id)
+    {
+        int result = db.delete(dbHelper.TABLE_CINEMA, "id = ?", new String[]{String.valueOf(id)});
+        if (result == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
