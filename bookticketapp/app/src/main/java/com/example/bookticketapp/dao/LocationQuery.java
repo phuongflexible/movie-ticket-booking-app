@@ -41,4 +41,20 @@ public class LocationQuery {
 
         return locationList;
     }
+
+    public List<String> getLocationNames()
+    {
+        List<String> listCinemaName = new ArrayList<>();
+        Cursor cursor = db.rawQuery("Select name from " + dbHelper.TABLE_LOCATION, null);
+        if (cursor != null && cursor.moveToFirst())
+        {
+            do {
+                String name = cursor.getString(0);
+                listCinemaName.add(name);
+            } while (cursor.moveToNext());
+            return listCinemaName;
+        }
+        return null;
+    }
+
 }
