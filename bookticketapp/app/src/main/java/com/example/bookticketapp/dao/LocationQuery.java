@@ -81,7 +81,31 @@ public class LocationQuery {
             return false;
         }
         return true;
-
     }
 
+    //update location
+    public Boolean updateLocation(Location location)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_LOCATION_NAME, location.getName());
+        int result = db.update(dbHelper.TABLE_LOCATION, cv, "id = ?", new String[]{String.valueOf(location.getId())});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //delete location
+    public Boolean deleteLocation(int id)
+    {
+        int result = db.delete(dbHelper.TABLE_LOCATION, "id = ?", new String[]{String.valueOf(id)});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
+    }
 }
