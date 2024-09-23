@@ -14,6 +14,7 @@ import com.example.bookticketapp.models.Role;
 import com.example.bookticketapp.utils.PasswordUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserQuery {
     SQLiteDatabase database;
@@ -218,6 +219,22 @@ public class UserQuery {
             database.close();
             return false;
         }
+    }
+
+    //Lay danh sach ten
+    public List<String> getUserNames()
+    {
+        List<String> listUserNames = new ArrayList<>();
+        Cursor cursor = database.rawQuery("Select name from " + dbHelper.TABLE_USER, null);
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                String name = cursor.getString(0);
+                listUserNames.add(name);
+            } while (cursor.moveToNext());
+        }
+        return listUserNames;
     }
 
 }

@@ -22,6 +22,7 @@ import com.example.bookticketapp.fragments.CinemaAdminFragment;
 import com.example.bookticketapp.fragments.LocationFragment;
 import com.example.bookticketapp.fragments.MovieFragment;
 import com.example.bookticketapp.fragments.PaymentMethodFragment;
+import com.example.bookticketapp.fragments.RatingFragment;
 import com.example.bookticketapp.fragments.RoleFragment;
 import com.example.bookticketapp.fragments.TicketFragment;
 import com.example.bookticketapp.fragments.UserFragment;
@@ -80,6 +81,9 @@ public class AdminActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_role:
                         replaceFragment(new RoleFragment());
+                        break;
+                    case R.id.nav_rating:
+                        replaceFragment(new RatingFragment());
                         break;
                 }
                 return true;
