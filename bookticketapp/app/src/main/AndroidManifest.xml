@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Bookticketapp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.UpdateRatingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.UpdateRoleActivity"
             android:exported="false" />
         <activity

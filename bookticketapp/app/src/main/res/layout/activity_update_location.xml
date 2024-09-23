@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:backgroundTint="@color/black"
         android:textStyle="bold"
         android:layout_marginTop="50sp"
         android:text="Chỉnh sửa địa điểm" />

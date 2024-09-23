@@ -42,4 +42,9 @@
         android:title="Vai trò"
         android:icon="@drawable/ic_baseline_account_circle_24"/>
 
+    <item
+        android:id="@+id/nav_rating"
+        android:title="Rating"
+        android:icon="@drawable/ic_baseline_star_24"/>
+
 </menu>
