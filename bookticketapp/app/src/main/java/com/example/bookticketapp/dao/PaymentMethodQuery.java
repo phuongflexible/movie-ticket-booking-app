@@ -67,4 +67,30 @@ public class PaymentMethodQuery {
             return false;
         return true;
     }
+
+    //update payment method
+    public Boolean updatePaymentMethod(PaymentMethod payment)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_LOCATION_NAME, payment.getName());
+        int result = db.update(dbHelper.TABLE_PAYMENT_METHOD, cv, "id = ?", new String[]{String.valueOf(payment.getId())});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //delete payment method
+    public Boolean deletePaymentMethod(int id)
+    {
+        int result = db.delete(dbHelper.TABLE_PAYMENT_METHOD, "id = ?", new String[]{String.valueOf(id)});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
+    }
 }
