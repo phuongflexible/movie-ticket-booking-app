@@ -24,6 +24,7 @@ import com.example.bookticketapp.fragments.MovieFragment;
 import com.example.bookticketapp.fragments.PaymentMethodFragment;
 import com.example.bookticketapp.fragments.RatingFragment;
 import com.example.bookticketapp.fragments.RoleFragment;
+import com.example.bookticketapp.fragments.RoomFragment;
 import com.example.bookticketapp.fragments.TicketFragment;
 import com.example.bookticketapp.fragments.UserFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -85,12 +86,13 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_rating:
                         replaceFragment(new RatingFragment());
                         break;
+                    case R.id.nav_room:
+                        replaceFragment(new RoomFragment());
+                        break;
                 }
                 return true;
             }
         });
-
-
     }
 
     @Override
