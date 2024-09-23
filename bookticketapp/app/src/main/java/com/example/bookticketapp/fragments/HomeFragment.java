@@ -5,8 +5,11 @@ import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -21,7 +24,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,29 +36,24 @@ import com.example.bookticketapp.activities.MovieDetailsActivity;
 import com.example.bookticketapp.adapters.MovieGridviewAdapter;
 import com.example.bookticketapp.dao.MovieQuery;
 import com.example.bookticketapp.models.Movie;
+import com.example.bookticketapp.utils.ImageUtils;
 import com.example.bookticketapp.utils.PasswordUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
     private ImageButton btnSearch;
     private AutoCompleteTextView autoTxtSearch;
-    private TextView txtResult;
+    private TextView txtResult, txtNewReleases, txtTopSelling, txtNowShowing;
+    private HorizontalScrollView cvNewReleases, cvTopSelling;
     private GridView gvMovies;
+    private LinearLayout linearNewReleases, linearTopSelling, linearContainer;
     private MovieGridviewAdapter movieAdapter;
     private ArrayAdapter<String> movieTitleAdapter;
     private List<Movie> movieList;
     private List<String> movieTitles;
     private MovieQuery movieQuery;
-
-    public HomeFragment() {
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,12 +63,11 @@ public class HomeFragment extends Fragment {
         movieQuery = new MovieQuery(getContext());
         
         findViewByIds(view);
+        initNewReleases();
+        initTopSelling();
+        initMovieList();
         initAutoSearch();
 
-        // hiển thị danh sách phim
-        movieList = movieQuery.getAllMovies();
-        movieAdapter = new MovieGridviewAdapter(getContext(), movieList);
-        gvMovies.setAdapter(movieAdapter);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +105,102 @@ public class HomeFragment extends Fragment {
         btnSearch = view.findViewById(R.id.btnSearchMovie);
         autoTxtSearch = view.findViewById(R.id.autoTxtSearchMovie);
         txtResult = view.findViewById(R.id.txtResult);
+        linearNewReleases = view.findViewById(R.id.linearNewReleases);
+        linearTopSelling = view.findViewById(R.id.linearTopSelling);
+        linearContainer = view.findViewById(R.id.linearContainer);
+        txtNewReleases = view.findViewById(R.id.txtNewReleases);
+        txtTopSelling = view.findViewById(R.id.txtTopSelling);
+        txtNowShowing = view.findViewById(R.id.txtNowShowing);
+        cvNewReleases = view.findViewById(R.id.cvNewReleases);
+        cvTopSelling = view.findViewById(R.id.cvTopSelling);
+    }
+
+    private void initMovieList() {
+        movieList = movieQuery.getAllMovies();
+        movieAdapter = new MovieGridviewAdapter(getContext(), movieList);
+        gvMovies.setAdapter(movieAdapter);
+    }
+
+    private void initNewReleases() {
+        List<Movie> newReleases = movieQuery.getNewReleases(3);
+
+        for (Movie movie : newReleases) {
+            View view = getLayoutInflater().inflate(R.layout.item_movie_gridview, linearNewReleases, false);
+
+            CardView cardMovie = view.findViewById(R.id.cardMovie);
+            ImageView imgMovie = view.findViewById(R.id.imgMovie_list);
+            TextView txtTitle = view.findViewById(R.id.txtMovieTitle_list);
+            TextView txtRating = view.findViewById(R.id.txtRating_list);
+
+            String formatString = String.format("%.1f", movie.getRating());
+            Bitmap bitmap = ImageUtils.byteArrayToBitmap(movie.getImage());
+
+            imgMovie.setImageBitmap(bitmap);
+            txtTitle.setText(movie.getTitle());
+            txtRating.setText(formatString);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, // Width
+                    LinearLayout.LayoutParams.WRAP_CONTENT  // Height
+            );
+            params.setMargins(8, 8, 8, 8);
+
+            view.setLayoutParams(params);
+
+            cardMovie.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int movieId = movie.getId();
+
+                    Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+                    intent.putExtra("movieId", movieId);
+                    getActivity().startActivity(intent);
+                }
+            });
+
+            linearNewReleases.addView(view);
+        }
+    }
+
+    private void initTopSelling() {
+        List<Movie> topSelling = movieQuery.getTopSellingMovies(3);
+
+        for (Movie movie : topSelling) {
+            View view = getLayoutInflater().inflate(R.layout.item_movie_gridview, linearTopSelling, false);
+
+            CardView cardMovie = view.findViewById(R.id.cardMovie);
+            ImageView imgMovie = view.findViewById(R.id.imgMovie_list);
+            TextView txtTitle = view.findViewById(R.id.txtMovieTitle_list);
+            TextView txtRating = view.findViewById(R.id.txtRating_list);
+
+            String formatString = String.format("%.1f", movie.getRating());
+            Bitmap bitmap = ImageUtils.byteArrayToBitmap(movie.getImage());
+
+            imgMovie.setImageBitmap(bitmap);
+            txtTitle.setText(movie.getTitle());
+            txtRating.setText(formatString);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, // Width
+                    LinearLayout.LayoutParams.WRAP_CONTENT  // Height
+            );
+            params.setMargins(8, 8, 8, 8);
+
+            view.setLayoutParams(params);
+
+            cardMovie.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int movieId = movie.getId();
+
+                    Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+                    intent.putExtra("movieId", movieId);
+                    getActivity().startActivity(intent);
+                }
+            });
+
+            linearTopSelling.addView(view);
+        }
     }
 
     private void initAutoSearch() {
@@ -125,26 +221,18 @@ public class HomeFragment extends Fragment {
         if (!query.isEmpty()) {
             txtResult.setVisibility(View.VISIBLE);
             txtResult.setText("Đã tìm thấy " + result.size() + " kết quả");
+            txtNewReleases.setVisibility(View.GONE);
+            txtTopSelling.setVisibility(View.GONE);
+            txtTopSelling.setVisibility(View.GONE);
+            cvNewReleases.setVisibility(View.GONE);
+            cvTopSelling.setVisibility(View.GONE);
         } else {
             txtResult.setVisibility(View.GONE);
-        }
-    }
-
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            txtNewReleases.setVisibility(View.VISIBLE);
+            txtTopSelling.setVisibility(View.VISIBLE);
+            txtTopSelling.setVisibility(View.VISIBLE);
+            cvNewReleases.setVisibility(View.VISIBLE);
+            cvTopSelling.setVisibility(View.VISIBLE);
         }
     }
 }
