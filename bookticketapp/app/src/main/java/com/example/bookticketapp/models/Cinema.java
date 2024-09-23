@@ -19,6 +19,13 @@ public class Cinema {
         this.locationId = locationId;
     }
 
+    public Cinema(String name, String address, byte[] image, int locationId) {
+        this.name = name;
+        this.address = address;
+        this.image = image;
+        this.locationId = locationId;
+    }
+
     public int getId() {
         return id;
     }

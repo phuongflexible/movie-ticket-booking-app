@@ -27,6 +27,30 @@
             android:exported="false" />
 
         <activity
+            android:name=".activities.UpdateRoleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.UpdatePaymentMethodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddPaymentMethodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.UpdateLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.UpdateCinemaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddCinemaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.UpdateMovieActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.UpdateUserActivity"
             android:exported="false" />
         <activity
@@ -45,6 +69,9 @@
             android:name=".activities.UpdateCategoryActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.BookingActivity"
             android:exported="false" />
         <activity
@@ -60,14 +87,13 @@
             android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AdminActivity"
-            android:exported="false">
+            android:name=".activities.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"

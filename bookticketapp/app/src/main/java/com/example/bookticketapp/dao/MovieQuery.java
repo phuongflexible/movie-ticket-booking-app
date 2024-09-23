@@ -225,4 +225,38 @@ public class MovieQuery {
             return true;
         }
     }
+
+    //update movies
+    public Boolean updateMovie(Movie movie)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_MOVIE_TITLE, movie.getTitle());
+        cv.put(dbHelper.COLUMN_MOVIE_DESCRIPTION, movie.getDesciption());
+        cv.put(dbHelper.COLUMN_MOVIE_CATEGORY_ID, movie.getCategoryId());
+        cv.put(dbHelper.COLUMN_MOVIE_DURATION, movie.getDuration());
+        cv.put(dbHelper.COLUMN_MOVIE_OPENING_DAY, DatetimeUtils.calendarToString(movie.getOpeningDay()));
+        cv.put(dbHelper.COLUMN_MOVIE_RATING, movie.getRating());
+        cv.put(dbHelper.COLUMN_MOVIE_IMAGE, movie.getImage());
+
+        int result = db.update(dbHelper.TABLE_MOVIE, cv, "id = ?", new String[]{String.valueOf(movie.getId())});
+        if (result <= 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    //delete movies
+    public Boolean deleteMovie(int id)
+    {
+        int result = db.delete(dbHelper.TABLE_MOVIE, "id = ?", new String[]{String.valueOf(id)});
+        if (result == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

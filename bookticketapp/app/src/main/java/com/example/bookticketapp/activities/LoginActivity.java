@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                             {  //Neu la admin
                                 Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                intent.putExtra("email", user.getEmail());
+                                intent.putExtra("name", user.getName());
                                 startActivity(intent);
                             }
                             else

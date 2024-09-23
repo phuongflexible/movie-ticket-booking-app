@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.Role;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoleQuery {
     SQLiteDatabase database;
     DatabaseHelper dbHelper;
@@ -56,5 +59,60 @@ public class RoleQuery {
         } else {
             return -1;
         }
+    }
+
+    //Lay danh sach
+    public List<Role> getAllRoles()
+    {
+        List<Role> listRoles = new ArrayList<>();
+        Cursor cursor = database.rawQuery("Select * from " + dbHelper.TABLE_ROLE, null);
+        if (cursor.moveToFirst())
+        {
+            do {
+                int id = cursor.getInt(0);
+                String name = cursor.getString(1);
+
+                listRoles.add(new Role(id, name));
+            } while (cursor.moveToNext());
+        }
+        return listRoles;
+    }
+
+    //update role
+    public Boolean updateRole(Role role)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_ROLE_NAME, role.getName());
+        int result = database.update(dbHelper.TABLE_ROLE, cv, "id = ?", new String[]{String.valueOf(role.getId())});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //delete role
+    public Boolean deleteRole(int id)
+    {
+        int result = database.delete(dbHelper.TABLE_ROLE, "id = ?", new String[]{String.valueOf(id)});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //check name
+    public Boolean checkName(String name)
+    {
+        Cursor cursor = database.rawQuery("Select * from " + dbHelper.TABLE_ROLE + " where name = ?", new String[]{name});
+
+        if (cursor.getCount() > 0)
+        {
+            return false;
+        }
+        return true;
     }
 }

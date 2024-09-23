@@ -11,6 +11,11 @@ public class PaymentMethod {
         this.name = name;
     }
 
+    public PaymentMethod(String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @NonNull
     @Override
     public String toString() {

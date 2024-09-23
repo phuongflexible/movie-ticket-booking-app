@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bookticketapp.R;
+import com.example.bookticketapp.events.CinemaSelectListener;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.utils.ImageUtils;
 
@@ -19,11 +21,13 @@ public class CinemaListViewAdapter extends BaseAdapter {
     private Context context;
     private int layoutItem;
     private List<Cinema> cinemaList;
+    private CinemaSelectListener listener;
 
-    public CinemaListViewAdapter(Context context, int layoutItem, List<Cinema> cinemaList) {
+    public CinemaListViewAdapter(Context context, int layoutItem, List<Cinema> cinemaList, CinemaSelectListener listener) {
         this.context = context;
         this.layoutItem = layoutItem;
         this.cinemaList = cinemaList;
+        this.listener = listener;
     }
 
     @Override
@@ -44,6 +48,7 @@ public class CinemaListViewAdapter extends BaseAdapter {
     private class ViewHolder {
         ImageView imgCinema;
         TextView txtCinemaName, txtAddress;
+        Button btnUpdateCinema, btnDeleteCinema;
     }
 
     @Override
@@ -58,6 +63,8 @@ public class CinemaListViewAdapter extends BaseAdapter {
             holder.imgCinema = view.findViewById(R.id.imgCinema);
             holder.txtCinemaName = view.findViewById(R.id.txtCinemaName);
             holder.txtAddress = view.findViewById(R.id.txtAddress);
+            holder.btnUpdateCinema = view.findViewById(R.id.btnUpdateCinema);
+            holder.btnDeleteCinema = view.findViewById(R.id.btnDeleteCinema);
 
             view.setTag(holder);
         } else {
@@ -70,7 +77,24 @@ public class CinemaListViewAdapter extends BaseAdapter {
         holder.imgCinema.setImageBitmap(bitmap);
         holder.txtCinemaName.setText(cinema.getName());
         holder.txtAddress.setText(cinema.getAddress());
-
+        if (holder.btnUpdateCinema != null)
+        {
+            holder.btnUpdateCinema.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.updateCinema(cinema);
+                }
+            });
+        }
+        if (holder.btnDeleteCinema != null)
+        {
+            holder.btnDeleteCinema.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.deleteCinema(cinema);
+                }
+            });
+        }
         return view;
     }
 }
