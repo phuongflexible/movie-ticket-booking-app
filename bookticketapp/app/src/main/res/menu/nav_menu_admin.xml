@@ -32,4 +32,9 @@
         android:title="Địa điểm"
         android:icon="@drawable/ic_baseline_location_24"/>
 
+    <item
+        android:id="@+id/nav_methodpayment"
+        android:title="Phương thức thanh toán"
+        android:icon="@drawable/ic_baseline_payment_24"/>
+
 </menu>

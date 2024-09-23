@@ -19,6 +19,7 @@ import com.example.bookticketapp.fragments.CategoryFragment;
 import com.example.bookticketapp.fragments.CinemaAdminFragment;
 import com.example.bookticketapp.fragments.LocationFragment;
 import com.example.bookticketapp.fragments.MovieFragment;
+import com.example.bookticketapp.fragments.PaymentMethodFragment;
 import com.example.bookticketapp.fragments.TicketFragment;
 import com.example.bookticketapp.fragments.UserFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -67,6 +68,9 @@ public class AdminActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_location:
                         replaceFragment(new LocationFragment());
+                        break;
+                    case R.id.nav_methodpayment:
+                        replaceFragment(new PaymentMethodFragment());
                         break;
                 }
                 return true;
