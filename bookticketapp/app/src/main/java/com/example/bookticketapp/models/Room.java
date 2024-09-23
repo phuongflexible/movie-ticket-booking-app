@@ -14,6 +14,11 @@ public class Room {
         this.cinemaId = cinemaId;
     }
 
+    public Room(String name, int cinemaId) {
+        this.name = name;
+        this.cinemaId = cinemaId;
+    }
+
     public int getId() {
         return id;
     }
