@@ -276,81 +276,35 @@ public class BookingActivity extends AppCompatActivity implements SeatsChangeLis
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (spnMethod.getSelectedItem().equals("PayPal")) {     // nếu phương thức thanh toán là PayPal
-                    processPayment();
+                int userId = sessionManager.getUserId();   // lấy user id đang đăng nhập
+
+                // tạo hóa đơn mới
+                int receiptId = (int) receiptQuery.addReceipt(totalPrice, methodId, userId);
+
+                if (receiptId != -1) {
+                    // thêm các vé đã đặt vào 1 hóa đơn
+                    for (Integer seatId : selectedSeatIds) {
+                        Boolean resultTicket = ticketQuery.addTicket(showtime.getId(), seatId, ticketPrice, receiptId);
+                    }
+                    // cập nhật trạng thái các ghế đã đặt
+                    seatQuery.updateSeatsAvailability(selectedSeatIds, false);
+                    Toast.makeText(BookingActivity.this, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
+
+                    moveToHistoryFragment();
+
                 } else {
-                    int userId = sessionManager.getUserId();   // lấy user id đang đăng nhập
-
-                    // tạo hóa đơn mới
-                    int receiptId = (int) receiptQuery.addReceipt(totalPrice, methodId, userId);
-
-                    if (receiptId != -1) {
-                        // thêm các vé đã đặt vào 1 hóa đơn
-                        for (Integer seatId : selectedSeatIds) {
-                            Boolean resultTicket = ticketQuery.addTicket(showtime.getId(), seatId, ticketPrice, receiptId);
-                        }
-                        // cập nhật trạng thái các ghế đã đặt
-                        seatQuery.updateSeatsAvailability(selectedSeatIds, false);
-                        Toast.makeText(BookingActivity.this, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
-
-                        moveToHistoryFragment();
-
-                    } else {
-                        Toast.makeText(BookingActivity.this, "Đã xảy ra lỗi khi đặt vé!", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    };
-                }
+                    Toast.makeText(BookingActivity.this, "Đã xảy ra lỗi khi đặt vé!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                };
             }
         });
 
         dialog.show();
     }
 
-    public void processPayment() {
-        // Tạo đối tượng thanh toán PayPal với số tiền 10.00 USD
-        PayPalPayment payment = new PayPalPayment(new BigDecimal("10.00"), "USD",
-                "Movie Ticket", PayPalPayment.PAYMENT_INTENT_SALE);
-
-        // Khởi chạy PayPal PaymentActivity
-        Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
-        startActivityForResult(intent, PAYPAL_REQUEST_CODE);
-    }
-
     private void moveToHistoryFragment() {
         Intent intent = new Intent(BookingActivity.this, MainActivity.class);
         intent.putExtra("showHistoryFragment", true);
         startActivity(intent);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PAYPAL_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-                if (confirm != null) {
-                    try {
-                        // Xử lý kết quả thanh toán thành công
-                        String paymentDetails = confirm.toJSONObject().toString(4);
-                        Log.i("PayPalPayment", paymentDetails);
-
-                    } catch (JSONException e) {
-                        Log.e("PayPalPayment", "Lỗi JSON: ", e);
-                    }
-                }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Log.i("PayPalPayment", "Thanh toán bị hủy.");
-            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-                Log.i("PayPalPayment", "Cấu hình không hợp lệ.");
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        stopService(new Intent(this, PayPalService.class));
-        super.onDestroy();
     }
 }

@@ -28,10 +28,6 @@
         android:icon="@drawable/ic_baseline_ticket_24" />
 
     <item
-        android:id="@+id/nav_admin_account"
-        android:title="Tài khoản Admin"
-        android:icon="@drawable/ic_baseline_person_24" />
-    <item
         android:id="@+id/nav_location"
         android:title="Địa điểm"
         android:icon="@drawable/ic_baseline_location_24"/>
@@ -45,4 +41,9 @@
         android:id="@+id/nav_role"
         android:title="Vai trò"
         android:icon="@drawable/ic_baseline_account_circle_24"/>
+
+    <item
+        android:id="@+id/nav_admin_account"
+        android:title="Tài khoản Admin"
+        android:icon="@drawable/ic_baseline_person_24" />
 </menu>
