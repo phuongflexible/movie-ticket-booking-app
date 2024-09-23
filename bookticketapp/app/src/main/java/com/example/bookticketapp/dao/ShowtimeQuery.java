@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.Cinema;
 import com.example.bookticketapp.models.Movie;
+import com.example.bookticketapp.models.Seat;
 import com.example.bookticketapp.models.Showtime;
 import com.example.bookticketapp.utils.DatetimeUtils;
 import com.example.bookticketapp.utils.ImageUtils;
@@ -81,5 +82,23 @@ public class ShowtimeQuery {
         cursor.close();
 
         return showtimeList;
+    }
+
+    public Showtime getShowtimeById(int id) {
+        Cursor cursor = db.query(dbHelper.TABLE_SHOWTIME,
+                null,
+                dbHelper.COLUMN_SHOWTIME_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            Showtime showtime = cursorToShowtime(cursor);
+            cursor.close();
+            return showtime;
+        }
+        cursor.close();
+        return null;
     }
 }
