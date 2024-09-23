@@ -47,6 +47,7 @@ public class LocationFragment extends Fragment implements LocationSelectListener
 
         btnAddLocation = view.findViewById(R.id.btnAddLocation);
 
+
         btnAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

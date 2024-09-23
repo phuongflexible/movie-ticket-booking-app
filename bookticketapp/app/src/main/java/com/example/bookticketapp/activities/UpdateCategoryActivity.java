@@ -38,8 +38,8 @@ public class UpdateCategoryActivity extends AppCompatActivity {
                     Boolean update = cateQuery.updateCategory(new Category(id, name), newCategoryName);
                     if (update == true) {
                         Toast.makeText(UpdateCategoryActivity.this, "Chỉnh sửa danh mục mới thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(UpdateCategoryActivity.this, AdminActivity.class);
-                        startActivity(intent1);
+                        Intent intent = new Intent(UpdateCategoryActivity.this, AdminActivity.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(UpdateCategoryActivity.this, "Chỉnh sửa danh mục thất bại", Toast.LENGTH_SHORT).show();
                     }

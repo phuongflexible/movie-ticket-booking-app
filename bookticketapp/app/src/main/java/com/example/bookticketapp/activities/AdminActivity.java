@@ -39,7 +39,7 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        replaceFragment(new CategoryFragment());
+        replaceFragment(new UserFragment());
 
         String email = getIntent().getStringExtra("email");
         String name = getIntent().getStringExtra("name");

@@ -83,8 +83,8 @@ public class AddCinemaActivity extends AppCompatActivity {
                     if (insert == true)
                     {
                         Toast.makeText(AddCinemaActivity.this, "Thêm rạp phim thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(AddCinemaActivity.this, AdminActivity.class);
-                        startActivity(intent1);
+                        Intent intent = new Intent(AddCinemaActivity.this, AdminActivity.class);
+                        startActivity(intent);
                     }
                     else
                     {
