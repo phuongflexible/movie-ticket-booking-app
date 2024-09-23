@@ -10,8 +10,8 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Danh sach rating của các phim"
-        android:layout_margin="10sp"
+        android:text="Danh sách rating"
+        android:layout_margin="10dp"
         android:textAlignment="center"
         android:textSize="30sp" />
 
@@ -20,6 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/title"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:divider="@color/orange"
+        android:dividerHeight="1dp"/>
 
 </RelativeLayout>

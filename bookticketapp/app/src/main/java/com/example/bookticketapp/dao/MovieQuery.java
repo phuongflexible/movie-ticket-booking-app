@@ -118,15 +118,22 @@ public class MovieQuery {
     // Lấy các phim mới
     public List<Movie> getNewReleases(int limit) {
         List<Movie> movieList = new ArrayList<>();
+        // yyyy-MM-dd
+        String openingDayFormat = "SUBSTR(" + dbHelper.COLUMN_MOVIE_OPENING_DAY + ", 7, 4) || '-' || " +
+                "SUBSTR(" + dbHelper.COLUMN_MOVIE_OPENING_DAY + ", 4, 2) || '-' || " +
+                "SUBSTR(" + dbHelper.COLUMN_MOVIE_OPENING_DAY + ", 1, 2)";
+        String currentDate = DatetimeUtils.dateToString2(Calendar.getInstance());
 
         String[] columns = {dbHelper.COLUMN_MOVIE_ID, dbHelper.COLUMN_MOVIE_TITLE, dbHelper.COLUMN_MOVIE_RATING, dbHelper.COLUMN_MOVIE_IMAGE};
-        String orderBy = "strftime('%Y-%m-%d', " + dbHelper.COLUMN_MOVIE_OPENING_DAY + ") DESC";
+        String whereClause = dbHelper.COLUMN_MOVIE_OPENING_DAY + " < ?";
+        String[] whereArgs = new String[]{currentDate};
+        String orderBy = openingDayFormat + " DESC";
 
         Cursor cursor = db.query(
                 dbHelper.TABLE_MOVIE,
                 columns,
-                null,
-                null,
+                whereClause,
+                whereArgs,
                 null,
                 null,
                 orderBy,
