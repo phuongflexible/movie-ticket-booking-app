@@ -31,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
         if (sessionManager.isLoggedIn()) {
-            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 

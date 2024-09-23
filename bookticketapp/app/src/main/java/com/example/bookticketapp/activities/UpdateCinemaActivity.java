@@ -92,8 +92,8 @@ public class UpdateCinemaActivity extends AppCompatActivity {
                     if (update == true)
                     {
                         Toast.makeText(UpdateCinemaActivity.this, "Chỉnh sửa rạp phim thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(UpdateCinemaActivity.this, AdminActivity.class);
-                        startActivity(intent1);
+                        Intent intent = new Intent(UpdateCinemaActivity.this, AdminActivity.class);
+                        startActivity(intent);
                     }
                     else
                     {

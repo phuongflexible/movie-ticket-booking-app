@@ -46,7 +46,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_toRightOf="@+id/infoCinema"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:gravity="right">
 
         <Button
             android:id="@+id/btnUpdateCinema"

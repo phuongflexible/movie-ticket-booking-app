@@ -72,8 +72,8 @@ public class UpdateUserActivity extends AppCompatActivity {
                     Boolean update = userQuery.updateUser(new User(id, new Role(roleId, newRole), name, gender, phoneNumber, email), newName, newGender, newEmail, newPhoneNumber, newRole);
                     if (update == true) {
                         Toast.makeText(UpdateUserActivity.this, "Chỉnh sửa thông tin thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(UpdateUserActivity.this, AdminActivity.class);
-                        startActivity(intent1);
+                        Intent intent = new Intent(UpdateUserActivity.this, AdminActivity.class);
+                        startActivity(intent);
                     }
                     else {
                         Toast.makeText(UpdateUserActivity.this, "Không chỉnh sửa được do thiếu thông tin", Toast.LENGTH_LONG).show();
