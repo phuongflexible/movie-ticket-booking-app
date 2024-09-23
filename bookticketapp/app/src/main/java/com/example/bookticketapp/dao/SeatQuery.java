@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bookticketapp.database.DatabaseHelper;
+import com.example.bookticketapp.models.Room;
 import com.example.bookticketapp.models.Seat;
 
 import java.util.ArrayList;
@@ -91,5 +92,63 @@ public class SeatQuery {
         } finally {
             db.endTransaction();
         }
+    }
+
+    //lay het ghe
+    public List<Seat> getAllSeats()
+    {
+        List<Seat> listSeats = new ArrayList<>();
+        Cursor cursor = db.rawQuery("Select * from " + dbHelper.TABLE_SEAT, null);
+        if (cursor.moveToFirst())
+        {
+            do {
+                Seat seat = cursorToSeat(cursor);
+                listSeats.add(seat);
+            } while (cursor.moveToNext());
+        }
+        return listSeats;
+    }
+
+    //add seat
+    public Boolean addSeat(Seat seat)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_SEAT_NUMBER, seat.getSeatNumber());
+        cv.put(dbHelper.COLUMN_SEAT_ROOM_ID, seat.getRoomId());
+        cv.put(dbHelper.COLUMN_SEAT_IS_AVAILABLE, seat.isAvailable());
+        long result = db.insert(dbHelper.TABLE_SEAT, null, cv);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //update seat
+    public Boolean updateSeat(Seat seat)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(dbHelper.COLUMN_SEAT_NUMBER, seat.getSeatNumber());
+        cv.put(dbHelper.COLUMN_SEAT_ROOM_ID, seat.getRoomId());
+        cv.put(dbHelper.COLUMN_SEAT_IS_AVAILABLE, seat.isAvailable());
+        int result = db.update(dbHelper.TABLE_SEAT, cv, "id = ?", new String[]{String.valueOf(seat.getId())});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //delete seat
+    public Boolean deleteSeat(int id)
+    {
+        int result = db.delete(dbHelper.TABLE_SEAT, "id = ?", new String[]{String.valueOf(id)});
+
+        if (result == 1)
+        {
+            return true;
+        }
+        return false;
     }
 }

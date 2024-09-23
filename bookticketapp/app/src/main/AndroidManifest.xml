@@ -25,6 +25,12 @@
             android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
         <activity
+            android:name=".activities.UpdateSeatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddSeatActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.UpdateRoomActivity"
             android:exported="false" />
         <activity
