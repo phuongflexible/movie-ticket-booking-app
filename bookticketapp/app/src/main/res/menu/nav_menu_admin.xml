@@ -27,4 +27,8 @@
         android:title="Vé đặt"
         android:icon="@drawable/ic_baseline_ticket_24" />
 
+    <item
+        android:id="@+id/nav_admin_account"
+        android:title="Tài khoản Admin"
+        android:icon="@drawable/ic_baseline_person_24" />
 </menu>
