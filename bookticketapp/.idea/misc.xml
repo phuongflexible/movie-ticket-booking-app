@@ -14,6 +14,7 @@
         <entry key="..\:/Users/Linh/Desktop/MobileProgram_home/bookticketapp/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/MobileProgram_home/bookticketapp/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/MobileProgram_home/bookticketapp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.264" />
+        <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.167" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/drawable/ic_baseline_cinema_24.xml" value="0.17" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.244" />
@@ -42,6 +43,7 @@
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/activity_update_location.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/activity_update_movie.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/activity_update_payment_method.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/activity_update_role.xml" value="0.2359375" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/activity_update_user.xml" value="0.264" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/fragment_admin.xml" value="0.25" />
@@ -54,6 +56,7 @@
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/fragment_movie.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/fragment_payment_method.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/fragment_role.xml" value="0.2368659420289855" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/fragment_user.xml" value="0.264" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_button_seat.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_category.xml" value="0.25" />
@@ -63,6 +66,7 @@
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_location.xml" value="0.264" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_movie.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_payment_method.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_role.xml" value="0.2269021739130435" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_spinner.xml" value="0.25" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/item_user.xml" value="0.264" />
         <entry key="..\:/Users/Linh/Desktop/Ung_dung_dat_ve_xem_phim/movie-ticket-booking-app/bookticketapp/app/src/main/res/layout/nav_header.xml" value="0.264" />
