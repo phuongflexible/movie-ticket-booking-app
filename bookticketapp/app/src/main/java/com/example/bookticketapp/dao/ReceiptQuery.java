@@ -50,4 +50,15 @@ public class ReceiptQuery {
 
         return receiptId;
     }
+
+    public Receipt getReceiptById(int id)
+    {
+        Cursor cursor = db.rawQuery("Select * from " + dbHelper.TABLE_RECEIPT + " where id = ?", new String[]{String.valueOf(id)});
+        if (cursor.moveToFirst())
+        {
+            Receipt receipt = cursorToSeat(cursor);
+            return receipt;
+        }
+        return null;
+    }
 }
