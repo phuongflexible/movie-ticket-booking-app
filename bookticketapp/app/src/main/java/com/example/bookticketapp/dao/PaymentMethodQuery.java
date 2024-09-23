@@ -1,5 +1,6 @@
 package com.example.bookticketapp.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -44,5 +45,26 @@ public class PaymentMethodQuery {
         cursor.close();
 
         return methodList;
+    }
+
+    //add payment method
+    public Boolean addPaymentMethod(PaymentMethod p)
+    {
+        ContentValues cv =new ContentValues();
+        cv.put(dbHelper.COLUMN_PAYMENT_METHOD_NAME, p.getName());
+        long result = db.insert(dbHelper.TABLE_PAYMENT_METHOD, null, cv);
+        if (result == -1)
+            return false;
+        return true;
+    }
+
+    //check name
+    public Boolean checkName(String name)
+    {
+        Cursor cursor = db.rawQuery("Select * from " + dbHelper.TABLE_PAYMENT_METHOD + " where name = ?", new String[]{name});
+
+        if (cursor.getCount() > 0)
+            return false;
+        return true;
     }
 }
