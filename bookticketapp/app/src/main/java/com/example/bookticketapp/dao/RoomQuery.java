@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.bookticketapp.R;
 import com.example.bookticketapp.database.DatabaseHelper;
 import com.example.bookticketapp.models.Room;
+import com.example.bookticketapp.models.Seat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +78,36 @@ public class RoomQuery {
             return true;
         }
         return false;
+    }
+
+    //lay ten bang id
+    public Room getRoomById(int id)
+    {
+        Cursor cursor = db.rawQuery("Select * from " + dbHelper.TABLE_ROOM + " where id = ?", new String[]{String.valueOf(id)});
+        if (cursor.moveToFirst())
+        {
+            int idPK = cursor.getInt(0);
+            String name = cursor.getString(1);
+            int cinemaId = cursor.getInt(2);
+            Room room = new Room(idPK, name, cinemaId);
+            return room;
+        }
+        return null;
+    }
+
+    //lay ten phong
+    public List<String> getNameRoom()
+    {
+        List<String> listNameRoom = new ArrayList<>();
+        Cursor cursor = db.rawQuery("Select name from " + dbHelper.TABLE_ROOM, null);
+        if (cursor.moveToFirst())
+        {
+            do {
+                String name = cursor.getString(0);
+                listNameRoom.add(name);
+            } while (cursor.moveToNext());
+        }
+        return listNameRoom;
     }
 
 

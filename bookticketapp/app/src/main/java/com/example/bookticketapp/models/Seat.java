@@ -16,6 +16,13 @@ public class Seat {
         this.isAvailable = isAvailable;
     }
 
+    public Seat(String seatNumber, int roomId, boolean isAvailable) {
+        this.id = id;
+        this.seatNumber = seatNumber;
+        this.roomId = roomId;
+        this.isAvailable = isAvailable;
+    }
+
     public int getId() {
         return id;
     }
