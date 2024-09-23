@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initNewReleases() {
-        List<Movie> newReleases = movieQuery.getNewReleases(3);
+        List<Movie> newReleases = movieQuery.getNewReleases(4);
 
         for (Movie movie : newReleases) {
             View view = getLayoutInflater().inflate(R.layout.item_movie_gridview, linearNewReleases, false);
