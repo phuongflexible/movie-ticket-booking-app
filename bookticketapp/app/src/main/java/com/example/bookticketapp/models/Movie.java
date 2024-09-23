@@ -19,11 +19,12 @@ public class Movie implements Serializable {
     private List<Showtime> showtimes;
     private List<Rating> ratings;
 
-
-    public Movie() {
+    public Movie(int id,String title, float rating, byte[] image) {
+        this.id = id;
+        this.title = title;
+        this.rating = rating;
+        this.image = image;
     }
-
-
 
     public Movie(int id, String title, String desciption, int categoryId, int duration, Calendar openingDay, float rating, byte[] image) {
 

@@ -1,58 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
+        android:id="@+id/linearContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/btnSearchMovie"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/ic_search"
-            android:contentDescription="Button search movie"/>
+            android:padding="5dp"
+            android:orientation="horizontal">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoTxtSearchMovie"
-            android:layout_width="wrap_content"
+            <ImageButton
+                android:id="@+id/btnSearchMovie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_search"
+                android:contentDescription="Button search movie"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/autoTxtSearchMovie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_weight="1"
+                android:paddingHorizontal="5dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:hint="Tìm phim..."
+                android:textColorHint="@color/gray"
+                android:backgroundTint="@color/orange"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:layout_weight="1"
-            android:paddingHorizontal="5dp"
-            android:ems="10"
-            android:inputType="text"
-            android:textColor="@color/white"
-            android:hint="Tìm phim..."
-            android:textColorHint="@color/gray"
-            android:backgroundTint="@color/orange"/>
+            android:padding="10dp"
+            android:text="Đã tìm thấy 0 kết quả"
+            android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/txtNewReleases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Phim mới ra mắt"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"/>
+
+        <HorizontalScrollView
+            android:id="@+id/cvNewReleases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearNewReleases"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/txtTopSelling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Phim bán chạy"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"/>
+
+        <HorizontalScrollView
+            android:id="@+id/cvTopSelling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearTopSelling"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/txtNowShowing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Đang chiếu"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"/>
+
+        <GridView
+            android:id="@+id/gvMovies"
+            android:layout_width="match_parent"
+            android:layout_height="1500dp"
+            android:horizontalSpacing="5dp"
+            android:numColumns="2"
+            android:padding="5dp"
+            android:verticalSpacing="10dp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Đã tìm thấy 0 kết quả"
-        android:visibility="gone"/>
-
-    <GridView
-        android:id="@+id/gvMovies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:numColumns="2"
-        android:horizontalSpacing="5dp"
-        android:verticalSpacing="10dp"
-        />
-
-</LinearLayout>
+</ScrollView>

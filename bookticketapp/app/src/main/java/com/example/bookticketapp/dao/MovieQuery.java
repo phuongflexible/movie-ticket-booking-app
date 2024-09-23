@@ -46,6 +46,15 @@ public class MovieQuery {
         return new Movie(id, title, desciption, categoryId, duration, openingDay, rating, image);
     }
 
+    private Movie cursorToMovieItem(Cursor cursor) {
+        int id = cursor.getInt(0);
+        String title = cursor.getString(1);
+        float rating = cursor.getFloat(2);
+        byte[] image = cursor.getBlob(3);
+
+        return new Movie(id, title, rating, image);
+    }
+
     public List<Movie> getAllMovies() {
         List<Movie> movieList = new ArrayList<>();
         Cursor cursor = db.query(
@@ -104,6 +113,56 @@ public class MovieQuery {
         }
         cursor.close();
         return movieNames;
+    }
+
+    // Lấy các phim mới
+    public List<Movie> getNewReleases(int limit) {
+        List<Movie> movieList = new ArrayList<>();
+
+        String[] columns = {dbHelper.COLUMN_MOVIE_ID, dbHelper.COLUMN_MOVIE_TITLE, dbHelper.COLUMN_MOVIE_RATING, dbHelper.COLUMN_MOVIE_IMAGE};
+        String orderBy = "strftime('%Y-%m-%d', " + dbHelper.COLUMN_MOVIE_OPENING_DAY + ") DESC";
+
+        Cursor cursor = db.query(
+                dbHelper.TABLE_MOVIE,
+                columns,
+                null,
+                null,
+                null,
+                null,
+                orderBy,
+                String.valueOf(limit)
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                movieList.add(cursorToMovieItem(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return movieList;
+    }
+
+    // Lấy các phim bán chạy
+    public List<Movie> getTopSellingMovies(int limit) {
+        List<Movie> movieList = new ArrayList<>();
+
+        String query = "SELECT Movie.id, Movie.title, Movie.rating, Movie.image, COUNT(Ticket.id) AS ticket_count " +
+                "FROM Movie " +
+                "INNER JOIN Showtime ON Movie.id = Showtime.movie_id " +
+                "INNER JOIN Ticket ON Showtime.id = Ticket.showtime_id " +
+                "GROUP BY Movie.id, Movie.rating, Movie.image " +
+                "ORDER BY ticket_count DESC " +
+                "LIMIT ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(limit)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                movieList.add(cursorToMovieItem(cursor));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return movieList;
     }
 
     public List<Movie> searchMoviesByTitle(String query) {
