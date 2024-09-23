@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookticketapp.R;
+
+import com.example.bookticketapp.fragments.AdminAccountFragment;
+import com.example.bookticketapp.fragments.FilmFragment;
 import com.example.bookticketapp.fragments.CategoryFragment;
 import com.example.bookticketapp.fragments.CinemaAdminFragment;
 import com.example.bookticketapp.fragments.LocationFragment;
@@ -67,6 +70,8 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.nav_ticket:
                         replaceFragment(new TicketFragment());
                         break;
+                    case R.id.nav_admin_account:
+                        replaceFragment(new AdminAccountFragment());
                     case R.id.nav_location:
                         replaceFragment(new LocationFragment());
                         break;
