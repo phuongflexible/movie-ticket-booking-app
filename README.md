@@ -1,4 +1,12 @@
-# movie-ticket-booking-app
+# Movie ticket booking app
+A mobile app which supports user book movie ticket.
+
+## Table of contents
+* [General Information](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Setup](#Setup)
+* [Project Status](#project-status)
 
 ## Technologies Used
 - **Java**: The primary programming language used for Android development.
