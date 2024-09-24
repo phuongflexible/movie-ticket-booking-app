@@ -8,6 +8,10 @@ A mobile app which supports user book movie ticket.
 * [Setup](#Setup)
 * [Project Status](#project-status)
 
+## General Information
+
+
+
 ## Technologies Used
 - **Java**: The primary programming language used for Android development.
 - **Android Studio**: The official IDE for Android development.
