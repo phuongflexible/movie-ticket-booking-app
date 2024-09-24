@@ -15,3 +15,14 @@ This project is about creating a mobile app which helps to book movie ticket. Us
 - **SQLite**: Local database used for storing application data.
 - **XML**: For designing the UI layouts.
 - **Gradle**: Build automation tool used in Android Studio.
+## Features
+User can use these functions:
+- Register and log in to use functions supporting buying tickets.
+- See the detail of a movie by using a filter of location of the cinema, name of the movie, booking date, booking time, cinema.
+- Book many tickets.
+- See the state of seats in the rooms of the cinema: which seat has already booked and which one has not booked yet. This helps user to choose the seat they would like.
+- See the history of booked tickets.
+- Give the rating to the movie.
+- Use Paypal to pay.
+Admin can use these functions:
+
