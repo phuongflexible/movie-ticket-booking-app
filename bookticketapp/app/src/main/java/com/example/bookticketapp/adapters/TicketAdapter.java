@@ -69,6 +69,6 @@ public class TicketAdapter extends BaseAdapter {
         TextView txtReceipt = view.findViewById(R.id.txtReceipt);
         Receipt receipt = receiptQuery.getReceiptById(listTickets.get(i).getReceiptId());
         txtPrice.setText(String.valueOf(receipt.getTotal()));
-        return null;
+        return view;
     }
 }
