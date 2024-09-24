@@ -31,6 +31,11 @@ Admin can use these functions:
 - Category management: add, delete, update categories.
 - Product management: add, delete, update movies, cinemas,...
 ## Setup
+- To run this project, install Android Studio.
+- In Android Studio, create a virtual device to run the app.
+## Project status
+- This project is no longer being worked on because of the subject is finished.
+
 
   
 
