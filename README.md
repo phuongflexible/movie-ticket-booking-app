@@ -23,6 +23,12 @@ User can use these functions:
 - See the state of seats in the rooms of the cinema: which seat has already booked and which one has not booked yet. This helps user to choose the seat they would like.
 - See the history of booked tickets.
 - Give the rating to the movie.
-- Use Paypal to pay.
+- Choose a method to pay online.
+- See the rating of each movie.
+- See the best-selling movie, new movie.
 Admin can use these functions:
+- User management: add, delete, update and change roles.
+- Category management: add, delete, update categories.
+- Product management: add, delete, update movies, cinemas,...
+  
 
