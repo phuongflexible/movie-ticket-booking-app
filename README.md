@@ -10,11 +10,11 @@ A mobile app which supports user book movie ticket.
 ## General Information
 This project is about creating a mobile app which helps to book movie ticket. User can see the detail of a movie, ticket price and choose what time and where they should watch at. They can also pay online without doing procedures for buying ticket at the cinema. Manager can manage cinemas, revenue,... by using this app.
 ## Technologies Used
-- **Java**: The primary programming language used for Android development.
-- **Android Studio**: The official IDE for Android development.
+- **Java**: The primary programming language used for Android development. Version: 1.8
+- **Android Studio**: The official IDE for Android development. Version: 7.2.2
 - **SQLite**: Local database used for storing application data.
 - **XML**: For designing the UI layouts.
-- **Gradle**: Build automation tool used in Android Studio.
+- **Gradle**: Build automation tool used in Android Studio. Version: 7.3.3
 ## Features
 User can use these functions:
 - Register and log in to use functions supporting buying tickets.
@@ -30,5 +30,7 @@ Admin can use these functions:
 - User management: add, delete, update and change roles.
 - Category management: add, delete, update categories.
 - Product management: add, delete, update movies, cinemas,...
+## Setup
+
   
 
