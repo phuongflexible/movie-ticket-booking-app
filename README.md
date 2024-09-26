@@ -34,7 +34,7 @@ Admin can use these functions:
 - To run this project, install Android Studio.
 - In Android Studio, create a virtual device to run the app.
 ## Project status
-- This project is no longer being worked on because of the subject is finished.
+- This project is no longer being worked on because the subject has finished.
 
 
   
